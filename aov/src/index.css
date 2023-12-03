@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
+@font-face {
+  font-family: 'SVN-Engine';
+  src: url('./fonts/SVN-Engine.otf');
+}
+:root
+{
+  --bg-color: #ffe4c4;
+}
+
+*
+{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+body
+{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+#root
+{
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+

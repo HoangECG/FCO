@@ -1,0 +1,17 @@
+#tabs
+{
+    position: absolute;
+    top: 0px;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    overflow: hidden;
+}
+#tabsWin {
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    bottom: -999px;
+    left: 15px;
+    transition: 1s ease-in-out;
+}

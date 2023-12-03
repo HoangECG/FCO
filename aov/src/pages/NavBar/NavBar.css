@@ -1,0 +1,115 @@
+:root {
+    --bg-color: rgb(196, 193, 193);
+    --bg-hover: white;
+    --text-hover: black;
+}
+
+#nav-bar-master {
+    width: 140px;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    position: fixed;
+    padding: 35px 10px 35px 35px;
+    z-index: 999;
+}
+
+input[type="text"]:disabled {
+    background: #dddddd;
+}
+
+#nav-bar-ul {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background: rgba(255, 255, 255,0.65);
+    border-radius: 5px;
+    overflow: hidden;
+    list-style: none;
+    position: relative;
+}
+
+#nav-bar-ul>li {
+    width: 100%;
+    height: 90px;
+    transition: height 0.5s ease-in-out;
+    border-bottom: 1px rgba(0, 0, 0, 0.3) solid;
+}
+
+.nav-icons {
+    position: absolute;
+    color: rgba(35, 35, 35, 0.8);
+    font-size: 25px;
+    width: 100%;
+    text-align: center;
+    line-height: 50px;
+    z-index: 1;
+    left: 0px;
+    top: 10px;
+    transition: 0.3s ease-in-out;
+}
+
+.active>.nav-icons {
+    color: white;
+    font-size: 39px;
+    transition: 0.3s ease-in-out;
+}
+
+#nav-bar-ul>li>a {
+    width: 100%;
+    height: 100%;
+    line-height: 140px;
+    padding: 0px 5px;
+    text-decoration: none;
+    color: rgb(27, 27, 27);
+    font-size: 0.9em;
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    z-index: 999;
+    position: relative;
+    transition: 0.3s ease-in-out;
+}
+
+#nav-bar-ul>li>.active {
+    width: 100%;
+    height: 100%;
+    line-height: 140px;
+    padding: 0px 5px;
+    text-decoration: none;
+    color: white;
+    font-size: 1.1em;
+    background-color: rgb(93, 93, 93);
+    text-transform: uppercase;
+    transition: 0.3s ease-in-out;
+    z-index: 999;
+}
+
+#nav-bar-ul>li>a:hover {
+    background-color: rgb(112, 112, 112);
+    color: white;
+    animation: backchange 3s ease-in-out infinite;
+}
+@keyframes backchange {
+    0%,100%{
+        background-color: rgb(112, 112, 112);
+    }50%{
+        background-color: rgb(167, 167, 167);
+    }
+}
+
+#nav-bar-ul>li>a:hover>.nav-icons{
+    color: white;
+    font-size: 39px;
+}
+
+#nav-bar-ul>li:nth-last-child(1) {
+    position: absolute;
+    bottom: 0px;
+    border-bottom: 0px;
+    border-top: 1px rgba(0, 0, 0, 0.3) solid;
+}

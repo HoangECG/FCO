@@ -1,0 +1,107 @@
+#master-box
+{
+    width: 850px;
+    height: 450px;
+    background-color: bisque;
+    position: relative;
+    top: 150px;
+    left: 100px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+#box-drop-blue
+,#box-drop-red
+,#box-drag-blue
+,#box-drag-red
+{
+    min-width: 350px;
+    height: 150px;
+    background-color: white;
+    border: 1px solid black;
+    margin: 5px 15px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+#drop-container
+,#drag-container
+{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.drag-item
+{
+    padding: 1px 10px;
+    margin: 2px;
+    cursor: pointer;
+    border: 1px solid black;
+    width: fit-content;
+    text-indent: px;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.clearContent
+{
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+    position: relative;
+    left: -2px;
+}
+.clearContent::before
+{
+    content: "";
+    position: absolute;
+    left: 7px;
+    width: 2px;
+    height: 15px;
+    background-color: black;
+    rotate: 45deg;
+}
+.clearContent::after
+{
+    content: "";
+    position: absolute;
+    left: 7px;
+    width: 2px;
+    height: 15px;
+    background-color: black;
+    rotate: -45deg;
+}
+#drag-container>#box-drag-blue>.drag-item>.clearContent,
+#drag-container>#box-drag-red>.drag-item>.clearContent
+{
+    width: 0px;
+    height: 0px;
+    background-color: black;
+}
+#drag-container>#box-drag-blue>.drag-item>.clearContent::after,
+#drag-container>#box-drag-red>.drag-item>.clearContent::after,
+#drag-container>#box-drag-blue>.drag-item>.clearContent::before,
+#drag-container>#box-drag-red>.drag-item>.clearContent::before
+{
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 0;
+    left: 0;
+}
+#drag-container>#box-drag-blue>.drag-item,
+#drag-container>#box-drag-red>.drag-item
+{
+    padding: 2px 10px 2px 10px;
+    margin: 2px;
+    cursor: pointer;
+    border: 1px solid black;
+    width: fit-content;
+    text-indent: 0px;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}

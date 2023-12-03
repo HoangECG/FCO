@@ -1,0 +1,74 @@
+{
+    "1": {
+        "rank" : "1",
+        "team" : "SGP",
+        "win" : "1",
+        "lose": "1",
+        "point": "3",
+        "gd": "0",
+        "match": "3"
+    },
+    "2": {
+        "rank" : "2",
+        "team" : "VGM",
+        "win" : "1",
+        "lose": "1",
+        "point": "3",
+        "gd": "0",
+        "match": "3"
+    },
+    "3": {
+        "rank" : "2",
+        "team" : "VGM",
+        "win" : "1",
+        "lose": "1",
+        "point": "3",
+        "gd": "0",
+        "match": "3"
+    },
+    "4": {
+        "rank" : "2",
+        "team" : "VGM",
+        "win" : "1",
+        "lose": "1",
+        "point": "3",
+        "gd": "0",
+        "match": "3"
+    },
+    "5": {
+        "rank" : "2",
+        "team" : "VGM",
+        "win" : "1",
+        "lose": "1",
+        "point": "3",
+        "gd": "0",
+        "match": "3"
+    },
+    "6": {
+        "rank" : "2",
+        "team" : "VGM",
+        "win" : "1",
+        "lose": "1",
+        "point": "3",
+        "gd": "0",
+        "match": "3"
+    },
+    "7": {
+        "rank" : "2",
+        "team" : "VGM",
+        "win" : "1",
+        "lose": "1",
+        "point": "3",
+        "gd": "0",
+        "match": "3"
+    },
+    "8": {
+        "rank" : "2",
+        "team" : "VGM",
+        "win" : "1",
+        "lose": "1",
+        "point": "3",
+        "gd": "0",
+        "match": "3"
+    }
+}

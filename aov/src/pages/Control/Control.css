@@ -1,0 +1,62 @@
+.button-style
+{
+    width: 150px;
+    height: 150px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 25px;
+    border: 1px black solid;
+    border-radius: 5px;
+    background-color: rgba(223, 220, 220, 0.95);
+}
+.button-style:hover
+{
+    background: white;
+    border: 1px red solid;
+}
+.control-btn-ctn
+{
+    width: fit-content;
+    height: fit-content;
+    margin: 5px;
+    padding: 0px;
+    border: 1px black solid;
+    border-radius: 5px;
+}
+#status-bar-ul
+{
+    position: fixed;
+    left: 150px;
+    width: 800px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.65);
+    padding: 5px;
+    color: white;
+    z-index: 999;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 35px 15px 15px 15px;
+    border-radius: 15px;
+}
+#status-bar-ul > li
+{
+    width: fit-content;
+    background-color: rgb(122, 122, 122);
+    padding: 3px 5px;
+    border: 1px black solid;
+    border-radius: 15px;
+    list-style: none;
+}
+.control-body
+{
+    margin: 90px 35px 35px 165px; 
+    position: relative;
+    background: rgba(255, 255, 255, 0.65);
+    padding: 15px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-radius: 5px;
+}

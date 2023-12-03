@@ -1,0 +1,73 @@
+#controlBox {
+    position: absolute;
+    width: 200px;
+    height: fit-content;
+    margin: 35px 35px 35px 145px;
+    background-color: rgba(255, 255, 255,0.9);
+    border-radius: 5px;
+}
+.btnVmix {
+    height: 40px;
+    width: 95%;
+    cursor: pointer;
+    color: red;
+    background: black;
+    border-radius: 5px;
+    border: 0px;
+    text-transform: uppercase;
+    font-size: 20px;
+    margin: 5px;
+}
+
+.btnVmix:hover {
+    background: rgb(228, 228, 228);
+    color: rgb(87, 87, 87);
+    /* border: 1px solid rgba(0, 0, 0, 0.5); */
+    animation: btnHover infinite 3s ease-in-out;
+}
+#requstsCTN {
+    width: 1000px;
+    height: 100%;
+    position: absolute;
+    margin: 35px 35px 35px 365px;
+    padding: 0px 5px;
+    background-color: rgba(255, 255, 255,0.5);
+    display: flex;
+    flex-direction: column;
+}
+#requstsCTN >li {
+    height: 50px;
+    width: 100%;
+    margin: 15px 0px;
+    background-color: rgba(165, 165, 165, 0.5);
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.checkbox {
+    width: 25px;
+    height: 25px;
+    margin: 0px 15px;
+}
+.inputIPRequest {
+    width: 200px;
+    height: 30px;
+    font-size: 20px;
+    margin: 0px 10px
+}
+.inputPortRequest {
+    width: 70px;
+    height: 30px;
+    font-size: 20px;
+    margin: 0px 10px;
+    text-align: center;
+}
+.labelIP {
+    font-size: 22px;
+}
+input:focus-visible {
+    outline: none;
+    box-shadow: 1px 1px 5px rgba(1, 1, 0, .3);
+    border: 1px rgba(0, 0, 0,0.5) solid;
+}
