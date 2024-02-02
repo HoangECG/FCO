@@ -60,15 +60,6 @@ function Control(){
                 <div id="predic-ctn" className="control-btn-ctn">
                     <button type="button" id="show-tabswin" className="button-style" onClick={handleOnClick}>Show tab win</button>
                 </div>
-                <div className="control-btn-ctn">
-                    <button type="button" className="button-style">chat start</button>
-                </div>
-                <div className="control-btn-ctn">
-                    <button type="button" className="button-style">chat stop</button>
-                </div>
-                <div className="control-btn-ctn">
-                    <button type="button" className="button-style">chat reset</button>
-                </div>
             </div>
         </div>
     )
