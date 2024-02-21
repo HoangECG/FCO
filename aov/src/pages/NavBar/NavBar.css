@@ -113,3 +113,9 @@ input[type="text"]:disabled {
     border-bottom: 0px;
     border-top: 1px rgba(0, 0, 0, 0.3) solid;
 }
+#nav-bar-ul>li:nth-last-child(2) {
+    position: absolute;
+    bottom: 95px;
+    border-bottom: 0px;
+    border-top: 1px rgba(0, 0, 0, 0.3) solid;
+}

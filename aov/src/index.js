@@ -7,7 +7,7 @@ import {RouterProvider,createBrowserRouter} from "react-router-dom"
 import TestLayout from "./pages/TestLayout/TestLayout"
 import Control from "./pages/Control/Control"
 import Banpick from "./pages/banpick/Banpick"
-import Layout from "./pages/Layout"
+import Output1 from "./pages/Layout"
 import VmixApi from "./pages/VmixApi/VmixApi"
 
 
@@ -29,8 +29,12 @@ const router = createBrowserRouter([
     element: <TestLayout/>
   },
   {
-    path: "/layout",
-    element: <Layout/>
+    path: "/output1",
+    element: <Output1/>
+  },
+  {
+    path: "/output2",
+    element: <Output1/>
   },
   {
     path: "/vmixapi",

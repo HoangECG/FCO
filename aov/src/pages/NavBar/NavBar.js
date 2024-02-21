@@ -20,7 +20,10 @@ function NavBAr() {
                 <NavLink to="/vmixapi"><div className='nav-icons'><ion-icon name="rocket"></ion-icon></div>Vmix API</NavLink>
             </li>
             <li>
-                <NavLink id="nav-last" to="/layout" target='_blank'><div className='nav-icons'><ion-icon name="paper-plane"></ion-icon></div>Layout</NavLink>
+                <NavLink id="nav-last" to="/output1" target='_blank'><div className='nav-icons'><ion-icon name="paper-plane"></ion-icon></div>Output 1</NavLink>
+            </li>
+            <li>
+                <NavLink id="nav-last" to="/output2" target='_blank'><div className='nav-icons'><ion-icon name="paper-plane"></ion-icon></div>Output 2</NavLink>
             </li>
         </ul>
     </nav>
