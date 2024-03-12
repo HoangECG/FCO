@@ -10,7 +10,6 @@ import { GetMatchId, GetMatchInfo, hostIP } from '../api/FetchApi'
 
 // Body START
 function BackendBody() {
-    console.log(1)
     const [isreload, setIsreload] = useState(false)
     // Button render
     function BtnRender(props) {
@@ -883,6 +882,10 @@ function Backend() {
                         window.localStorage.setItem('gameOnPlay', JSON.stringify(data['gameInfo'][`${i}`]))
                         window.localStorage.setItem('lineup-blue', JSON.stringify(data['gameInfo'][`${i}`]['lineUpBlue']))
                         window.localStorage.setItem('lineup-red', JSON.stringify(data['gameInfo'][`${i}`]['lineUpRed']))
+                    }else {
+                        window.localStorage.setItem('gameOnPlay', JSON.stringify(data['gameInfo'][`${data['bo'] - 1}`]))
+                        window.localStorage.setItem('lineup-blue', JSON.stringify(data['gameInfo'][`${data['bo'] - 1}`]['lineUpBlue']))
+                        window.localStorage.setItem('lineup-red', JSON.stringify(data['gameInfo'][`${data['bo'] - 1}`]['lineUpRed']))
                     }
                 }
             })
