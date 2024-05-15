@@ -31,7 +31,7 @@
     --flex-name-5: 0;
 }
 
-#lineup-blue-master
+#lineup-red-master
 {
     width: 100vw;
     height: 100vh;
@@ -42,7 +42,7 @@
     transition: 0.5s ease-in-out;
 
 }
-#background-blue
+#background-red
 {
     width: var(--bg-width);
     height: var(--bg-height);
@@ -54,7 +54,7 @@
     align-items: center;
     transition: var(--trans);
 }
-#background-blue::after
+#background-red::after
 {
     content: '';
     width: 200vw;
@@ -71,7 +71,7 @@
     to { transform: rotate(360deg) }
 }
 
-#lineup-blue-ctn
+#lineup-red-ctn
 {
     width: calc(var(--bg-width) - 8px);
     height: calc(var(--bg-height) - 8px);
@@ -79,14 +79,14 @@
     transition: var(--trans);
     position: relative;
 }
-.logo-team-blue
+.logo-team-red
 {
     width: var(--logo-height);
     height: var(--logo-height);
     transition: 0.5s ease-in-out;
     overflow: hidden;
 }
-.logo-team-blue-ctn
+.logo-team-red-ctn
 {
     position: absolute;
     left: 0px;
@@ -102,7 +102,7 @@
     transition: var(--trans);
 
 }
-#team-blue-name-tab
+#team-red-name-tab
 {
     width: 100%;
     height: var(--logo-height);
@@ -129,7 +129,7 @@
     }
 }
 
-#line-blue
+#line-red
 {
     width: 100%;
     height: 25px;
@@ -137,7 +137,7 @@
     transition: var(--trans);
 
 }
-#player-blue-ctn
+#player-red-ctn
 {
     width: 100%;
     height: 100%;
@@ -147,7 +147,7 @@
     transition: var(--trans);
 
 }
-.player-blue-lineup-style
+.player-red-lineup-style
 {
     background-color: #00449F;
     position: relative;
@@ -158,7 +158,7 @@
     transition: var(--trans);
 
 }
-.player-blue-lineup-style::after
+.player-red-lineup-style::after
 {
     content: '';
     background: url('../img/pttn.png') center / cover no-repeat;
@@ -182,7 +182,7 @@
         opacity: .3;
     }
 }
-.player-blue-lineup-img
+.player-red-lineup-img
 {
     width: calc(var(--img-width)*1.2);
     height: calc(var(--img-height)*1.2);
@@ -193,7 +193,7 @@
 
 }
 
-.player_lineup-blue-tabname
+.player_lineup-red-tabname
 {
     position: absolute;
     bottom: 0px;
@@ -203,7 +203,7 @@
     transition: var(--trans);
 
 }
-.player_lineup-blue-tabname::before
+.player_lineup-red-tabname::before
 {
     content: "";
     position: absolute;
@@ -215,7 +215,7 @@
     transition: var(--trans);
 
 }
-.player_lineup-blue-playername
+.player_lineup-red-playername
 {
     width: 0px; 
 /* 230px */
@@ -231,7 +231,7 @@
     z-index: 6;
     flex: 7;
 }
-#player_lineup-blue-playername-1::before
+#player_lineup-red-playername-1::before
 {
     content: "DSL";
     position: absolute;
@@ -242,7 +242,7 @@
     left: 2px;
     color: #0063F9;
 }
-#player_lineup-blue-playername-2::before
+#player_lineup-red-playername-2::before
 {
     content: "JGL";
     position: absolute;
@@ -253,7 +253,7 @@
     left: 2px;
     color: #0063F9;
 }
-#player_lineup-blue-playername-3::before
+#player_lineup-red-playername-3::before
 {
     content: "MID";
     position: absolute;
@@ -264,7 +264,7 @@
     left: 2px;
     color: #0063F9;
 }
-#player_lineup-blue-playername-4::before
+#player_lineup-red-playername-4::before
 {
     content: "ADL";
     position: absolute;
@@ -275,7 +275,7 @@
     left: 2px;
     color: #0063F9;
 }
-#player_lineup-blue-playername-5::before
+#player_lineup-red-playername-5::before
 {
     content: "SUP";
     position: absolute;
@@ -286,7 +286,7 @@
     left: 2px;
     color: #0063F9;
 }
-#player_lineup-blue-tabname-1 > .player_lineup-role
+#player_lineup-red-tabname-1 > .player_lineup-role
 {
     position: relative;
     left: -10px;
@@ -298,7 +298,7 @@
     transition: 0.5s ease-in-out;
     z-index: 5;
 }
-#player_lineup-blue-tabname-2 > .player_lineup-role
+#player_lineup-red-tabname-2 > .player_lineup-role
 {
     position: relative;
     left: -10px;
@@ -310,7 +310,7 @@
     transition: 0.5s ease-in-out;
     z-index: 5;
 }
-#player_lineup-blue-tabname-3 > .player_lineup-role
+#player_lineup-red-tabname-3 > .player_lineup-role
 {
     position: relative;
     left: -10px;
@@ -322,7 +322,7 @@
     transition: 0.5s ease-in-out;
     z-index: 5;
 }
-#player_lineup-blue-tabname-4 > .player_lineup-role
+#player_lineup-red-tabname-4 > .player_lineup-role
 {
     position: relative;
     left: -10px;
@@ -334,7 +334,7 @@
     transition: 0.5s ease-in-out;
     z-index: 5;
 }
-#player_lineup-blue-tabname-5 > .player_lineup-role
+#player_lineup-red-tabname-5 > .player_lineup-role
 {
     position: relative;
     left: -10px;
@@ -346,8 +346,8 @@
     transition: 0.5s ease-in-out;
     z-index: 5;
 }
-.player_lineup_KDA-blue ,
-.player_lineup_MVP-blue
+.player_lineup_KDA-red ,
+.player_lineup_MVP-red
 {
     margin-top: 15px;
     color: #FFC600;
@@ -357,8 +357,8 @@
     letter-spacing: -4px;
     transition: 0.5s ease-in-out;
 }
-.player_lineup_KDA-blue::before,
-.player_lineup_MVP-blue::before
+.player_lineup_KDA-red::before,
+.player_lineup_MVP-red::before
 {
     content: 'AVG KDA';
     position: absolute;
@@ -375,7 +375,7 @@
     transition: 0.5s ease-in-out;
     clip-path: polygon(0 0, 100% 0%, 95% 100%, 0% 100%);
 }
-.player_lineup_Rank-blue
+.player_lineup_Rank-red
 {
     background: black;
     width: 240px;
@@ -391,72 +391,72 @@
     transition: 0.5s ease-in-out;
     clip-path: polygon(0 0, 100% 0%, 95% 100%, 0% 100%);
 }
-.onOff-blue1
+.onOff-red1
 {
     position: relative;
     left: var(--left-1);
 }
-.onOff-blue2
+.onOff-red2
 {
     position: relative;
     left: var(--left-2);
 }
-.onOff-blue3
+.onOff-red3
 {
     position: relative;
     left: var(--left-3);
 }
-.onOff-blue4
+.onOff-red4
 {
     position: relative;
     left: var(--left-4);
 }
-.onOff-blue5
+.onOff-red5
 {
     position: relative;
     left: var(--left-5);
 }
-#player-lineup-blue-1
+#player-lineup-red-1
 {
     flex: var(--flex-1);
 }
-#player-lineup-blue-2
+#player-lineup-red-2
 {
     flex: var(--flex-2);
 }
-#player-lineup-blue-3
+#player-lineup-red-3
 {
     flex: var(--flex-3);
 }
-#player-lineup-blue-4
+#player-lineup-red-4
 {
     flex: var(--flex-4);
 }
-#player-lineup-blue-5
+#player-lineup-red-5
 {
     flex: var(--flex-5);
 }
-#player_lineup-blue-playername-1
+#player_lineup-red-playername-1
 {
     width: var(--pos-name1);
     flex: var(--flex-name-1);
 }
-#player_lineup-blue-playername-2
+#player_lineup-red-playername-2
 {
     width: var(--pos-name2);
     flex: var(--flex-name-2);
 }
-#player_lineup-blue-playername-3
+#player_lineup-red-playername-3
 {
     width: var(--pos-name3);
     flex: var(--flex-name-3);
 }
-#player_lineup-blue-playername-4
+#player_lineup-red-playername-4
 {
     width: var(--pos-name4);
     flex: var(--flex-name-4);
 }
-#player_lineup-blue-playername-5
+#player_lineup-red-playername-5
 {
     width: var(--pos-name5);
     flex: var(--flex-name-5);

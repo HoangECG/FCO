@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import './LineupBlue.css';
+import './LineupRed.css';
 import * as beAPI from '../../../api/FetchApi'
 
 var ws = new WebSocket(`ws://${beAPI.hostIP}:14596/ws/0`)
@@ -152,25 +152,25 @@ function importplayer(nameImg){
 
 function renderPlayer(props,index){
     return (
-        <div key={index} id={'player-lineup-blue-'+props.ID} className='player-blue-lineup-style colum-ctn'>
-            <div className={'player_lineup_KDA-blue onOff-blue'+props.ID}>{props.KDA}</div>
-            <div className={'player_lineup_Rank-blue onOff-blue'+props.ID}>{props.rankKDA}</div>
-            <div className={'player_lineup_MVP-blue onOff-blue'+props.ID}>{props.MVP}</div>
-            <div className={'player_lineup_Rank-blue onOff-blue'+props.ID}>{props.rankMVP}</div>
-            <div id={'player_lineup-blue-tabname-'+props.ID} className='player_lineup-tabname row-ctn'>
+        <div key={index} id={'player-lineup-red-'+props.ID} className='player-red-lineup-style colum-ctn'>
+            <div className={'player_lineup_KDA-red onOff-red'+props.ID}>{props.KDA}</div>
+            <div className={'player_lineup_Rank-red onOff-red'+props.ID}>{props.rankKDA}</div>
+            <div className={'player_lineup_MVP-red onOff-red'+props.ID}>{props.MVP}</div>
+            <div className={'player_lineup_Rank-red onOff-red'+props.ID}>{props.rankMVP}</div>
+            <div id={'player_lineup-red-tabname-'+props.ID} className='player_lineup-tabname row-ctn'>
                 <div className='player_lineup-role'></div>
-                <div id={'player_lineup-blue-playername-'+props.ID} className='player_lineup-blue-playername'>
+                <div id={'player_lineup-red-playername-'+props.ID} className='player_lineup-red-playername'>
                     {props.player_name}
                 </div>
             </div>
-            <img className='player-blue-lineup-img' src={importplayer(props.player_name)} alt='img'></img>
+            <img className='player-red-lineup-img' src={importplayer(props.player_name)} alt='img'></img>
         </div>
     )
 }
 
 
 export default function Lineup() {
-    var listPlayer_lineup_blue = [
+    var listPlayer_lineup_red = [
         {'ID': '1', 'player_name':'HN.Kunaj', 'KDA': '3.98', 'rankKDA': '#4 of HN','MVP':'7.88','rankMVP': '#3 of HN' },
         {'ID': '2', 'player_name':'HN.ĐứcHuy', 'KDA': '4.64', 'rankKDA': '#3 of HN','MVP':'7.28','rankMVP': '#6 of HN' },
         {'ID': '3', 'player_name':'HN.ThếKhải', 'KDA': '4.83', 'rankKDA': '#1 of HN','MVP':'8.56','rankMVP': '#1 of HN' },
@@ -183,21 +183,21 @@ export default function Lineup() {
     //             //     // var teamshort = response[0]['Team']
     //             //     // var teamfull = response[0]['fullname']
     //             //     // var teaminfo = response.slice(1)
-    //             //     // listPlayer_lineup_blue = response.slice(1)
+    //             //     // listPlayer_lineup_red = response.slice(1)
     //             //     return response.slice(1)
     //             // })
     //     return res
     // }
     
-    // console.log(request_data('blue').then())
+    // console.log(request_data('red').then())
     
     const [logoTeam, setLogo] = useState('HN')
     const [teamName, setTeamName] = useState('Hà Nội')
-    const [dataTeam, setDataTeam] = useState(listPlayer_lineup_blue)
+    const [dataTeam, setDataTeam] = useState(listPlayer_lineup_red)
 
     useEffect(() => {
         async function fetchMyAPI() {
-            let response = await beAPI.GetLineUpInfo('blue')
+            let response = await beAPI.GetLineUpInfo('red')
             setLogo(response[0]['Team'])
             setTeamName(response[0]['fullname'])
             setDataTeam(response.slice(1))
@@ -209,31 +209,31 @@ export default function Lineup() {
 
 
     ws.onmessage = function(event){
-        if (event.data === 'lineup-blue-on'){
+        if (event.data === 'lineup-red-on'){
             startLayout()
         }
-        if(event.data === 'set-lineup-blue'){
-            var res = beAPI.GetLineUpInfo('blue')
+        if(event.data === 'set-lineup-red'){
+            var res = beAPI.GetLineUpInfo('red')
             res.then( response => {
                 setLogo(response[0]['Team'])
                 setTeamName(response[0]['fullname'])
                 // console.log(response.slice(1))
                 setDataTeam(response.slice(1))
             })
-            console.log('Done-Set team BLUE done')
+            console.log('Done-Set team red done')
         }
     }
     
     return (
-        <div id="lineup-blue-master">
-            <div id='background-blue'>
-                <div id="lineup-blue-ctn" className='colum-ctn'>
-                    <div className='logo-team-blue-ctn'>
-                        <img className='logo-team-blue' src={importLogo(logoTeam)} alt='logo'></img>
+        <div id="lineup-red-master">
+            <div id='background-red'>
+                <div id="lineup-red-ctn" className='colum-ctn'>
+                    <div className='logo-team-red-ctn'>
+                        <img className='logo-team-red' src={importLogo(logoTeam)} alt='logo'></img>
                     </div>
-                    <div id='team-blue-name-tab'>{teamName}</div>
-                    <div id='line-blue'/>
-                    <div id='player-blue-ctn'>
+                    <div id='team-red-name-tab'>{teamName}</div>
+                    <div id='line-red'/>
+                    <div id='player-red-ctn'>
                         {dataTeam.map(renderPlayer)}
                     </div>
                 </div>
