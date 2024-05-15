@@ -24,9 +24,16 @@ async function GetBracket() {
         .then(data => res = data)
     return res
 }
+async function GetLineUpInfo(site) {
+    var res = []
+    await fetch(`http://${hostIP}:14596/api/lineup-${site}`)
+        .then(response => response.json())
+        .then(data => res = data)
+    return res
+}
 
 
-export { GetMatchId, GetMatchInfo, GetBracket, hostIP }
+export { GetMatchId, GetMatchInfo, GetBracket,GetLineUpInfo, hostIP }
 
 
 

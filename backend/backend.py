@@ -9,6 +9,7 @@ import uvicorn
 import os
 import json
 from fastapi import WebSocket, WebSocketDisconnect
+import csv
 
 app = FastAPI()
 # Cors accept
@@ -101,11 +102,21 @@ async def response(item: str):
         with open(f'./database/match/{lastID}.json','r') as file:
             data = json.load(file)
             return data
-    elif item.split("-")[0] == "layout":
+    elif item.split("-")[0] == "lineup":
         rqRCV = item.split("-")
-        if rqRCV[1] == "lineup":
-            pass
-        pass
+        if rqRCV[1] == "blue":
+            with open('./dataLineup.csv', 'r',encoding='utf-8') as file:
+                csv_reader = csv.DictReader(file,delimiter=',')
+                list_cvt = list(csv_reader)
+                dictTeamBlue = list_cvt[0]
+                # dictTeamRed = list_cvt[1]
+                list_player = []
+                list_player.append({'Team': f'{dictTeamBlue['\ufeffT']}','fullname':f'{dictTeamBlue['Fullname']}'})
+                for i in range(5):
+                    n = i+1
+                    dict = {'ID': n, 'player_name':f'{dictTeamBlue[f'player {n}']}', 'KDA': f'{dictTeamBlue[f'KDA {n}']}', 'rankKDA': f'#{dictTeamBlue[f'Rank KDA {n}']} of {dictTeamBlue['\ufeffT']}','MVP':f'{dictTeamBlue[f'MVP {n}']}','rankMVP': f'#{dictTeamBlue[f'Rank MVP {n}']} of {dictTeamBlue['\ufeffT']}' }
+                    list_player.append(dict)
+                return list_player
     # elif item == "count1":
     #     with open(f'../tools/chatytcount.json','r') as file:
     #         data = json.load(file)
