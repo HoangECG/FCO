@@ -157,7 +157,7 @@ function renderPlayer(props,index){
             <div className={'player_lineup_Rank-blue onOff-blue'+props.ID}>{props.rankKDA}</div>
             <div className={'player_lineup_MVP-blue onOff-blue'+props.ID}>{props.MVP}</div>
             <div className={'player_lineup_Rank-blue onOff-blue'+props.ID}>{props.rankMVP}</div>
-            <div id={'player_lineup-blue-tabname-'+props.ID} className='player_lineup-tabname row-ctn'>
+            <div id={'player_lineup-blue-tabname-'+props.ID} className='player_lineup-blue-tabname row-ctn'>
                 <div className='player_lineup-role'></div>
                 <div id={'player_lineup-blue-playername-'+props.ID} className='player_lineup-blue-playername'>
                     {props.player_name}

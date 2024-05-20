@@ -96,7 +96,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(1,98,249);
+    background: linear-gradient(#ffffff, #ffd68f);
     transition: 0.5s ease-in-out;
     z-index: 999;
     transition: var(--trans-red);
@@ -149,7 +149,7 @@
 }
 .player-red-lineup-style
 {
-    background-color: #00449F;
+    background-color: #414144;
     position: relative;
     flex: 1;
     margin: 0px 1px;
@@ -240,7 +240,7 @@
     font-size: 25px;
     top: -18px;
     left: 2px;
-    color: #0063F9;
+    color: black;
 }
 #player_lineup-red-playername-2::before
 {
@@ -251,7 +251,7 @@
     font-size: 25px;
     top: -18px;
     left: 2px;
-    color: #0063F9;
+    color: black;
 }
 #player_lineup-red-playername-3::before
 {
@@ -262,7 +262,7 @@
     font-size: 25px;
     top: -18px;
     left: 2px;
-    color: #0063F9;
+    color: black;
 }
 #player_lineup-red-playername-4::before
 {
@@ -273,7 +273,7 @@
     font-size: 25px;
     top: -18px;
     left: 2px;
-    color: #0063F9;
+    color: black;
 }
 #player_lineup-red-playername-5::before
 {
@@ -284,7 +284,7 @@
     font-size: 25px;
     top: -18px;
     left: 2px;
-    color: #0063F9;
+    color: black;
 }
 #player_lineup-red-tabname-1 > .player_lineup-role
 {
