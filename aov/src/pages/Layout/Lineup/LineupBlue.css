@@ -73,8 +73,8 @@
 
 #lineup-blue-ctn
 {
-    width: calc(var(--bg-width-blue) - 8px);
-    height: calc(var(--bg-height-blue) - 8px);
+    width: calc(var(--bg-width-blue) - 4px);
+    height: calc(var(--bg-height-blue) - 4px);
     background: black;
     transition: var(--trans-blue);
     position: relative;
@@ -109,7 +109,7 @@
     position: relative;
     padding-left: var(--logo-height-blue);
     color: white;
-    font-size: 130px;
+    font-size: 115px;
     text-indent: 40px;
     line-height: var(--logo-height-blue);
     font-family: 'SVN-Engine';
@@ -225,7 +225,7 @@
     bottom: -22px;
     text-indent: 15px;
     color: black;
-    font-size: 45px;
+    font-size: 40px;
     text-transform: uppercase;
     transition: 0.5s ease-in-out;
     z-index: 6;

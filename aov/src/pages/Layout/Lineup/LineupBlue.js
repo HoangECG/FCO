@@ -37,7 +37,7 @@ function startLayout(e){
             setRoot('--pos-name1-blue','200px')
             setRoot('--flex-name-1-blue','7')
             return new Promise( function(resolve){
-                setTimeout(resolve, 2500)
+                setTimeout(resolve, 5000)
             })
         })
         .then(function(){
@@ -50,7 +50,7 @@ function startLayout(e){
             setRoot('--pos-name2-blue','200px')
             setRoot('--flex-name-2-blue','7')
             return new Promise( function(resolve){
-                setTimeout(resolve, 2500)
+                setTimeout(resolve, 5000)
             })
         })
         .then(function(){
@@ -63,7 +63,7 @@ function startLayout(e){
             setRoot('--pos-name3-blue','200px')
             setRoot('--flex-name-3-blue','7')
             return new Promise( function(resolve){
-                setTimeout(resolve, 2500)
+                setTimeout(resolve, 5000)
             })
         })
         .then(function(){
@@ -76,7 +76,7 @@ function startLayout(e){
             setRoot('--pos-name4-blue','200px')
             setRoot('--flex-name-4-blue','7')
             return new Promise( function(resolve){
-                setTimeout(resolve, 2500)
+                setTimeout(resolve, 5000)
             })
         })
         .then(function(){
@@ -89,7 +89,7 @@ function startLayout(e){
             setRoot('--pos-name5-blue','200px')
             setRoot('--flex-name-5-blue','7')
             return new Promise( function(resolve){
-                setTimeout(resolve, 2500)
+                setTimeout(resolve, 5000)
             })
         })
         .then(function(){
@@ -110,7 +110,7 @@ function startLayout(e){
             setRoot('--flex-name-4-blue','3')
             setRoot('--flex-name-5-blue','3')
             return new Promise( function(resolve){
-                setTimeout(resolve, 2500)
+                setTimeout(resolve, 10000)
             })
         })
         .then(function(){
@@ -171,11 +171,11 @@ function renderPlayer(props,index){
 
 export default function Lineup() {
     var listPlayer_lineup_blue = [
-        {'ID': '1', 'player_name':'HN.Kunaj', 'KDA': '3.98', 'rankKDA': '#4 of HN','MVP':'7.88','rankMVP': '#3 of HN' },
-        {'ID': '2', 'player_name':'HN.ĐứcHuy', 'KDA': '4.64', 'rankKDA': '#3 of HN','MVP':'7.28','rankMVP': '#6 of HN' },
-        {'ID': '3', 'player_name':'HN.ThếKhải', 'KDA': '4.83', 'rankKDA': '#1 of HN','MVP':'8.56','rankMVP': '#1 of HN' },
-        {'ID': '4', 'player_name':'HN.DA', 'KDA': '4.29', 'rankKDA': '#3 of HN','MVP':'7.88','rankMVP': '#2 of HN' },
-        {'ID': '5', 'player_name':'HN.NoHappy', 'KDA': '3.65', 'rankKDA': '#5 of HN','MVP':'7.75','rankMVP': '#5 of HN' },] 
+        {'ID': '1', 'player_name':'TPHCM.Psyche', 'KDA': '3.98', 'rankKDA': '#4 of HN','MVP':'7.88','rankMVP': '#3 of HN' },
+        {'ID': '2', 'player_name':'TPHCM.Psyche', 'KDA': '4.64', 'rankKDA': '#3 of HN','MVP':'7.28','rankMVP': '#6 of HN' },
+        {'ID': '3', 'player_name':'TPHCM.Psyche', 'KDA': '4.83', 'rankKDA': '#1 of HN','MVP':'8.56','rankMVP': '#1 of HN' },
+        {'ID': '4', 'player_name':'TPHCM.Psyche', 'KDA': '4.29', 'rankKDA': '#3 of HN','MVP':'7.88','rankMVP': '#2 of HN' },
+        {'ID': '5', 'player_name':'TPHCM.Psyche', 'KDA': '3.65', 'rankKDA': '#5 of HN','MVP':'7.75','rankMVP': '#5 of HN' },] 
     
     // const request_data = async (i) => {
     //     var res = await beAPI.GetLineUpInfo(i)
@@ -191,7 +191,7 @@ export default function Lineup() {
     
     // console.log(request_data('blue').then())
     
-    const [logoTeam, setLogo] = useState('HN')
+    const [logoTeam, setLogo] = useState('TN')
     const [teamName, setTeamName] = useState('Hà Nội')
     const [dataTeam, setDataTeam] = useState(listPlayer_lineup_blue)
 
