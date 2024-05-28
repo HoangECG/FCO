@@ -114,7 +114,7 @@ async def response(item: str):
                 list_player.append({'Team': f'{dictTeam['\ufeffT']}','fullname':f'{dictTeam['Fullname']}'})
                 for i in range(5):
                     n = i+1
-                    dict = {'ID': n, 'player_name':f'{dictTeam[f'player {n}']}', 'KDA': f'{dictTeam[f'KDA {n}']}', 'rankKDA': f'#{dictTeam[f'Rank KDA {n}']} of {dictTeam['\ufeffT']}','MVP':f'{dictTeam[f'MVP {n}']}','rankMVP': f'#{dictTeam[f'Rank MVP {n}']} of {dictTeam['\ufeffT']}' }
+                    dict = {'ID': n, 'player_name':f'{dictTeam[f'player {n}']}', 'KDA': f'{dictTeam[f'KDA {n}']}', 'rankKDA': f'{dictTeam[f'Rank KDA {n}']}','MVP':f'{dictTeam[f'MVP {n}']}','rankMVP': f'{dictTeam[f'Rank MVP {n}']}' }
                     list_player.append(dict)
                 return list_player
         else:
@@ -127,7 +127,7 @@ async def response(item: str):
                 list_player.append({'Team': f'{dictTeam['\ufeffT']}','fullname':f'{dictTeam['Fullname']}'})
                 for i in range(5):
                     n = i+1
-                    dict = {'ID': n, 'player_name':f'{dictTeam[f'player {n}']}', 'KDA': f'{dictTeam[f'KDA {n}']}', 'rankKDA': f'#{dictTeam[f'Rank KDA {n}']} of {dictTeam['\ufeffT']}','MVP':f'{dictTeam[f'MVP {n}']}','rankMVP': f'#{dictTeam[f'Rank MVP {n}']} of {dictTeam['\ufeffT']}' }
+                    dict = {'ID': n, 'player_name':f'{dictTeam[f'player {n}']}', 'KDA': f'{dictTeam[f'KDA {n}']}', 'rankKDA': f'{dictTeam[f'Rank KDA {n}']}','MVP':f'{dictTeam[f'MVP {n}']}','rankMVP': f'{dictTeam[f'Rank MVP {n}']}' }
                     list_player.append(dict)
                 return list_player
             
