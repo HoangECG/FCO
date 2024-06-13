@@ -1,4 +1,4 @@
-let hostIP = "10.7.28.44"
+let hostIP = "localhost"
 
 
 
