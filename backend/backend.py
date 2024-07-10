@@ -33,6 +33,10 @@ def getTeams():
         data = json.load(file)
         listTeam = data.keys()
     return listTeam
+# banpick variable
+# range phase 1-16
+banpick = {'Phase': '1', 'Ban1': 'none', 'Ban2': 'none', 'Ban3': 'none', 'Ban4': 'none', 'Ban5': 'none', 'Ban6': 'none', 'Ban7': 'none', 'Ban8': 'none', 'pick1': 'none', 'pick2': 'none', 'pick3': 'none', 'pick4': 'none', 'pick5': 'none', 'pick6': 'none', 'pick7': 'none', 'pick8': 'none', 'pick9': 'none', 'pick10': 'none' }
+
 chat_count = False
 @app.get("/api/{item}")
 async def response(item: str):
@@ -130,37 +134,9 @@ async def response(item: str):
                     dict = {'ID': n, 'player_name':f'{dictTeam[f'player {n}']}', 'KDA': f'{dictTeam[f'KDA {n}']}', 'rankKDA': f'{dictTeam[f'Rank KDA {n}']}','MVP':f'{dictTeam[f'MVP {n}']}','rankMVP': f'{dictTeam[f'Rank MVP {n}']}' }
                     list_player.append(dict)
                 return list_player
-            
-    # elif item == "count1":
-    #     with open(f'../tools/chatytcount.json','r') as file:
-    #         data = json.load(file)
-    #     if chat_count:
-    #         data['count1'] +=1
-    #     with open(f'../tools/chatytcount.json','w') as file:
-    #         data = json.dump(data,file)
-
-    # elif item == "count2":
-    #     with open(f'../tools/chatytcount.json','r') as file:
-    #         data = json.load(file)
-    #     if chat_count:
-    #         data['count2'] +=1
-    #     with open(f'../tools/chatytcount.json','w') as file:
-    #         data = json.dump(data,file)
-    # elif item == "chatytcount":
-    #     with open(f'../tools/chatytcount.json','r') as file:
-    #         data = json.load(file)
-    #     return data
-    # elif item == "startcount":
-    #     chat_count = True
-    # elif item == "stopcount":
-    #     chat_count = False
-    # elif item == "resetcount":
-    #     with open(f'../tools/chatytcount.json','r') as file:
-    #         data = json.load(file)
-    #         data['count1'] = 0
-    #         data['count2'] = 0
-    #     with open(f'../tools/chatytcount.json','w') as file:
-    #         data = json.dump(data,file)
+    # banpick api
+    elif item == "banpick":
+        return banpick
     else:
         return {"status":"nodata"}
 
@@ -174,8 +150,7 @@ async def reciveItem(rcv: Request,item: str):
             json.dump(await rcv.json(),filew)
             return {"status":"DONE"}
     if item == 'crm':
-        data = await rcv.json()
-
+        print(type(await rcv.json()))
         pass
 
 # websocket def
