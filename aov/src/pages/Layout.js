@@ -1,6 +1,7 @@
 import './Layout.css';
 import LineupBlue from './Layout/Lineup/LineupBlue'
 import LineupRed from './Layout/Lineup/LineupRed'
+import LineupNew from './Layout/Lineup/LineupNew'
 import React, { } from "react";
 import Tab from './Layout/Tabs'
 
@@ -12,6 +13,9 @@ function Layout() {
       </div>
       <div id='lineupRed'>
         <LineupRed/>
+      </div>
+      <div id='lineupNew'>
+        <LineupNew/>
       </div>
       <Tab/>
     </div>

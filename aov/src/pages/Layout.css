@@ -5,7 +5,7 @@
     background: transparent;
     position: relative;
 }
-#lineupBlue, #lineupRed
+#lineupBlue, #lineupRed, #lineupNew
 {
     position: absolute;
 }
