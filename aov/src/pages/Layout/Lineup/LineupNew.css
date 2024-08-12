@@ -1,6 +1,41 @@
 :root
 {
-    --bg-width-red: 20vh; 
-    --opacity-red: 100%;
+    --bg-width: 20vh; 
+    --opacity: 100%;
 }
 
+#lineup-master-new
+{
+    width: 1920px;
+    height: 1080px;
+    position: relative;
+    background: url(./Background.png) center / cover no-repeat;
+}
+#ptt-background-new
+{
+    width: 1920px;
+    height: 1080px;
+    position: relative;
+    left: 350px;
+    background: url(./logoMain.png) center left / contain no-repeat;
+    animation: logoShadow 5s ease-in-out infinite;
+}
+@keyframes logoShadow{
+    0%,100% {opacity: 10%;}
+    50% {opacity: 50%;}
+}
+
+#map-team-new
+{
+    width: 1920px;
+    height: 1080px;
+    position: absolute;
+    left: 100px;
+    top: 0px;
+    background: url(./map1.png) center left / contain no-repeat;
+    transform:
+    perspective(750px)
+    translate3d(0px, 0px, -250px)
+    rotateX(27deg)
+    scale(0.9, 0.9);
+}

@@ -97,18 +97,10 @@ export default function Lineup() {
     }
     
     return (
-        <div id="lineup-red-master">
-            <div id='background-red'>
-                <div id="lineup-red-ctn" className='colum-ctn'>
-                    <div className='logo-team-red-ctn'>
-                        <img className='logo-team-red' src={importLogo(logoTeam)} alt='logo'></img>
-                    </div>
-                    <div id='team-red-name-tab'>{teamName}</div>
-                    <div id='line-red'/>
-                    <div id='player-red-ctn'>
-                        {dataTeam.map(renderPlayer)}
-                    </div>
-                </div>
+        <div id="lineup-master-new">
+            <div id='ptt-background-new'/>
+            <div id='map-team-new'>
+                
             </div>
         </div>
     )

@@ -4,6 +4,7 @@
     height: 100vh;
     background: transparent;
     position: relative;
+    overflow: hidden;
 }
 #lineupBlue, #lineupRed, #lineupNew
 {
