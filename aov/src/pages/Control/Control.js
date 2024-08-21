@@ -60,6 +60,15 @@ function Control(){
                 <div id="predic-ctn" className="control-btn-ctn">
                     <button type="button" id="show-tabswin" className="button-style" onClick={handleOnClick}>Show tab win</button>
                 </div>
+                <div id="today-matchup-ctn" className="control-btn-ctn">
+                    <button type="button" id="show-today-matchup" className="button-style" onClick={handleOnClick}>Show today matchup</button>
+                </div>
+                <div id="caster-name-ctn" className="control-btn-ctn">
+                    <button type="button" id="show-caster-name" className="button-style" onClick={handleOnClick}>Show caster name</button>
+                </div>
+                <div id="tab-matchup-ingame-ctn" className="control-btn-ctn">
+                    <button type="button" id="tab-matchup-ingame-ctn" className="button-style" onClick={handleOnClick}>Show tab matchup ingame</button>
+                </div>
             </div>
         </div>
     )
