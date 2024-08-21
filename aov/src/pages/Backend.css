@@ -196,6 +196,55 @@ button {
     justify-content: flex-end;
 }
 
+/* Noti frame */
+#popUpNotiBox {
+    position: absolute;
+    width: 480px;
+    height: 80px;
+    bottom: 0px;
+    right: 0px;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 1000;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin: 0px 50px 15px 0px;
+    border-radius: 5px;
+}
+
+#popUpNotiBox::after {
+    content: "Noti";
+    position: absolute;
+    width: 50px;
+    height: 25px;
+    top: -25px;
+    right: 10px;
+    color: black;
+    background: rgba(255, 255, 255, 0.5);
+    font-size: 20px;
+    line-height: 25px;
+    text-align: center;
+    border-radius: 5px 5px 0px 0px;
+}
+
+#popUpNotiBox>li {
+    width: fit-content;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.45);
+    z-index: 1001;
+    color: black;
+    list-style: none;
+    text-align: start;
+    line-height: 30px;
+    font-size: 20px;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 0px 10px;
+    opacity: 1;
+    transition: 2s ease-in-out;
+}
 
 /* Start custom layout */
 
@@ -212,3 +261,168 @@ button {
     position: relative;
 }
 
+#match-create {
+    width: fit-content;
+    height: fit-content;
+    padding: 5px;
+}
+
+#streamInfo {
+    width: fit-content;
+    height: fit-content;
+    padding: 5px;
+}
+
+.test {
+    width: 200px;
+    height: 200px;
+    background-color: white;
+}
+
+#match-info-result {
+    padding: 5px;
+}
+
+.player-lineup-blue {
+    width: 212px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid rgb(63, 63, 63);
+    margin: 5px 5px;
+    z-index: 999;
+    position: relative;
+    color: rgb(24, 24, 24);
+    list-style: none;
+    font-size: 25px;
+    line-height: 40px;
+    text-align: center;
+    overflow: hidden;
+    padding-left: 10px;
+}
+
+.player-lineup-blue:hover {
+    background-color: rgb(167, 167, 167);
+}
+
+.player-lineup-red {
+    width: 212px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid rgb(63, 63, 63);
+    margin: 5px 5px;
+    z-index: 999;
+    position: relative;
+    color: rgb(24, 24, 24);
+    list-style: none;
+    font-size: 25px;
+    line-height: 40px;
+    text-align: center;
+    overflow: hidden;
+    padding-left: 10px;
+}
+
+.player-lineup-red:hover {
+    background-color: rgb(167, 167, 167);
+}
+
+#box-lineup-blue>li:nth-child(1)::before,
+#box-lineup-red>li:nth-child(1)::before {
+    content: 'DSL';
+    position: absolute;
+    min-width: 60px;
+    left: 0px;
+    font-size: 1em;
+    color: rgb(236, 236, 236);
+    background: rgb(87, 87, 87);
+    text-align: center;
+}
+
+#box-lineup-blue>li:nth-child(2)::before,
+#box-lineup-red>li:nth-child(2)::before {
+    content: 'JGL';
+    position: absolute;
+    min-width: 60px;
+    left: 0px;
+    font-size: 1em;
+    color: rgb(236, 236, 236);
+    background: rgb(87, 87, 87);
+    text-align: center;
+}
+
+#box-lineup-blue>li:nth-child(3)::before,
+#box-lineup-red>li:nth-child(3)::before {
+    content: 'MID';
+    position: absolute;
+    min-width: 60px;
+    left: 0px;
+    font-size: 1em;
+    color: rgb(236, 236, 236);
+    background: rgb(87, 87, 87);
+    text-align: center;
+}
+
+#box-lineup-blue>li:nth-child(4)::before,
+#box-lineup-red>li:nth-child(4)::before {
+    content: 'ADL';
+    position: absolute;
+    min-width: 60px;
+    left: 0px;
+    font-size: 1em;
+    color: rgb(236, 236, 236);
+    background: rgb(87, 87, 87);
+    text-align: center;
+}
+
+#box-lineup-blue>li:nth-child(5)::before,
+#box-lineup-red>li:nth-child(5)::before {
+    content: 'SUP';
+    position: absolute;
+    min-width: 60px;
+    left: 0px;
+    font-size: 1em;
+    color: rgb(236, 236, 236);
+    background: rgb(87, 87, 87);
+    text-align: center;
+}
+
+#box-lineup-blue>li:nth-child(6)::before,
+#box-lineup-red>li:nth-child(6)::before,
+#box-lineup-blue>li:nth-child(7)::before,
+#box-lineup-red>li:nth-child(7)::before {
+    content: 'SUB';
+    position: absolute;
+    min-width: 60px;
+    left: 0px;
+    font-size: 1em;
+    color: rgb(236, 236, 236);
+    background: rgb(87, 87, 87);
+    text-align: center;
+}
+
+#SwapBTN,
+#SubmitBTN {
+    background-color: black;
+    color: red;
+}
+
+#SwapBTN:hover,
+#SubmitBTN:hover {
+    background-color: red;
+    color: white;
+    border: 0px;
+    animation: btnKeyHover infinite 3s ease-in-out;
+}
+
+@keyframes btnKeyHover {
+
+    0%,
+    100% {
+        background-color: red;
+        color: white;
+    }
+
+    50% {
+        background-color: black;
+        color: white;
+    }
+}

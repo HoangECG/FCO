@@ -9,6 +9,7 @@
     width: 1920px;
     height: 1080px;
     position: relative;
+    opacity: 0%;
     background: url(./Background.png) center / cover no-repeat;
 }
 #ptt-background-new
