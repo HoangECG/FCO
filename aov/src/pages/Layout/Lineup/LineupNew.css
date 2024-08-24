@@ -9,7 +9,7 @@
     width: 1920px;
     height: 1080px;
     position: relative;
-    opacity: 0%;
+    opacity: var(--opacity);
     background: url(./Background.png) center / cover no-repeat;
 }
 #ptt-background-new
@@ -26,7 +26,7 @@
     50% {opacity: 50%;}
 }
 
-#map-team-new
+/* #map-team-new
 {
     width: 1920px;
     height: 1080px;
@@ -35,8 +35,8 @@
     top: 0px;
     background: url(./map1.png) center left / contain no-repeat;
     transform:
-    perspective(750px)
-    translate3d(0px, 0px, -250px)
+    perspective(1000px)
+    translate3d(0px, 0px, -1250px)
     rotateX(27deg)
     scale(0.9, 0.9);
-}
+} */
