@@ -106,6 +106,11 @@ async def response(item: str):
         with open(f'./database/match/{lastID}.json','r') as file:
             data = json.load(file)
             return data
+    elif item == "crrmatch":
+        lastID = max(getID())
+        with open(f'./database/match/crrmatch.json','r') as file:
+            data = json.load(file)
+            return data
     elif item.split("-")[0] == "lineup":
         rqRCV = item.split("-")
         if rqRCV[1] == "blue":
