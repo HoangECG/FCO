@@ -35,7 +35,7 @@ function Backend() {
             // setTeamName(response[0]['fullname'])
             
             // get data banpick
-            let banpick = await fetch(`http://${hostIP}:14596/api/banpick`)
+            let banpick = await fetch(`http://${hostIP}:14596/api/Getcrrmatch`)
                 .then(response => response.json())
             setPhase(banpick['Phase'])
             // end get data banpick

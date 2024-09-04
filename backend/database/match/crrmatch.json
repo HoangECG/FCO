@@ -2,7 +2,11 @@
     "matchId": "0",
     "matchName": "Match",
     "round": "round",
+    "date": "10/20",
     "bo": "3",
+    "game": "1",
+    "sc-1": "0",
+    "sc-2" : "0",
     "team-1": "SGP",
     "fullNameTeam-1": "SAIGON Phantom",
     "team-2": "VGM",
@@ -28,7 +32,6 @@
     "gameInfo": [
         {
             "game": "1",
-            "status": "start",
             "teamBlue": "SGP",
             "fullNameTeamBlue": "SAIGON Phantom",
             "teamRed": "VGM",
@@ -61,11 +64,10 @@
                 "pick4",
                 "pick5"
             ],
-            "win": "pending"
+            "win": "None"
         },
         {
             "game": "2",
-            "status": "pending",
             "teamBlue": "SGP",
             "fullNameTeamBlue": "SAIGON Phantom",
             "teamRed": "VGM",
@@ -98,11 +100,10 @@
                 "pick4",
                 "pick5"
             ],
-            "win": "pending"
+            "win": "None"
         },
         {
             "game": "3",
-            "status": "pending",
             "teamBlue": "SGP",
             "fullNameTeamBlue": "SAIGON Phantom",
             "teamRed": "VGM",
@@ -135,7 +136,7 @@
                 "pick4",
                 "pick5"
             ],
-            "win": "pending"
+            "win": "None"
         }
     ]
 }

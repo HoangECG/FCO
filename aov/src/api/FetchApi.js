@@ -17,9 +17,9 @@ async function GetMatchInfo(id) {
         .then(data => res = data)
     return res
 }
-async function GetBracket() {
+async function Getcrrmatch() {
     var res = []
-    await fetch(`http://${hostIP}:14596/api/bracket`)
+    await fetch(`http://${hostIP}:14596/api/crrmatch`)
         .then(response => response.json())
         .then(data => res = data)
     return res
@@ -33,7 +33,7 @@ async function GetLineUpInfo(site) {
 }
 
 
-export { GetMatchId, GetMatchInfo, GetBracket,GetLineUpInfo, hostIP }
+export { GetMatchId, GetMatchInfo, Getcrrmatch,GetLineUpInfo, hostIP }
 
 
 
