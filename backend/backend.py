@@ -155,8 +155,11 @@ async def reciveItem(rcv: Request,item: str):
             json.dump(await rcv.json(),filew)
             return {"status":"DONE"}
     if item == 'crm':
-        print(type(await rcv.json()))
-        pass
+        if type(await rcv.json()) is dict:
+            with open(f'./database/match/crrmatch.json', 'w') as filew:
+                json.dump(await rcv.json(),filew)
+                return {"status":"DONE"}
+        return True
 
 # websocket def
 class ConnectionManager:

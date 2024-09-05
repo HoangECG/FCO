@@ -6,10 +6,11 @@ import * as beAPI from '../api/FetchApi'
 // Fetch before mount
 
 
-
+console.log(0)
 
 // Body START
 function BackendBody() {
+    const [isreload, setIsreload] = useState(false)
     const [game, setGame] = useState('1')
     const [match, setMatch] = useState('Match 1')
     const [round, setRound] = useState('swiss stage')
@@ -19,6 +20,8 @@ function BackendBody() {
     const [teamNameBlue, setTeamNameBlue] = useState('Hà Nội')
     const [teamRed, setTeamRed] = useState('SGP')
     const [teamNameRed, setTeamNameRed] = useState('Hà Nội')
+    const [scBlue, setscrBlue] = useState('0')
+    const [scRed, setscrRed] = useState('0')
     const [lineupFullRed, setLineupFullRed] = useState([
         "player 1",
         "player 2",
@@ -42,9 +45,8 @@ function BackendBody() {
     useEffect(() => {
         async function fetchMyAPI() {
             let response = await beAPI.Getcrrmatch()
-            console.log(response['game'])
             setGame(response['game'])
-            setMatch(response['match'])
+            setMatch(response['matchName'])
             setRound(response['round'])
             setBo(response['bo'])
             setDate(response['date'])
@@ -54,6 +56,8 @@ function BackendBody() {
             setTeamNameRed(response['fullNameTeam-2'])
             setlineupFullBlue(response['lineUpFull-1'])
             setLineupFullRed(response['lineUpFull-2'])
+            setscrBlue(response['sc-1'])
+            setscrRed(response['sc-2'])
         }
     
         fetchMyAPI()
@@ -95,11 +99,107 @@ function BackendBody() {
     }
     // Component Match ID check
     function MatchCreate() {
-        // Handle onchange data
-
         // Handle button click
-        function HandleSyncButtonClick() {
-            return
+        async function HandleSyncButtonClick() {
+            var listPlayerBlue = []
+            listPlayerBlue.push(document.getElementById('blueDSL').value)
+            listPlayerBlue.push(document.getElementById('blueJGL').value)
+            listPlayerBlue.push(document.getElementById('blueMID').value)
+            listPlayerBlue.push(document.getElementById('blueADL').value)
+            listPlayerBlue.push(document.getElementById('blueSUP').value)
+            var listPlayerRed = []
+            listPlayerRed.push(document.getElementById('RedDSL').value)
+            listPlayerRed.push(document.getElementById('RedJGL').value)
+            listPlayerRed.push(document.getElementById('RedMID').value)
+            listPlayerRed.push(document.getElementById('RedADL').value)
+            listPlayerRed.push(document.getElementById('RedSUP').value)
+            for (let index = 0; index < lineupFullBlue.length; index++) {
+                if (listPlayerBlue.includes(lineupFullBlue[index]) === false) {
+                    listPlayerBlue.push(lineupFullBlue[index])
+                }
+            }
+            for (let index = 0; index < lineupFullRed.length; index++) {
+                if (listPlayerRed.includes(lineupFullRed[index]) === false) {
+                    listPlayerRed.push(lineupFullRed[index])
+                }
+            }
+        
+            fetch(`http://${beAPI.hostIP}:14596/api/post/crm`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "matchId": match,
+                    "matchName": match,
+                    "round": round,
+                    "date": date,
+                    "bo": bo,
+                    "game": game,
+                    "sc-1": scBlue,
+                    "sc-2" : scRed,
+                    "team-1": teamBlue,
+                    "fullNameTeam-1": teamNameBlue,
+                    "team-2": teamRed,
+                    "fullNameTeam-2": teamNameRed,
+                    "lineUpFull-1": listPlayerBlue,
+                    "lineUpFull-2": listPlayerRed
+                })
+            })
+            .then(function(res){setIsreload(!isreload)})
+            // await return true then set reload
+        }
+        async function HandleSwapButtonClick() {
+            var listPlayerBlue = []
+            listPlayerBlue.push(document.getElementById('blueDSL').value)
+            listPlayerBlue.push(document.getElementById('blueJGL').value)
+            listPlayerBlue.push(document.getElementById('blueMID').value)
+            listPlayerBlue.push(document.getElementById('blueADL').value)
+            listPlayerBlue.push(document.getElementById('blueSUP').value)
+            var listPlayerRed = []
+            listPlayerRed.push(document.getElementById('RedDSL').value)
+            listPlayerRed.push(document.getElementById('RedJGL').value)
+            listPlayerRed.push(document.getElementById('RedMID').value)
+            listPlayerRed.push(document.getElementById('RedADL').value)
+            listPlayerRed.push(document.getElementById('RedSUP').value)
+            for (let index = 0; index < lineupFullBlue.length; index++) {
+                if (listPlayerBlue.includes(lineupFullBlue[index]) === false) {
+                    listPlayerBlue.push(lineupFullBlue[index])
+                }
+            }
+            for (let index = 0; index < lineupFullRed.length; index++) {
+                if (listPlayerRed.includes(lineupFullRed[index]) === false) {
+                    listPlayerRed.push(lineupFullRed[index])
+                }
+            }
+        
+            fetch(`http://${beAPI.hostIP}:14596/api/post/crm`, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "matchId": match,
+                    "matchName": match,
+                    "round": round,
+                    "date": date,
+                    "bo": bo,
+                    "game": game,
+                    "sc-1": scRed,
+                    "sc-2" : scBlue,
+                    "team-1": teamRed,
+                    "fullNameTeam-1": teamNameRed,
+                    "team-2": teamBlue,
+                    "fullNameTeam-2": teamNameBlue,
+                    "lineUpFull-1": listPlayerRed,
+                    "lineUpFull-2": listPlayerBlue
+                })
+            })
+            .then(function(res) {
+                setIsreload(!isreload)})
+            // await return true then set reload
         }
         // Handle create button
 
@@ -114,7 +214,7 @@ function BackendBody() {
                     labelClassName="label-style"
                     inputClassName="input-style"
                     idDatalist="match-id-id-data-list"
-                    listData={["1"]}
+                    listData={['0']}
                     value={match}
                 />
                 <InputRender
@@ -147,11 +247,27 @@ function BackendBody() {
                     listData={[]}
                     value={teamRed}
                 />
+                <InputRender
+                    name="Game"
+                    placeholder="1"
+                    inputID="Game"
+                    labelClassName="label-style"
+                    inputClassName="input-style"
+                    idDatalist="game-id-data-list"
+                    listData={['1','2','3','4','5','6','7']}
+                    value={game}
+                />
                 <BtnRender
                     btnName="SYNC MATCH"
                     idBtn="syncBtn"
                     classBtn="btn"
                     btnClick={HandleSyncButtonClick}
+                />
+                <BtnRender
+                    btnName="Swap side"
+                    idBtn="swapBtn"
+                    classBtn="btn"
+                    btnClick={HandleSwapButtonClick}
                 />
             </div>
         )
@@ -241,30 +357,12 @@ function BackendBody() {
                     listData={['o','0']}
                     value={JSON.parse(predictNow)[2]}
                 />
-                <BtnRender
-                    btnName="Sync Data"
-                    idBtn="syncDataStream"
-                    classBtn="btn"
-                    btnClick={HandleSyncDataStream}
-                />
             </div>
         )
     }
 
     // Match incoming component
     function MatchConfig() {
-        //  Handle drag drop
-        
-        function renderListPlayerBlue(props, index) {
-            return (
-                <li key={index} className="player-lineup-blue" id={"playerBlue" + index} >{props}</li>
-            )
-        }
-        function renderListPlayerRed(props, index) {
-            return (
-                <li key={index} className="player-lineup-red" id={"playerRed" + index} >{props}</li>
-            )
-        }
 
         return (
             <div id="match-info-result">
@@ -293,24 +391,132 @@ function BackendBody() {
                 </div>
                 <h1 className="box-title">GAME {game} INFO</h1>
                 <div className="frag-ctn">
-                    <TextBoxRender
-                        title={teamBlue}
-                        textContent={"0"}
-                        idTextBox="blueScore"
+                    <InputRender
+                        name={teamBlue}
+                        placeholder={scBlue}
+                        inputID="sc-blue"
+                        labelClassName="label-style"
+                        inputClassName="input-style"
+                        idDatalist="sc-blue-id-data-list"
+                        listData={['0','1','2','3','4']}
+                        value={'0'}
                     />
-                    <TextBoxRender
-                        title={teamRed}
-                        textContent={"0"}
-                        idTextBox="redScore"
+                    <InputRender
+                        name={teamRed}
+                        placeholder={scRed}
+                        inputID="sc-Red"
+                        labelClassName="label-style"
+                        inputClassName="input-style"
+                        idDatalist="sc-Red-id-data-list"
+                        listData={['0','1','2','3','4']}
+                        value={'0'}
                     />
                 </div>
                 <h1 className="box-title">GAME {game} LINEUP</h1>
                 <div className="frag-ctn">
                     <ul id='box-lineup-blue' className="box-lineup" >
-                        {lineupFullBlue.map(renderListPlayerBlue)}
+                        <InputRender
+                            name="DSL"
+                            placeholder="DSL"
+                            inputID="blueDSL"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="blueDSL-id-data-list"
+                            listData={lineupFullBlue}
+                            value={lineupFullBlue[0]}
+                        />
+                        <InputRender
+                            name="JGL"
+                            placeholder="JGL"
+                            inputID="blueJGL"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="blueJGL-id-data-list"
+                            listData={lineupFullBlue}
+                            value={lineupFullBlue[1]}
+                        />
+                        <InputRender
+                            name="MID"
+                            placeholder="MID"
+                            inputID="blueMID"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="blueMID-id-data-list"
+                            listData={lineupFullBlue}
+                            value={lineupFullBlue[2]}
+                        />
+                        <InputRender
+                            name="ADL"
+                            placeholder="ADL"
+                            inputID="blueADL"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="blueADL-id-data-list"
+                            listData={lineupFullBlue}
+                            value={lineupFullBlue[3]}
+                        />
+                        <InputRender
+                            name="SUP"
+                            placeholder="SUP"
+                            inputID="blueSUP"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="blueSUP-id-data-list"
+                            listData={lineupFullBlue}
+                            value={lineupFullBlue[4]}
+                        />
                     </ul>
                     <ul id='box-lineup-red' className="box-lineup" >
-                        {lineupFullRed.map(renderListPlayerRed)}
+                    <InputRender
+                            name="DSL"
+                            placeholder="DSL"
+                            inputID="RedDSL"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="RedDSL-id-data-list"
+                            listData={lineupFullRed}
+                            value={lineupFullRed[0]}
+                        />
+                        <InputRender
+                            name="JGL"
+                            placeholder="JGL"
+                            inputID="RedJGL"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="RedJGL-id-data-list"
+                            listData={lineupFullRed}
+                            value={lineupFullRed[1]}
+                        />
+                        <InputRender
+                            name="MID"
+                            placeholder="MID"
+                            inputID="RedMID"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="RedMID-id-data-list"
+                            listData={lineupFullRed}
+                            value={lineupFullRed[2]}
+                        />
+                        <InputRender
+                            name="ADL"
+                            placeholder="ADL"
+                            inputID="RedADL"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="RedADL-id-data-list"
+                            listData={lineupFullRed}
+                            value={lineupFullRed[3]}
+                        />
+                        <InputRender
+                            name="SUP"
+                            placeholder="SUP"
+                            inputID="RedSUP"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="RedSUP-id-data-list"
+                            listData={lineupFullRed}
+                            value={lineupFullRed[4]}
+                        />
                     </ul>
                 </div>
             </div>
