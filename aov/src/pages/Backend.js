@@ -10,7 +10,7 @@ console.log(0)
 
 // Body START
 function BackendBody() {
-    const [isreload, setIsreload] = useState(false)
+    const [isreload, setIsreload] = useState(1)
     const [game, setGame] = useState('1')
     const [match, setMatch] = useState('Match 1')
     const [round, setRound] = useState('swiss stage')
@@ -82,7 +82,7 @@ function BackendBody() {
             <div className="input-div">
                 <label htmlFor={props.inputID} className={props.labelClassName}>{props.name}</label>
                 <input id={props.inputID} className={props.inputClassName} list={props.idDatalist}
-                    type="text" placeholder={props.placeholder} name={props.name} defaultValue={props.value}></input>
+                    type="text" placeholder={props.placeholder} name={props.name} defaultValue={props.value} onChange={props.inputOnChange}></input>
                 <datalist id={props.idDatalist}>
                     {props.listData.map(RenderOpt)}
                 </datalist>
@@ -91,6 +91,7 @@ function BackendBody() {
     }
 
     function BtnRender(props) {
+        setIsreload(Math.random)
         return (
             <div className="btn-div">
                 <button type="button" id={props.idBtn} className={props.classBtn} style={props.inlineCss} onClick={props.btnClick}>{props.btnName}</button>
