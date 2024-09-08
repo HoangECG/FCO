@@ -10,6 +10,7 @@ console.log(0)
 
 // Body START
 function BackendBody() {
+    console.log(1)
     const [isreload, setIsreload] = useState(1)
     const [game, setGame] = useState('1')
     const [match, setMatch] = useState('Match 1')
@@ -43,6 +44,7 @@ function BackendBody() {
 
 
     useEffect(() => {
+        console.log(3)
         async function fetchMyAPI() {
             let response = await beAPI.Getcrrmatch()
             setGame(response['game'])
@@ -61,7 +63,7 @@ function BackendBody() {
         }
     
         fetchMyAPI()
-      }, [])
+      }, [0])
     // Text info render
     function TextBoxRender(props) {
         return (
@@ -91,7 +93,6 @@ function BackendBody() {
     }
 
     function BtnRender(props) {
-        setIsreload(Math.random)
         return (
             <div className="btn-div">
                 <button type="button" id={props.idBtn} className={props.classBtn} style={props.inlineCss} onClick={props.btnClick}>{props.btnName}</button>
@@ -148,7 +149,7 @@ function BackendBody() {
                     "lineUpFull-2": listPlayerRed
                 })
             })
-            .then(function(res){setIsreload(!isreload)})
+            setIsreload(!isreload)
             // await return true then set reload
         }
         async function HandleSwapButtonClick() {
@@ -198,8 +199,7 @@ function BackendBody() {
                     "lineUpFull-2": listPlayerBlue
                 })
             })
-            .then(function(res) {
-                setIsreload(!isreload)})
+            setIsreload(!isreload)
             // await return true then set reload
         }
         // Handle create button
