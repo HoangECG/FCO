@@ -106,16 +106,7 @@ function BackendBody() {
         return score
     }
     // Handle noti
-    function HandleNoti(props) {
-        let ul = document.getElementById('popUpNotiBox')
-        let li = document.createElement('li')
-        li.appendChild(document.createTextNode(`${props}`))
-        if (ul.childNodes.length === 5) {
-            ul.removeChild(ul.firstChild)
-        }
-        ul.appendChild(li)
-
-    }
+    
 
     // Component Match ID check
     function MatchCreate() {
@@ -158,7 +149,6 @@ function BackendBody() {
         function HandleSyncButtonClick() {
             let idMatchInput = document.getElementById("matchIdInput").value
             if (idMatchInput.length === 0) {
-                HandleNoti('Sync fail')
             } else if (listMatchId.includes(idMatchInput) === true) {
                 window.localStorage.setItem('CurentMatch', idMatchInput)
             } else {
@@ -177,10 +167,7 @@ function BackendBody() {
                         window.localStorage.setItem('MatchOnLoad', JSON.stringify(res))
                         setIsreload(!isreload)
                     })
-            } else {
-                HandleNoti('Sync fail')
             }
-            HandleNoti('Sync done')
         }
         // Handle create button
         function HandleCreateBTN() {
@@ -189,7 +176,6 @@ function BackendBody() {
             let newTeam2 = document.getElementById('matchCreateTeam2').value
             let newBo = document.getElementById('matchCreateBo').value
             if (newTeam1.length === 0 || newTeam2.length === 0 || newBo.length === 0) {
-                HandleNoti('Create fail')
             } else if (listMatchId.includes(idMatchInput) === false) {
                 fetch(`http://${hostIP}:14596/api/crn-${newTeam1}-${newTeam2}-${newBo}`)
                     .then(res => res.json())
@@ -198,7 +184,6 @@ function BackendBody() {
                         window.location.reload(true)
                     })
             } else if (listMatchId.includes(idMatchInput) === true) {
-                HandleNoti('Create fail')
             }
         }
 
@@ -283,7 +268,6 @@ function BackendBody() {
             let predicListPicker = [document.getElementById('caster-1-Predict').value, document.getElementById('caster-2-Predict').value, document.getElementById('host-Predict').value]
             window.localStorage.setItem("casterName", JSON.stringify(casterListPicker))
             window.localStorage.setItem("predictNow", JSON.stringify(predicListPicker))
-            HandleNoti('Sync data stream')
         }
 
         // Return component stream info
@@ -373,12 +357,12 @@ function BackendBody() {
                     window.localStorage.setItem("prvScoreL", leftScore)
                     window.localStorage.setItem("prvScoreR", rightScore)
                     document.getElementById("blueScore").innerText = leftScore + 1
-                    HandleNoti(HandleGamePlaying('teamBlue') + " Win")
+
                 } else if ((leftScore + rightScore) === Number(HandleGamePlaying('game')) && (leftScore + rightScore) < Number(GetLocalStorage('bo'))) {
                     document.getElementById("blueScore").innerText = window.localStorage.getItem("prvScoreL")
                     document.getElementById("redScore").innerText = window.localStorage.getItem("prvScoreR")
                     document.getElementById("blueScore").innerText = Number(document.getElementById("blueScore").innerText) + 1
-                    HandleNoti(HandleGamePlaying('teamBlue') + " Win")
+
                 } else if ((leftScore + rightScore) === Number(GetLocalStorage('bo'))) {
 
                 }
@@ -390,12 +374,12 @@ function BackendBody() {
                     window.localStorage.setItem("prvScoreL", leftScore)
                     window.localStorage.setItem("prvScoreR", rightScore)
                     document.getElementById("redScore").innerText = rightScore + 1
-                    HandleNoti(HandleGamePlaying('teamRed') + " Win")
+
                 } else if ((leftScore + rightScore) === Number(HandleGamePlaying('game')) && (leftScore + rightScore) < Number(GetLocalStorage('bo'))) {
                     document.getElementById("blueScore").innerText = window.localStorage.getItem("prvScoreL")
                     document.getElementById("redScore").innerText = window.localStorage.getItem("prvScoreR")
                     document.getElementById("redScore").innerText = Number(document.getElementById("redScore").innerText) + 1
-                    HandleNoti(HandleGamePlaying('teamRed') + " Win")
+
                 } else if ((leftScore + rightScore) === Number(GetLocalStorage('bo'))) {
 
                 }
@@ -702,7 +686,6 @@ function BackendBody() {
             const content = await rawResponse.json();
             console.log(content)
             setIsreload(!isreload)
-            HandleNoti('Push data done')
         })();
     }
     // handle swap side btn
@@ -748,15 +731,12 @@ function BackendBody() {
             window.localStorage.setItem('lineup-blue', JSON.stringify(gameOnLoad['lineUpBlue']))
             window.localStorage.setItem('lineup-red', JSON.stringify(gameOnLoad['lineUpRed']))
             setIsreload(!isreload)
-            HandleNoti('Swap side done')
         })();
     }
     function NextGameBTN() {
         let totalScore = Number(document.getElementById('blueScore').innerText) + Number(document.getElementById('redScore').innerText)
         if (totalScore < Number(HandleGamePlaying('game'))) {
-            HandleNoti('Score not update')
         } else if (totalScore === Number(HandleGamePlaying('bo'))) {
-            HandleNoti('Game end')
         } else if (totalScore === Number(HandleGamePlaying('game'))) {
             // logic next game
             (async () => {
@@ -789,7 +769,6 @@ function BackendBody() {
                 });
                 const content = await rawResponse.json();
                 console.log(content)
-                HandleNoti(`Game ${HandleGamePlaying('game') - 1} Done`)
                 setIsreload(!isreload)
             })();
         } else {
