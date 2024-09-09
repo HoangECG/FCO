@@ -3,168 +3,162 @@ import './Backend.css';
 import NavBar from "./NavBar/NavBar"
 import * as beAPI from '../api/FetchApi'
 
-// Fetch before mount
 
-
-
-// Body START
-
-// Body END
-// Export
 function Backend() {
-        const [game, setGame] = useState('1')
-        const [match, setMatch] = useState('Match 1')
-        const [round, setRound] = useState('swiss stage')
-        const [bo, setBo] = useState('3')
-        const [date, setDate] = useState('20/10/2024')
-        const [teamBlue, setTeamBlue] = useState('SGP')
-        const [teamNameBlue, setTeamNameBlue] = useState('Hà Nội')
-        const [teamRed, setTeamRed] = useState('SGP')
-        const [teamNameRed, setTeamNameRed] = useState('Hà Nội')
-        const [scBlue, setscrBlue] = useState('0')
-        const [scRed, setscrRed] = useState('0')
-        const [lineupFullRed, setLineupFullRed] = useState([
-            "player 1",
-            "player 2",
-            "player 3",
-            "player 4",
-            "player 5",
-            "player 6",
-            "player 7"
-        ])
-        const [lineupFullBlue, setlineupFullBlue] = useState([
-            "player 1",
-            "player 2",
-            "player 3",
-            "player 4",
-            "player 5",
-            "player 6",
-            "player 7"
-        ])
+    const [game, setGame] = useState('1')
+    const [match, setMatch] = useState('Match 1')
+    const [round, setRound] = useState('swiss stage')
+    const [bo, setBo] = useState('3')
+    const [date, setDate] = useState('20/10/2024')
+    const [teamBlue, setTeamBlue] = useState('SGP')
+    const [teamNameBlue, setTeamNameBlue] = useState('Hà Nội')
+    const [teamRed, setTeamRed] = useState('SGP')
+    const [teamNameRed, setTeamNameRed] = useState('Hà Nội')
+    const [scBlue, setscrBlue] = useState('0')
+    const [scRed, setscrRed] = useState('0')
+    const [lineupFullRed, setLineupFullRed] = useState([
+        "player 1",
+        "player 2",
+        "player 3",
+        "player 4",
+        "player 5",
+        "player 6",
+        "player 7"
+    ])
+    const [lineupFullBlue, setlineupFullBlue] = useState([
+        "player 1",
+        "player 2",
+        "player 3",
+        "player 4",
+        "player 5",
+        "player 6",
+        "player 7"
+    ])
 
-        // banpick const
-        const [ban1, setBan1] = useState('None')
-        const [ban2, setBan2] = useState('None')
-        const [ban3, setBan3] = useState('None')
-        const [ban4, setBan4] = useState('None')
-        const [ban5, setBan5] = useState('None')
-        const [ban6, setBan6] = useState('None')
-        const [ban7, setBan7] = useState('None')
-        const [ban8, setBan8] = useState('None')
-        const [pick1, setPick1] = useState('None')
-        const [pick2, setPick2] = useState('None')
-        const [pick3, setPick3] = useState('None')
-        const [pick4, setPick4] = useState('None')
-        const [pick5, setPick5] = useState('None')
-        const [pick6, setPick6] = useState('None')
-        const [pick7, setPick7] = useState('None')
-        const [pick8, setPick8] = useState('None')
-        const [pick9, setPick9] = useState('None')
-        const [pick10, setPick10] = useState('None')
-    
-    
-        useEffect(() => {
-            async function fetchMyAPI() {
-                let response = await beAPI.Getcrrmatch()
-                // set variable
-                setGame(await response['game'])
-                setMatch(await response['matchName'])
-                setRound(await response['round'])
-                setBo(await response['bo'])
-                setDate(await response['date'])
-                setTeamBlue(await response['team-1'])
-                setTeamNameBlue(await response['fullNameTeam-1'])
-                setTeamRed(await response['team-2'])
-                setTeamNameRed(await response['fullNameTeam-2'])
-                setlineupFullBlue(await response['lineUpFull-1'])
-                setLineupFullRed(await response['lineUpFull-2'])
-                setscrBlue(await response['sc-1'])
-                setscrRed(await response['sc-2'])
-                setBan1(await response['ban1'])
-                setBan2(await response['ban2'])
-                setBan3(await response['ban3'])
-                setBan4(await response['ban4'])
-                setBan5(await response['ban5'])
-                setBan6(await response['ban6'])
-                setBan7(await response['ban7'])
-                setBan8(await response['ban8'])
-                setPick1(await response['pick1'])
-                setPick2(await response['pick2'])
-                setPick3(await response['pick3'])
-                setPick4(await response['pick4'])
-                setPick5(await response['pick5'])
-                setPick6(await response['pick6'])
-                setPick7(await response['pick7'])
-                setPick8(await response['pick8'])
-                setPick9(await response['pick9'])
-                setPick10(await response['pick10'])
-                // localstorage save
-                window.localStorage.setItem('game',await response['game'])
-                window.localStorage.setItem('match',await response['matchName'])
-                window.localStorage.setItem('round',await response['round'])
-                window.localStorage.setItem('bo',await response['bo'])
-                window.localStorage.setItem('date',await response['date'])
-                window.localStorage.setItem('team-1',await response['team-1'])
-                window.localStorage.setItem('fullNameTeam-1',await response['fullNameTeam-1'])
-                window.localStorage.setItem('team-2',await response['team-2'])
-                window.localStorage.setItem('fullNameTeam-2',await response['fullNameTeam-2'])
-                window.localStorage.setItem('lineUpFull-1',await response['lineUpFull-1'])
-                window.localStorage.setItem('lineUpFull-2',await response['lineUpFull-2'])
-                window.localStorage.setItem('sc-1',await response['sc-1'])
-                window.localStorage.setItem('sc-2',await response['sc-2'])
-                window.localStorage.setItem('ban1',await response['ban1'])
-                window.localStorage.setItem('ban2',await response['ban2'])
-                window.localStorage.setItem('ban3',await response['ban3'])
-                window.localStorage.setItem('ban4',await response['ban4'])
-                window.localStorage.setItem('ban5',await response['ban5'])
-                window.localStorage.setItem('ban6',await response['ban6'])
-                window.localStorage.setItem('ban7',await response['ban7'])
-                window.localStorage.setItem('ban8',await response['ban8'])
-                window.localStorage.setItem('pick1',await response['pick1'])
-                window.localStorage.setItem('pick2',await response['pick2'])
-                window.localStorage.setItem('pick3',await response['pick3'])
-                window.localStorage.setItem('pick4',await response['pick4'])
-                window.localStorage.setItem('pick5',await response['pick5'])
-                window.localStorage.setItem('pick6',await response['pick6'])
-                window.localStorage.setItem('pick7',await response['pick7'])
-                window.localStorage.setItem('pick8',await response['pick8'])
-                window.localStorage.setItem('pick9',await response['pick9'])
-                window.localStorage.setItem('pick10',await response['pick10'])
-            }
-            fetchMyAPI()
-          }, [0])
+    // banpick const
+    const [ban1, setBan1] = useState('None')
+    const [ban2, setBan2] = useState('None')
+    const [ban3, setBan3] = useState('None')
+    const [ban4, setBan4] = useState('None')
+    const [ban5, setBan5] = useState('None')
+    const [ban6, setBan6] = useState('None')
+    const [ban7, setBan7] = useState('None')
+    const [ban8, setBan8] = useState('None')
+    const [pick1, setPick1] = useState('None')
+    const [pick2, setPick2] = useState('None')
+    const [pick3, setPick3] = useState('None')
+    const [pick4, setPick4] = useState('None')
+    const [pick5, setPick5] = useState('None')
+    const [pick6, setPick6] = useState('None')
+    const [pick7, setPick7] = useState('None')
+    const [pick8, setPick8] = useState('None')
+    const [pick9, setPick9] = useState('None')
+    const [pick10, setPick10] = useState('None')
+
+
+    useEffect(() => {
+        async function fetchMyAPI() {
+            let response = await beAPI.Getcrrmatch()
+            // set variable
+            setGame(await response['game'])
+            setMatch(await response['matchName'])
+            setRound(await response['round'])
+            setBo(await response['bo'])
+            setDate(await response['date'])
+            setTeamBlue(await response['team-1'])
+            setTeamNameBlue(await response['fullNameTeam-1'])
+            setTeamRed(await response['team-2'])
+            setTeamNameRed(await response['fullNameTeam-2'])
+            setlineupFullBlue(await response['lineUpFull-1'])
+            setLineupFullRed(await response['lineUpFull-2'])
+            setscrBlue(await response['sc-1'])
+            setscrRed(await response['sc-2'])
+            setBan1(await response['ban1'])
+            setBan2(await response['ban2'])
+            setBan3(await response['ban3'])
+            setBan4(await response['ban4'])
+            setBan5(await response['ban5'])
+            setBan6(await response['ban6'])
+            setBan7(await response['ban7'])
+            setBan8(await response['ban8'])
+            setPick1(await response['pick1'])
+            setPick2(await response['pick2'])
+            setPick3(await response['pick3'])
+            setPick4(await response['pick4'])
+            setPick5(await response['pick5'])
+            setPick6(await response['pick6'])
+            setPick7(await response['pick7'])
+            setPick8(await response['pick8'])
+            setPick9(await response['pick9'])
+            setPick10(await response['pick10'])
+            // localstorage save
+            window.localStorage.setItem('game',await response['game'])
+            window.localStorage.setItem('match',await response['matchName'])
+            window.localStorage.setItem('round',await response['round'])
+            window.localStorage.setItem('bo',await response['bo'])
+            window.localStorage.setItem('date',await response['date'])
+            window.localStorage.setItem('team-1',await response['team-1'])
+            window.localStorage.setItem('fullNameTeam-1',await response['fullNameTeam-1'])
+            window.localStorage.setItem('team-2',await response['team-2'])
+            window.localStorage.setItem('fullNameTeam-2',await response['fullNameTeam-2'])
+            window.localStorage.setItem('lineUpFull-1',await response['lineUpFull-1'])
+            window.localStorage.setItem('lineUpFull-2',await response['lineUpFull-2'])
+            window.localStorage.setItem('sc-1',await response['sc-1'])
+            window.localStorage.setItem('sc-2',await response['sc-2'])
+            window.localStorage.setItem('ban1',await response['ban1'])
+            window.localStorage.setItem('ban2',await response['ban2'])
+            window.localStorage.setItem('ban3',await response['ban3'])
+            window.localStorage.setItem('ban4',await response['ban4'])
+            window.localStorage.setItem('ban5',await response['ban5'])
+            window.localStorage.setItem('ban6',await response['ban6'])
+            window.localStorage.setItem('ban7',await response['ban7'])
+            window.localStorage.setItem('ban8',await response['ban8'])
+            window.localStorage.setItem('pick1',await response['pick1'])
+            window.localStorage.setItem('pick2',await response['pick2'])
+            window.localStorage.setItem('pick3',await response['pick3'])
+            window.localStorage.setItem('pick4',await response['pick4'])
+            window.localStorage.setItem('pick5',await response['pick5'])
+            window.localStorage.setItem('pick6',await response['pick6'])
+            window.localStorage.setItem('pick7',await response['pick7'])
+            window.localStorage.setItem('pick8',await response['pick8'])
+            window.localStorage.setItem('pick9',await response['pick9'])
+            window.localStorage.setItem('pick10',await response['pick10'])
+        }
+        fetchMyAPI()
+        }, [0])
+
+
+    // Input render
+    function InputRender(props) {
+        function onchangeInput(){
+            window.localStorage.setItem(props.inputID,document.getElementById(props.inputID).value)
+        }
+        function RenderOpt(props, index) {
+            return (
+                <option key={index} value={props} />
+            )
+        }
+        return (
+            <div className="input-div">
+                <label htmlFor={props.inputID} className={props.labelClassName}>{props.name}</label>
+                <input id={props.inputID} className={props.inputClassName} list={props.idDatalist}
+                    type="text" placeholder={props.placeholder} name={props.name} defaultValue={props.value} onChange={onchangeInput}></input>
+                <datalist id={props.idDatalist}>
+                    {props.listData.map(RenderOpt)}
+                </datalist>
+            </div>
+        )
+    }
+
+    function BtnRender(props) {
+        return (
+            <div className="btn-div">
+                <button type="button" id={props.idBtn} className={props.classBtn} style={props.inlineCss} onClick={props.btnClick}>{props.btnName}</button>
+            </div>
+        )
+    }
     function BackendBody() {
-        // Text info render
         
-        // Input render
-        function InputRender(props) {
-            function onchangeInput(){
-                window.localStorage.setItem(props.inputID,document.getElementById(props.inputID).value)
-            }
-            function RenderOpt(props, index) {
-                return (
-                    <option key={index} value={props} />
-                )
-            }
-            return (
-                <div className="input-div">
-                    <label htmlFor={props.inputID} className={props.labelClassName}>{props.name}</label>
-                    <input id={props.inputID} className={props.inputClassName} list={props.idDatalist}
-                        type="text" placeholder={props.placeholder} name={props.name} defaultValue={props.value} onChange={onchangeInput}></input>
-                    <datalist id={props.idDatalist}>
-                        {props.listData.map(RenderOpt)}
-                    </datalist>
-                </div>
-            )
-        }
-    
-        function BtnRender(props) {
-            return (
-                <div className="btn-div">
-                    <button type="button" id={props.idBtn} className={props.classBtn} style={props.inlineCss} onClick={props.btnClick}>{props.btnName}</button>
-                </div>
-            )
-        }
         // Component Match ID check
         function MatchCreate() {
             // Handle button click
@@ -591,15 +585,6 @@ function Backend() {
         }
         // Return backend component
 
-
-        // banpick container
-        function BanpickContainer(){
-            return (
-                <div id="banpickContainer">
-                    
-                </div>
-            )
-        }
         return (
             <div className="body-ctn row-ctn">
                 <div className="colum-ctn">
@@ -608,15 +593,23 @@ function Backend() {
                 </div>
                 <div className="box-ctn">
                     <MatchConfig/>
-                    <BanpickContainer/>
                 </div>
             </div>
         );
     };
+    // banpick container
+    function BanpickContainer(){
+        return (
+            <div id="banpickContainer" className="box-ctn">
+                <h1 className="box-title">MATCH ID | #0 </h1>
+            </div>
+        )
+    }
     return (
         <div className="main-container">
             <NavBar />
-            <BackendBody />
+            <BackendBody/>
+            <BanpickContainer/>
         </div>
     )
 }
