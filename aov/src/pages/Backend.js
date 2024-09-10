@@ -27,8 +27,8 @@ function Backend() {
     const [player8, setPlayer8] = useState('player8')
     const [player9, setPlayer9] = useState('player9')
     const [player10, setPlayer10] = useState('player10')
-    const [lineupFullBlue,setLineupFullBlue] = useState([])
-    const [lineupFullRed,setLineupFullRed] = useState([])
+    const [lineupFullBlue,setLineupFullBlue] = useState(['1','2','3','4','5'])
+    const [lineupFullRed,setLineupFullRed] = useState(['1','2','3','4','5'])
 
     // banpick const
     const [listChamp, setListChamp] = useState([])
@@ -59,48 +59,6 @@ function Backend() {
             let responseListTeam = await beAPI.GetListTeam()
             let responseLineupFullBlue = await beAPI.GetLineupFull(teamBlue)
             let responseLineupFullRed = await beAPI.GetLineupFull(teamRed)
-            // set variable
-            setLineupFullBlue(await responseLineupFullBlue)
-            setLineupFullRed(await responseLineupFullRed)
-            setGame(await response['game'])
-            setMatch(await response['matchName'])
-            setRound(await response['round'])
-            setBo(await response['bo'])
-            setDate(await response['date'])
-            setTeamBlue(await response['team-1'])
-            setTeamNameBlue(await response['fullNameTeam-1'])
-            setTeamRed(await response['team-2'])
-            setTeamNameRed(await response['fullNameTeam-2'])
-            setPlayer1(await response['player1'])
-            setPlayer2(await response['player2'])
-            setPlayer3(await response['player3'])
-            setPlayer4(await response['player4'])
-            setPlayer5(await response['player5'])
-            setPlayer6(await response['player6'])
-            setPlayer7(await response['player7'])
-            setPlayer8(await response['player8'])
-            setPlayer9(await response['player9'])
-            setPlayer10(await response['player10'])
-            setscrBlue(await response['sc-1'])
-            setscrRed(await response['sc-2'])
-            setBan1(await response['ban1'])
-            setBan2(await response['ban2'])
-            setBan3(await response['ban3'])
-            setBan4(await response['ban4'])
-            setBan5(await response['ban5'])
-            setBan6(await response['ban6'])
-            setBan7(await response['ban7'])
-            setBan8(await response['ban8'])
-            setPick1(await response['pick1'])
-            setPick2(await response['pick2'])
-            setPick3(await response['pick3'])
-            setPick4(await response['pick4'])
-            setPick5(await response['pick5'])
-            setPick6(await response['pick6'])
-            setPick7(await response['pick7'])
-            setPick8(await response['pick8'])
-            setPick9(await response['pick9'])
-            setPick10(await response['pick10'])
             // get list champs name 
             setListChamp(await responseListChamps)
             setListTeam(await responseListTeam)
@@ -147,6 +105,50 @@ function Backend() {
             window.localStorage.setItem('pick8',await response['pick8'])
             window.localStorage.setItem('pick9',await response['pick9'])
             window.localStorage.setItem('pick10',await response['pick10'])
+            window.localStorage.setItem('linupFull-1',JSON.stringify(await responseLineupFullBlue))
+            window.localStorage.setItem('linupFull-2',JSON.stringify(await responseLineupFullRed))
+            // set variable
+            setLineupFullBlue(await responseLineupFullBlue)
+            setLineupFullRed(await responseLineupFullRed)
+            setGame(await response['game'])
+            setMatch(await response['matchName'])
+            setRound(await response['round'])
+            setBo(await response['bo'])
+            setDate(await response['date'])
+            setTeamBlue(await response['team-1'])
+            setTeamNameBlue(await response['fullNameTeam-1'])
+            setTeamRed(await response['team-2'])
+            setTeamNameRed(await response['fullNameTeam-2'])
+            setPlayer1(await response['player1'])
+            setPlayer2(await response['player2'])
+            setPlayer3(await response['player3'])
+            setPlayer4(await response['player4'])
+            setPlayer5(await response['player5'])
+            setPlayer6(await response['player6'])
+            setPlayer7(await response['player7'])
+            setPlayer8(await response['player8'])
+            setPlayer9(await response['player9'])
+            setPlayer10(await response['player10'])
+            setscrBlue(await response['sc-1'])
+            setscrRed(await response['sc-2'])
+            setBan1(await response['ban1'])
+            setBan2(await response['ban2'])
+            setBan3(await response['ban3'])
+            setBan4(await response['ban4'])
+            setBan5(await response['ban5'])
+            setBan6(await response['ban6'])
+            setBan7(await response['ban7'])
+            setBan8(await response['ban8'])
+            setPick1(await response['pick1'])
+            setPick2(await response['pick2'])
+            setPick3(await response['pick3'])
+            setPick4(await response['pick4'])
+            setPick5(await response['pick5'])
+            setPick6(await response['pick6'])
+            setPick7(await response['pick7'])
+            setPick8(await response['pick8'])
+            setPick9(await response['pick9'])
+            setPick10(await response['pick10'])
         }
         fetchMyAPI()
         }, [0])
@@ -154,8 +156,17 @@ function Backend() {
 
     // Input render
     function InputRender(props) {
-        function onchangeInput(){
+        async function onchangeInput(){
             window.localStorage.setItem(props.inputID,document.getElementById(props.inputID).value)
+            if (props.inputID === 'team-1'){
+                if ((await beAPI.GetLineupFull(document.getElementById(props.inputID).value)) != null) {
+                    setLineupFullBlue(await beAPI.GetLineupFull(document.getElementById(props.inputID).value))
+                }
+            }else if(props.inputID === 'team-2') {
+                if ((await beAPI.GetLineupFull(document.getElementById(props.inputID).value)) != null) {
+                    setLineupFullBlue(await beAPI.GetLineupFull(document.getElementById(props.inputID).value))
+                }
+            }
         }
         function RenderOpt(props, index) {
             return (
@@ -275,7 +286,7 @@ function Backend() {
                         inputClassName="input-style"
                         idDatalist="match-id-id-data-list"
                         listData={['0']}
-                        value={match}
+                        value={window.localStorage.getItem('match')}
                     />
                     <InputRender
                         name="BO"
@@ -285,27 +296,27 @@ function Backend() {
                         inputClassName="input-style"
                         idDatalist="best-of-id-data-list"
                         listData={["1", "2", "3", "5", "7"]}
-                        value={bo}
+                        value={window.localStorage.getItem('bo')}
                     />
                     <InputRender
                         name="BLUE"
                         placeholder="TEAM 1"
-                        inputID="matchCreateTeam1"
+                        inputID="team-1"
                         labelClassName="label-style"
                         inputClassName="input-style"
                         idDatalist="team-1-id-data-list"
                         listData={listTeam}
-                        value={teamBlue}
+                        value={window.localStorage.getItem('team-1')}
                     />
                     <InputRender
                         name="RED"
                         placeholder="TEAM 2"
-                        inputID="matchCreateTeam2"
+                        inputID="team-2"
                         labelClassName="label-style"
                         inputClassName="input-style"
                         idDatalist="team-2-id-data-list"
                         listData={listTeam}
-                        value={teamRed}
+                        value={window.localStorage.getItem('team-2')}
                     />
                     <InputRender
                         name="Game"
@@ -315,7 +326,7 @@ function Backend() {
                         inputClassName="input-style"
                         idDatalist="game-id-data-list"
                         listData={['1','2','3','4','5','6','7']}
-                        value={game}
+                        value={window.localStorage.getItem('game')}
                     />
                     <BtnRender
                         btnName="SYNC MATCH"
@@ -579,8 +590,6 @@ function Backend() {
         // Return backend component
         // banpick container
         function BanpickContainer(){
-            console.log(lineupFullBlue)
-            console.log(lineupFullRed)
             return (
                 <div id="banpickContainer" className="box-ctn">
                     <h1 className="box-title">BANPICK GAME {game}</h1>
