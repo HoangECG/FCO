@@ -9,7 +9,7 @@
         "team" : "VGM",
         "fullName" : "V Gaming",
         "logo" : "VGM",
-        "players": ["player 1","player 2","player 3","player 4","player 5","player 6","player 7"]
+        "players": ["player 11","player 22","player3 3","player4 4","player 55","player6 6","player 7"]
     },
     "HEV": {
         "team" : "HEV",
@@ -21,6 +21,6 @@
         "team" : "TDT",
         "fullName" : "THE DAREDEVIL TEAM",
         "logo" : "TDT",
-        "players": ["player 1","player 2","player 3","player 4","player 5","player 6","player 7"]
+        "players": ["player 9","player 6","player 11","player 7","player 5","player 6","player 7"]
     }
 }

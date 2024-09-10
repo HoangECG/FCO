@@ -31,9 +31,29 @@ async function GetLineUpInfo(site) {
         .then(data => res = data)
     return res
 }
+async function GetChampsName(site) {
+    var res = []
+    await fetch(`http://${hostIP}:14596/api/champsname`)
+        .then(response => response.json())
+        .then(data => res = data)
+    return res
+}
+async function GetListTeam(site) {
+    var res = []
+    await fetch(`http://${hostIP}:14596/api/listteam`)
+        .then(response => response.json())
+        .then(data => res = data)
+    return res
+}
+async function GetLineupFull(site) {
+    var res = []
+    await fetch(`http://${hostIP}:14596/api/lineupfull-${site}`)
+        .then(response => response.json())
+        .then(data => res = data)
+    return res
+}
 
-
-export { GetMatchId, GetMatchInfo, Getcrrmatch,GetLineUpInfo, hostIP }
+export {GetLineupFull, GetMatchId, GetMatchInfo, Getcrrmatch,GetLineUpInfo,GetChampsName,GetListTeam, hostIP }
 
 
 

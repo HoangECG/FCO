@@ -16,26 +16,22 @@ function Backend() {
     const [teamNameRed, setTeamNameRed] = useState('Hà Nội')
     const [scBlue, setscrBlue] = useState('0')
     const [scRed, setscrRed] = useState('0')
-    const [lineupFullRed, setLineupFullRed] = useState([
-        "player 1",
-        "player 2",
-        "player 3",
-        "player 4",
-        "player 5",
-        "player 6",
-        "player 7"
-    ])
-    const [lineupFullBlue, setlineupFullBlue] = useState([
-        "player 1",
-        "player 2",
-        "player 3",
-        "player 4",
-        "player 5",
-        "player 6",
-        "player 7"
-    ])
+    const [listTeam, setListTeam] = useState(['1','2'])
+    const [player1, setPlayer1] = useState('player1')
+    const [player2, setPlayer2] = useState('player2')
+    const [player3, setPlayer3] = useState('player3')
+    const [player4, setPlayer4] = useState('player4')
+    const [player5, setPlayer5] = useState('player5')
+    const [player6, setPlayer6] = useState('player6')
+    const [player7, setPlayer7] = useState('player7')
+    const [player8, setPlayer8] = useState('player8')
+    const [player9, setPlayer9] = useState('player9')
+    const [player10, setPlayer10] = useState('player10')
+    const [lineupFullBlue,setLineupFullBlue] = useState([])
+    const [lineupFullRed,setLineupFullRed] = useState([])
 
     // banpick const
+    const [listChamp, setListChamp] = useState([])
     const [ban1, setBan1] = useState('None')
     const [ban2, setBan2] = useState('None')
     const [ban3, setBan3] = useState('None')
@@ -59,7 +55,13 @@ function Backend() {
     useEffect(() => {
         async function fetchMyAPI() {
             let response = await beAPI.Getcrrmatch()
+            let responseListChamps = await beAPI.GetChampsName()
+            let responseListTeam = await beAPI.GetListTeam()
+            let responseLineupFullBlue = await beAPI.GetLineupFull(teamBlue)
+            let responseLineupFullRed = await beAPI.GetLineupFull(teamRed)
             // set variable
+            setLineupFullBlue(await responseLineupFullBlue)
+            setLineupFullRed(await responseLineupFullRed)
             setGame(await response['game'])
             setMatch(await response['matchName'])
             setRound(await response['round'])
@@ -69,8 +71,16 @@ function Backend() {
             setTeamNameBlue(await response['fullNameTeam-1'])
             setTeamRed(await response['team-2'])
             setTeamNameRed(await response['fullNameTeam-2'])
-            setlineupFullBlue(await response['lineUpFull-1'])
-            setLineupFullRed(await response['lineUpFull-2'])
+            setPlayer1(await response['player1'])
+            setPlayer2(await response['player2'])
+            setPlayer3(await response['player3'])
+            setPlayer4(await response['player4'])
+            setPlayer5(await response['player5'])
+            setPlayer6(await response['player6'])
+            setPlayer7(await response['player7'])
+            setPlayer8(await response['player8'])
+            setPlayer9(await response['player9'])
+            setPlayer10(await response['player10'])
             setscrBlue(await response['sc-1'])
             setscrRed(await response['sc-2'])
             setBan1(await response['ban1'])
@@ -91,6 +101,12 @@ function Backend() {
             setPick8(await response['pick8'])
             setPick9(await response['pick9'])
             setPick10(await response['pick10'])
+            // get list champs name 
+            setListChamp(await responseListChamps)
+            setListTeam(await responseListTeam)
+            window.localStorage.setItem('listteam', listTeam)
+            window.localStorage.setItem('champs',listChamp)
+
             // localstorage save
             window.localStorage.setItem('game',await response['game'])
             window.localStorage.setItem('match',await response['matchName'])
@@ -101,8 +117,16 @@ function Backend() {
             window.localStorage.setItem('fullNameTeam-1',await response['fullNameTeam-1'])
             window.localStorage.setItem('team-2',await response['team-2'])
             window.localStorage.setItem('fullNameTeam-2',await response['fullNameTeam-2'])
-            window.localStorage.setItem('lineUpFull-1',await response['lineUpFull-1'])
-            window.localStorage.setItem('lineUpFull-2',await response['lineUpFull-2'])
+            window.localStorage.setItem('player1',await response['player1'])
+            window.localStorage.setItem('player2',await response['player2'])
+            window.localStorage.setItem('player3',await response['player3'])
+            window.localStorage.setItem('player4',await response['player4'])
+            window.localStorage.setItem('player5',await response['player5'])
+            window.localStorage.setItem('player6',await response['player6'])
+            window.localStorage.setItem('player7',await response['player7'])
+            window.localStorage.setItem('player8',await response['player8'])
+            window.localStorage.setItem('player9',await response['player9'])
+            window.localStorage.setItem('player10',await response['player10'])
             window.localStorage.setItem('sc-1',await response['sc-1'])
             window.localStorage.setItem('sc-2',await response['sc-2'])
             window.localStorage.setItem('ban1',await response['ban1'])
@@ -163,29 +187,6 @@ function Backend() {
         function MatchCreate() {
             // Handle button click
             async function HandleSyncButtonClick() {
-                    var listPlayerBlue = []
-                    listPlayerBlue.push(document.getElementById('blueDSL').value)
-                    listPlayerBlue.push(document.getElementById('blueJGL').value)
-                    listPlayerBlue.push(document.getElementById('blueMID').value)
-                    listPlayerBlue.push(document.getElementById('blueADL').value)
-                    listPlayerBlue.push(document.getElementById('blueSUP').value)
-                    var listPlayerRed = []
-                    listPlayerRed.push(document.getElementById('RedDSL').value)
-                    listPlayerRed.push(document.getElementById('RedJGL').value)
-                    listPlayerRed.push(document.getElementById('RedMID').value)
-                    listPlayerRed.push(document.getElementById('RedADL').value)
-                    listPlayerRed.push(document.getElementById('RedSUP').value)
-                    for (let index = 0; index < lineupFullBlue.length; index++) {
-                        if (listPlayerBlue.includes(lineupFullBlue[index]) === false) {
-                            listPlayerBlue.push(lineupFullBlue[index])
-                        }
-                    }
-                    for (let index = 0; index < lineupFullRed.length; index++) {
-                        if (listPlayerRed.includes(lineupFullRed[index]) === false) {
-                            listPlayerRed.push(lineupFullRed[index])
-                        }
-                    }
-                
                     fetch(`http://${beAPI.hostIP}:14596/api/post/crm`, {
                         method: 'POST',
                         headers: {
@@ -205,8 +206,16 @@ function Backend() {
                             "fullNameTeam-1": window.localStorage.getItem('fullNameTeam-1'),
                             "team-2": window.localStorage.getItem('team-2'),
                             "fullNameTeam-2": window.localStorage.getItem('fullNameTeam-2'),
-                            "lineUpFull-1": listPlayerBlue,
-                            "lineUpFull-2": listPlayerRed
+                            "player1": window.localStorage.getItem('player1'),
+                            "player2": window.localStorage.getItem('player2'),
+                            "player3": window.localStorage.getItem('player3'),
+                            "player4": window.localStorage.getItem('player4'),
+                            "player5": window.localStorage.getItem('player5'),
+                            "player6": window.localStorage.getItem('player6'),
+                            "player7": window.localStorage.getItem('player7'),
+                            "player8": window.localStorage.getItem('player8'),
+                            "player9": window.localStorage.getItem('player9'),
+                            "player10": window.localStorage.getItem('player10')
                         })
                     })
                     setTimeout(function() {
@@ -216,29 +225,6 @@ function Backend() {
                 }
                 // await return true then set reload
             async function HandleSwapButtonClick() {
-                var listPlayerBlue = []
-                listPlayerBlue.push(document.getElementById('blueDSL').value)
-                listPlayerBlue.push(document.getElementById('blueJGL').value)
-                listPlayerBlue.push(document.getElementById('blueMID').value)
-                listPlayerBlue.push(document.getElementById('blueADL').value)
-                listPlayerBlue.push(document.getElementById('blueSUP').value)
-                var listPlayerRed = []
-                listPlayerRed.push(document.getElementById('RedDSL').value)
-                listPlayerRed.push(document.getElementById('RedJGL').value)
-                listPlayerRed.push(document.getElementById('RedMID').value)
-                listPlayerRed.push(document.getElementById('RedADL').value)
-                listPlayerRed.push(document.getElementById('RedSUP').value)
-                for (let index = 0; index < lineupFullBlue.length; index++) {
-                    if (listPlayerBlue.includes(lineupFullBlue[index]) === false) {
-                        listPlayerBlue.push(lineupFullBlue[index])
-                    }
-                }
-                for (let index = 0; index < lineupFullRed.length; index++) {
-                    if (listPlayerRed.includes(lineupFullRed[index]) === false) {
-                        listPlayerRed.push(lineupFullRed[index])
-                    }
-                }
-            
                 fetch(`http://${beAPI.hostIP}:14596/api/post/crm`, {
                     method: 'POST',
                     headers: {
@@ -246,20 +232,28 @@ function Backend() {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        "matchId": match,
-                        "matchName": match,
-                        "round": round,
-                        "date": date,
-                        "bo": bo,
-                        "game": game,
-                        "sc-1": scRed,
-                        "sc-2" : scBlue,
-                        "team-1": teamRed,
-                        "fullNameTeam-1": teamNameRed,
-                        "team-2": teamBlue,
-                        "fullNameTeam-2": teamNameBlue,
-                        "lineUpFull-1": listPlayerRed,
-                        "lineUpFull-2": listPlayerBlue
+                        "matchId": window.localStorage.getItem('match'),
+                        "matchName": window.localStorage.getItem('match'),
+                        "round": window.localStorage.getItem('round'),
+                        "date": window.localStorage.getItem('date'),
+                        "bo": window.localStorage.getItem('bo'),
+                        "game": window.localStorage.getItem('game'),
+                        "sc-1": window.localStorage.getItem('sc-2'),
+                        "sc-2" : window.localStorage.getItem('sc-1'),
+                        "team-1": window.localStorage.getItem('team-2'),
+                        "fullNameTeam-1": window.localStorage.getItem('fullNameTeam-2'),
+                        "team-2": window.localStorage.getItem('team-1'),
+                        "fullNameTeam-2": window.localStorage.getItem('fullNameTeam-1'),
+                        "player1": window.localStorage.getItem('player6'),
+                        "player2": window.localStorage.getItem('player7'),
+                        "player3": window.localStorage.getItem('player8'),
+                        "player4": window.localStorage.getItem('player9'),
+                        "player5": window.localStorage.getItem('player10'),
+                        "player6": window.localStorage.getItem('player1'),
+                        "player7": window.localStorage.getItem('player2'),
+                        "player8": window.localStorage.getItem('player3'),
+                        "player9": window.localStorage.getItem('player4'),
+                        "player10": window.localStorage.getItem('player5')
                     })
                 })
                 setTimeout(function() {
@@ -300,7 +294,7 @@ function Backend() {
                         labelClassName="label-style"
                         inputClassName="input-style"
                         idDatalist="team-1-id-data-list"
-                        listData={[]}
+                        listData={listTeam}
                         value={teamBlue}
                     />
                     <InputRender
@@ -310,7 +304,7 @@ function Backend() {
                         labelClassName="label-style"
                         inputClassName="input-style"
                         idDatalist="team-2-id-data-list"
-                        listData={[]}
+                        listData={listTeam}
                         value={teamRed}
                     />
                     <InputRender
@@ -424,7 +418,6 @@ function Backend() {
     
         // Match incoming component
         function MatchConfig() {
-    
             return (
                 <div id="match-info-result">
                     <h1 className="box-title">MATCH ID | #0 </h1>
@@ -484,7 +477,7 @@ function Backend() {
                                 inputClassName="input-style"
                                 idDatalist="blueDSL-id-data-list"
                                 listData={lineupFullBlue}
-                                value={lineupFullBlue[0]}
+                                value={player1}
                             />
                             <InputRender
                                 name="JGL"
@@ -494,7 +487,7 @@ function Backend() {
                                 inputClassName="input-style"
                                 idDatalist="blueJGL-id-data-list"
                                 listData={lineupFullBlue}
-                                value={lineupFullBlue[1]}
+                                value={player2}
                             />
                             <InputRender
                                 name="MID"
@@ -504,7 +497,7 @@ function Backend() {
                                 inputClassName="input-style"
                                 idDatalist="blueMID-id-data-list"
                                 listData={lineupFullBlue}
-                                value={lineupFullBlue[2]}
+                                value={player3}
                             />
                             <InputRender
                                 name="ADL"
@@ -514,7 +507,7 @@ function Backend() {
                                 inputClassName="input-style"
                                 idDatalist="blueADL-id-data-list"
                                 listData={lineupFullBlue}
-                                value={lineupFullBlue[3]}
+                                value={player4}
                             />
                             <InputRender
                                 name="SUP"
@@ -524,7 +517,7 @@ function Backend() {
                                 inputClassName="input-style"
                                 idDatalist="blueSUP-id-data-list"
                                 listData={lineupFullBlue}
-                                value={lineupFullBlue[4]}
+                                value={player5}
                             />
                         </ul>
                         <ul id='box-lineup-red' className="box-lineup" >
@@ -536,7 +529,7 @@ function Backend() {
                                 inputClassName="input-style"
                                 idDatalist="RedDSL-id-data-list"
                                 listData={lineupFullRed}
-                                value={lineupFullRed[0]}
+                                value={player6}
                             />
                             <InputRender
                                 name="JGL"
@@ -546,7 +539,7 @@ function Backend() {
                                 inputClassName="input-style"
                                 idDatalist="RedJGL-id-data-list"
                                 listData={lineupFullRed}
-                                value={lineupFullRed[1]}
+                                value={player7}
                             />
                             <InputRender
                                 name="MID"
@@ -556,7 +549,7 @@ function Backend() {
                                 inputClassName="input-style"
                                 idDatalist="RedMID-id-data-list"
                                 listData={lineupFullRed}
-                                value={lineupFullRed[2]}
+                                value={player8}
                             />
                             <InputRender
                                 name="ADL"
@@ -566,7 +559,7 @@ function Backend() {
                                 inputClassName="input-style"
                                 idDatalist="RedADL-id-data-list"
                                 listData={lineupFullRed}
-                                value={lineupFullRed[3]}
+                                value={player9}
                             />
                             <InputRender
                                 name="SUP"
@@ -576,7 +569,7 @@ function Backend() {
                                 inputClassName="input-style"
                                 idDatalist="RedSUP-id-data-list"
                                 listData={lineupFullRed}
-                                value={lineupFullRed[4]}
+                                value={player10}
                             />
                         </ul>
                     </div>
@@ -584,7 +577,37 @@ function Backend() {
             )
         }
         // Return backend component
-
+        // banpick container
+        function BanpickContainer(){
+            console.log(lineupFullBlue)
+            console.log(lineupFullRed)
+            return (
+                <div id="banpickContainer" className="box-ctn">
+                    <h1 className="box-title">BANPICK GAME {game}</h1>
+                    <div className="frag-ctn">
+                        <InputRender
+                            name="Ban 1"
+                            placeholder="Champ"
+                            inputID="ban1"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="id-data-list-banpick"
+                            listData={listChamp}
+                        />
+                        <InputRender
+                            name="DATE"
+                            placeholder="DATE"
+                            inputID="date"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="id-data-list"
+                            listData={[]}
+                            value={date}
+                        />
+                    </div>
+                </div>
+            )
+        }
         return (
             <div className="body-ctn row-ctn">
                 <div className="colum-ctn">
@@ -594,22 +617,17 @@ function Backend() {
                 <div className="box-ctn">
                     <MatchConfig/>
                 </div>
+                <div className="colum-ctn">
+                    <BanpickContainer/>
+                </div>
             </div>
         );
     };
-    // banpick container
-    function BanpickContainer(){
-        return (
-            <div id="banpickContainer" className="box-ctn">
-                <h1 className="box-title">MATCH ID | #0 </h1>
-            </div>
-        )
-    }
+    
     return (
         <div className="main-container">
             <NavBar />
             <BackendBody/>
-            <BanpickContainer/>
         </div>
     )
 }

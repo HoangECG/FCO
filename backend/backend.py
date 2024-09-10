@@ -31,8 +31,9 @@ def getTeams():
     listTeam = []
     with open('./database/teams.json', 'r') as file:
         data = json.load(file)
-        listTeam = data.keys()
+        listTeam = list(data.keys())
     return listTeam
+
 # banpick variable
 # range phase 1-16
 banpick = {'Phase': '1', 'Ban1': 'none', 'Ban2': 'none', 'Ban3': 'none', 'Ban4': 'none', 'Ban5': 'none', 'Ban6': 'none', 'Ban7': 'none', 'Ban8': 'none', 'pick1': 'none', 'pick2': 'none', 'pick3': 'none', 'pick4': 'none', 'pick5': 'none', 'pick6': 'none', 'pick7': 'none', 'pick8': 'none', 'pick9': 'none', 'pick10': 'none' }
@@ -140,8 +141,27 @@ async def response(item: str):
                     list_player.append(dict)
                 return list_player
     # banpick api
-    elif item == "banpick":
-        return banpick
+    elif item == "champsname":
+        list_of_files = []
+        for (dirpath, dirnames, filenames) in os.walk('./database/champ'):
+            for filename in filenames:
+                if filename.endswith('.png'): 
+                    list_of_files.append(filename.replace('.png',""))
+        return list_of_files
+    elif item =="listteam":
+        return getTeams()
+    elif item.split("-")[0] == "lineupfull":
+        rqRCV = item.split("-")
+        lineupFull = []
+        with open('./database/teams.json', 'r') as file:
+            data = json.load(file)
+            try:
+                lineupFull = list(data[rqRCV[1]]['players'])
+                return lineupFull
+            except:
+                pass
+            
+        
     else:
         return {"status":"nodata"}
 
