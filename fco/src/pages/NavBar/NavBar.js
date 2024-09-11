@@ -14,12 +14,6 @@ function NavBAr() {
                 <NavLink to="/control"><div className='nav-icons'><ion-icon name="game-controller-outline"></ion-icon></div>Control</NavLink>
             </li>
             <li>
-                <NavLink to="/Banpick"><div className='nav-icons'><ion-icon name="partly-sunny"></ion-icon></div>Banpick</NavLink>
-            </li>
-            <li>
-                <NavLink to="/vmixapi"><div className='nav-icons'><ion-icon name="rocket"></ion-icon></div>Vmix API</NavLink>
-            </li>
-            <li>
                 <NavLink id="nav-last" to="/output1" target='_blank'><div className='nav-icons'><ion-icon name="paper-plane"></ion-icon></div>Output 1</NavLink>
             </li>
             <li>

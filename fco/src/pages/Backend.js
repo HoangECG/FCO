@@ -25,31 +25,21 @@ function Backend() {
     const [player6, setPlayer6] = useState('player6')
     const [player7, setPlayer7] = useState('player7')
     const [player8, setPlayer8] = useState('player8')
-    const [player9, setPlayer9] = useState('player9')
-    const [player10, setPlayer10] = useState('player10')
-    const [lineupFullBlue,setLineupFullBlue] = useState(['1','2','3','4','5'])
-    const [lineupFullRed,setLineupFullRed] = useState(['1','2','3','4','5'])
+    const [lineupFullBlue,setLineupFullBlue] = useState(['1','2','3','4'])
+    const [lineupFullRed,setLineupFullRed] = useState(['1','2','3','4'])
 
     // banpick const
     const [listChamp, setListChamp] = useState([])
-    const [ban1, setBan1] = useState('None')
-    const [ban2, setBan2] = useState('None')
-    const [ban3, setBan3] = useState('None')
-    const [ban4, setBan4] = useState('None')
-    const [ban5, setBan5] = useState('None')
-    const [ban6, setBan6] = useState('None')
-    const [ban7, setBan7] = useState('None')
-    const [ban8, setBan8] = useState('None')
-    const [pick1, setPick1] = useState('None')
-    const [pick2, setPick2] = useState('None')
-    const [pick3, setPick3] = useState('None')
-    const [pick4, setPick4] = useState('None')
-    const [pick5, setPick5] = useState('None')
-    const [pick6, setPick6] = useState('None')
-    const [pick7, setPick7] = useState('None')
-    const [pick8, setPick8] = useState('None')
-    const [pick9, setPick9] = useState('None')
-    const [pick10, setPick10] = useState('None')
+    const [game1PlayerPickLeft, setGame1PlayerPickLeft] = useState('player1')
+    const [game2PlayerPickLeft, setGame2PlayerPickLeft] = useState('player2')
+    const [game3PlayerPickLeft, setGame3PlayerPickLeft] = useState('player3')
+    const [game4PlayerPickLeft, setGame4PlayerPickLeft] = useState('player4')
+    const [game5PlayerPickLeft, setGame5PlayerPickLeft] = useState('player5')
+    const [game1PlayerPickRight, setGame1PlayerPickRight] = useState('player1')
+    const [game2PlayerPickRight, setGame2PlayerPickRight] = useState('player2')
+    const [game3PlayerPickRight, setGame3PlayerPickRight] = useState('player3')
+    const [game4PlayerPickRight, setGame4PlayerPickRight] = useState('player4')
+    const [game5PlayerPickRight, setGame5PlayerPickRight] = useState('player5')
 
 
     useEffect(() => {
@@ -83,30 +73,19 @@ function Backend() {
             window.localStorage.setItem('player6',await response['player6'])
             window.localStorage.setItem('player7',await response['player7'])
             window.localStorage.setItem('player8',await response['player8'])
-            window.localStorage.setItem('player9',await response['player9'])
-            window.localStorage.setItem('player10',await response['player10'])
-            window.localStorage.setItem('sc-1',await response['sc-1'])
-            window.localStorage.setItem('sc-2',await response['sc-2'])
-            window.localStorage.setItem('ban1',await response['ban1'])
-            window.localStorage.setItem('ban2',await response['ban2'])
-            window.localStorage.setItem('ban3',await response['ban3'])
-            window.localStorage.setItem('ban4',await response['ban4'])
-            window.localStorage.setItem('ban5',await response['ban5'])
-            window.localStorage.setItem('ban6',await response['ban6'])
-            window.localStorage.setItem('ban7',await response['ban7'])
-            window.localStorage.setItem('ban8',await response['ban8'])
-            window.localStorage.setItem('pick1',await response['pick1'])
-            window.localStorage.setItem('pick2',await response['pick2'])
-            window.localStorage.setItem('pick3',await response['pick3'])
-            window.localStorage.setItem('pick4',await response['pick4'])
-            window.localStorage.setItem('pick5',await response['pick5'])
-            window.localStorage.setItem('pick6',await response['pick6'])
-            window.localStorage.setItem('pick7',await response['pick7'])
-            window.localStorage.setItem('pick8',await response['pick8'])
-            window.localStorage.setItem('pick9',await response['pick9'])
-            window.localStorage.setItem('pick10',await response['pick10'])
             window.localStorage.setItem('linupFull-1',JSON.stringify(await responseLineupFullBlue))
             window.localStorage.setItem('linupFull-2',JSON.stringify(await responseLineupFullRed))
+            window.localStorage.setItem('game1PlayerPick-left',await response['pickleft1'])
+            window.localStorage.setItem('game2PlayerPick-left',await response['pickleft2'])
+            window.localStorage.setItem('game3PlayerPick-left',await response['pickleft3'])
+            window.localStorage.setItem('game4PlayerPick-left',await response['pickleft4'])
+            window.localStorage.setItem('game5PlayerPick-left',await response['pickleft5'])
+            window.localStorage.setItem('game1PlayerPick-right',await response['pickright1'])
+            window.localStorage.setItem('game2PlayerPick-right',await response['pickright2'])
+            window.localStorage.setItem('game3PlayerPick-right',await response['pickright3'])
+            window.localStorage.setItem('game4PlayerPick-right',await response['pickright4'])
+            window.localStorage.setItem('game5PlayerPick-right',await response['pickright5'])
+
             // set variable
             setLineupFullBlue(await responseLineupFullBlue)
             setLineupFullRed(await responseLineupFullRed)
@@ -127,28 +106,18 @@ function Backend() {
             setPlayer6(await response['player6'])
             setPlayer7(await response['player7'])
             setPlayer8(await response['player8'])
-            setPlayer9(await response['player9'])
-            setPlayer10(await response['player10'])
             setscrBlue(await response['sc-1'])
             setscrRed(await response['sc-2'])
-            setBan1(await response['ban1'])
-            setBan2(await response['ban2'])
-            setBan3(await response['ban3'])
-            setBan4(await response['ban4'])
-            setBan5(await response['ban5'])
-            setBan6(await response['ban6'])
-            setBan7(await response['ban7'])
-            setBan8(await response['ban8'])
-            setPick1(await response['pick1'])
-            setPick2(await response['pick2'])
-            setPick3(await response['pick3'])
-            setPick4(await response['pick4'])
-            setPick5(await response['pick5'])
-            setPick6(await response['pick6'])
-            setPick7(await response['pick7'])
-            setPick8(await response['pick8'])
-            setPick9(await response['pick9'])
-            setPick10(await response['pick10'])
+            setGame1PlayerPickLeft(await response['pickleft1'])
+            setGame2PlayerPickLeft(await response['pickleft2'])
+            setGame3PlayerPickLeft(await response['pickleft3'])
+            setGame4PlayerPickLeft(await response['pickleft4'])
+            setGame5PlayerPickLeft(await response['pickleft5'])
+            setGame1PlayerPickRight(await response['pickright1'])
+            setGame2PlayerPickRight(await response['pickright2'])
+            setGame3PlayerPickRight(await response['pickright3'])
+            setGame4PlayerPickRight(await response['pickright4'])
+            setGame5PlayerPickRight(await response['pickright5'])
         }
         fetchMyAPI()
         }, [0])
@@ -177,7 +146,7 @@ function Backend() {
             <div className="input-div">
                 <label htmlFor={props.inputID} className={props.labelClassName}>{props.name}</label>
                 <input id={props.inputID} className={props.inputClassName} list={props.idDatalist}
-                    type="text" placeholder={props.placeholder} name={props.name} defaultValue={props.value} onChange={onchangeInput}></input>
+                    type="text" placeholder={props.placeholder} name={props.name} defaultValue={props.value} onChange={onchangeInput} disabled={props.disabled}></input>
                 <datalist id={props.idDatalist}>
                     {props.listData.map(RenderOpt)}
                 </datalist>
@@ -225,13 +194,21 @@ function Backend() {
                             "player6": window.localStorage.getItem('player6'),
                             "player7": window.localStorage.getItem('player7'),
                             "player8": window.localStorage.getItem('player8'),
-                            "player9": window.localStorage.getItem('player9'),
-                            "player10": window.localStorage.getItem('player10')
+                            "pickleft1": window.localStorage.getItem('game1PlayerPick-left'),
+                            "pickleft2": window.localStorage.getItem('game2PlayerPick-left'),
+                            "pickleft3": window.localStorage.getItem('game3PlayerPick-left'),
+                            "pickleft4": window.localStorage.getItem('game4PlayerPick-left'),
+                            "pickleft5": window.localStorage.getItem('game5PlayerPick-left'),
+                            "pickright1": window.localStorage.getItem('game1PlayerPick-right'),
+                            "pickright2": window.localStorage.getItem('game2PlayerPick-right'),
+                            "pickright3": window.localStorage.getItem('game3PlayerPick-right'),
+                            "pickright4": window.localStorage.getItem('game4PlayerPick-right'),
+                            "pickright5": window.localStorage.getItem('game5PlayerPick-right')
                         })
                     })
                     setTimeout(function() {
                         window.location.reload()
-                      }, 1000);
+                      }, 500);
                     
                 }
                 // await return true then set reload
@@ -255,21 +232,29 @@ function Backend() {
                         "fullNameTeam-1": window.localStorage.getItem('fullNameTeam-2'),
                         "team-2": window.localStorage.getItem('team-1'),
                         "fullNameTeam-2": window.localStorage.getItem('fullNameTeam-1'),
-                        "player1": window.localStorage.getItem('player6'),
-                        "player2": window.localStorage.getItem('player7'),
-                        "player3": window.localStorage.getItem('player8'),
-                        "player4": window.localStorage.getItem('player9'),
-                        "player5": window.localStorage.getItem('player10'),
-                        "player6": window.localStorage.getItem('player1'),
-                        "player7": window.localStorage.getItem('player2'),
-                        "player8": window.localStorage.getItem('player3'),
-                        "player9": window.localStorage.getItem('player4'),
-                        "player10": window.localStorage.getItem('player5')
+                        "player1": window.localStorage.getItem('player5'),
+                        "player2": window.localStorage.getItem('player6'),
+                        "player3": window.localStorage.getItem('player7'),
+                        "player4": window.localStorage.getItem('player8'),
+                        "player5": window.localStorage.getItem('player1'),
+                        "player6": window.localStorage.getItem('player2'),
+                        "player7": window.localStorage.getItem('player3'),
+                        "player8": window.localStorage.getItem('player4'),
+                        "pickleft1": window.localStorage.getItem('game1PlayerPick-right'),
+                        "pickleft2": window.localStorage.getItem('game2PlayerPick-right'),
+                        "pickleft3": window.localStorage.getItem('game3PlayerPick-right'),
+                        "pickleft4": window.localStorage.getItem('game4PlayerPick-right'),
+                        "pickleft5": window.localStorage.getItem('game5PlayerPick-right'),
+                        "pickright1": window.localStorage.getItem('game1PlayerPick-left'),
+                        "pickright2": window.localStorage.getItem('game2PlayerPick-left'),
+                        "pickright3": window.localStorage.getItem('game3PlayerPick-left'),
+                        "pickright4": window.localStorage.getItem('game4PlayerPick-left'),
+                        "pickright5": window.localStorage.getItem('game5PlayerPick-left')
                     })
                 })
                 setTimeout(function() {
                     window.location.reload()
-                  }, 1000);
+                  }, 500);
                 // await return true then set reload
             }
             // Handle create button
@@ -321,7 +306,7 @@ function Backend() {
                     <InputRender
                         name="Game"
                         placeholder="1"
-                        inputID="Game"
+                        inputID="game"
                         labelClassName="label-style"
                         inputClassName="input-style"
                         idDatalist="game-id-data-list"
@@ -344,88 +329,7 @@ function Backend() {
             )
         }
         // Stream info component
-        function StreamInfor() {
-            //  Caster name list
-            let CASTERLIST = ['Trần Nam', 'Đức Huy', 'Hồng Quân', 'Thanh Tùng', 'Nam Anh', 'Hoàng Sơn', 'Phương Thảo']
-            let casterListNow = window.localStorage.getItem("casterName")
-            let predictNow = window.localStorage.getItem("predictNow")
-            if (casterListNow === null) {
-                window.localStorage.setItem("casterName", JSON.stringify([CASTERLIST[0], CASTERLIST[1], CASTERLIST[6]]))
-            }
-            if (predictNow === null) {
-                window.localStorage.setItem("predictNow", JSON.stringify(["0-0", "0-0", "0-0"]))
-            }
-            // Handle click sync data stream
-            
-    
-            // Return component stream info
-            return (
-                <div id="streamInfo" className="box-ctn">
-                    <h1 className="box-title">STREAM INFO</h1>
-                    <InputRender
-                        name="CASTER"
-                        placeholder="Caster 1"
-                        inputID="Caster1"
-                        labelClassName="label-style"
-                        inputClassName="input-style"
-                        idDatalist="Caster1-id-data-list"
-                        listData={CASTERLIST}
-                        value={JSON.parse(casterListNow)[0]}
-                    />
-                    <InputRender
-                        name="CASTER"
-                        placeholder="Caster 2"
-                        inputID="Caster2"
-                        labelClassName="label-style"
-                        inputClassName="input-style"
-                        idDatalist="Caster2-id-data-list"
-                        listData={CASTERLIST}
-                        value={JSON.parse(casterListNow)[1]}
-                    />
-                    <InputRender
-                        name="HOST"
-                        placeholder="Host name"
-                        inputID="hostName"
-                        labelClassName="label-style"
-                        inputClassName="input-style"
-                        idDatalist="host-id-data-list"
-                        listData={CASTERLIST}
-                        value={JSON.parse(casterListNow)[2]}
-                    />
-                    <h1 className="box-title">PREDICT</h1>
-                    <InputRender
-                        name="PRD"
-                        placeholder="Caster 1"
-                        inputID="caster-1-Predict"
-                        labelClassName="label-style"
-                        inputClassName="input-style"
-                        idDatalist="id-data-list"
-                        listData={[]}
-                        value={JSON.parse(predictNow)[0]}
-                    />
-                    <InputRender
-                        name="PRD"
-                        placeholder="Caster 2"
-                        inputID="caster-2-Predict"
-                        labelClassName="label-style"
-                        inputClassName="input-style"
-                        idDatalist="id-data-list"
-                        listData={[]}
-                        value={JSON.parse(predictNow)[1]}
-                    />
-                    <InputRender
-                        name="PRD"
-                        placeholder="Host"
-                        inputID="host-Predict"
-                        labelClassName="label-style"
-                        inputClassName="input-style"
-                        idDatalist="id-data-list"
-                        listData={['o','0']}
-                        value={JSON.parse(predictNow)[2]}
-                    />
-                </div>
-            )
-        }
+        
     
         // Match incoming component
         function MatchConfig() {
@@ -481,9 +385,9 @@ function Backend() {
                     <div className="frag-ctn">
                         <ul id='box-lineup-blue' className="box-lineup" >
                             <InputRender
-                                name="DSL"
-                                placeholder="DSL"
-                                inputID="blueDSL"
+                                name="Player"
+                                placeholder="player1"
+                                inputID="player1"
                                 labelClassName="label-style"
                                 inputClassName="input-style"
                                 idDatalist="blueDSL-id-data-list"
@@ -491,9 +395,9 @@ function Backend() {
                                 value={player1}
                             />
                             <InputRender
-                                name="JGL"
-                                placeholder="JGL"
-                                inputID="blueJGL"
+                                name="Player"
+                                placeholder="player2"
+                                inputID="player2"
                                 labelClassName="label-style"
                                 inputClassName="input-style"
                                 idDatalist="blueJGL-id-data-list"
@@ -501,9 +405,9 @@ function Backend() {
                                 value={player2}
                             />
                             <InputRender
-                                name="MID"
-                                placeholder="MID"
-                                inputID="blueMID"
+                                name="player"
+                                placeholder="player3"
+                                inputID="player3"
                                 labelClassName="label-style"
                                 inputClassName="input-style"
                                 idDatalist="blueMID-id-data-list"
@@ -511,76 +415,56 @@ function Backend() {
                                 value={player3}
                             />
                             <InputRender
-                                name="ADL"
-                                placeholder="ADL"
-                                inputID="blueADL"
+                                name="Player"
+                                placeholder="player4"
+                                inputID="player4"
                                 labelClassName="label-style"
                                 inputClassName="input-style"
                                 idDatalist="blueADL-id-data-list"
                                 listData={lineupFullBlue}
                                 value={player4}
                             />
-                            <InputRender
-                                name="SUP"
-                                placeholder="SUP"
-                                inputID="blueSUP"
-                                labelClassName="label-style"
-                                inputClassName="input-style"
-                                idDatalist="blueSUP-id-data-list"
-                                listData={lineupFullBlue}
-                                value={player5}
-                            />
                         </ul>
                         <ul id='box-lineup-red' className="box-lineup" >
                         <InputRender
-                                name="DSL"
-                                placeholder="DSL"
-                                inputID="RedDSL"
+                                name="player"
+                                placeholder="player 5"
+                                inputID="player5"
                                 labelClassName="label-style"
                                 inputClassName="input-style"
                                 idDatalist="RedDSL-id-data-list"
                                 listData={lineupFullRed}
-                                value={player6}
+                                value={player5}
                             />
                             <InputRender
-                                name="JGL"
-                                placeholder="JGL"
-                                inputID="RedJGL"
+                                name="player"
+                                placeholder="player 6"
+                                inputID="player6"
                                 labelClassName="label-style"
                                 inputClassName="input-style"
                                 idDatalist="RedJGL-id-data-list"
                                 listData={lineupFullRed}
-                                value={player7}
+                                value={player6}
                             />
                             <InputRender
-                                name="MID"
-                                placeholder="MID"
-                                inputID="RedMID"
+                                name="player"
+                                placeholder="player 7"
+                                inputID="player7"
                                 labelClassName="label-style"
                                 inputClassName="input-style"
                                 idDatalist="RedMID-id-data-list"
                                 listData={lineupFullRed}
-                                value={player8}
+                                value={player7}
                             />
                             <InputRender
-                                name="ADL"
-                                placeholder="ADL"
-                                inputID="RedADL"
+                                name="player"
+                                placeholder="player 8"
+                                inputID="player8"
                                 labelClassName="label-style"
                                 inputClassName="input-style"
                                 idDatalist="RedADL-id-data-list"
                                 listData={lineupFullRed}
-                                value={player9}
-                            />
-                            <InputRender
-                                name="SUP"
-                                placeholder="SUP"
-                                inputID="RedSUP"
-                                labelClassName="label-style"
-                                inputClassName="input-style"
-                                idDatalist="RedSUP-id-data-list"
-                                listData={lineupFullRed}
-                                value={player10}
+                                value={player8}
                             />
                         </ul>
                     </div>
@@ -590,28 +474,151 @@ function Backend() {
         // Return backend component
         // banpick container
         function BanpickContainer(){
+            function setValueInput(props){
+                try{
+                    return window.localStorage.getItem(props)
+                }catch(err){
+                    console.log('err') 
+                };
+            }
+            function disabledInput2(props,inputbox){
+                if (props === inputbox){
+                    return false
+                }else{
+                    return true
+                }
+            }
             return (
                 <div id="banpickContainer" className="box-ctn">
-                    <h1 className="box-title">BANPICK GAME {game}</h1>
+                    <h1 className="box-title">BANPICK GAME 1</h1>
                     <div className="frag-ctn">
                         <InputRender
-                            name="Ban 1"
-                            placeholder="Champ"
-                            inputID="ban1"
+                            name="left"
+                            placeholder="player"
+                            inputID="game1PlayerPick-left"
                             labelClassName="label-style"
                             inputClassName="input-style"
                             idDatalist="id-data-list-banpick"
-                            listData={listChamp}
+                            listData={lineupFullBlue}
+                            disabled={disabledInput2(game,'1')}
+                            value={setValueInput('game1PlayerPick-left')}
                         />
                         <InputRender
-                            name="DATE"
-                            placeholder="DATE"
-                            inputID="date"
+                            name="right"
+                            placeholder="player"
+                            inputID="game1PlayerPick-right"
                             labelClassName="label-style"
                             inputClassName="input-style"
-                            idDatalist="id-data-list"
-                            listData={[]}
-                            value={date}
+                            idDatalist="id-data-list-banpick"
+                            listData={lineupFullBlue}
+                            disabled={disabledInput2(game,'1')}
+                            value={setValueInput('game1PlayerPick-right')}
+                        />
+                    </div>
+                    <h1 className="box-title">BANPICK GAME 2</h1>
+                    <div className="frag-ctn">
+                        <InputRender
+                            name="left"
+                            placeholder="player"
+                            inputID="game2PlayerPick-left"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="id-data-list-banpick"
+                            listData={lineupFullBlue}
+                            disabled={disabledInput2(game,'2')}
+                            value={setValueInput('game2PlayerPick-left')}
+
+                        />
+                        <InputRender
+                            name="right"
+                            placeholder="player"
+                            inputID="game2PlayerPick-right"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="id-data-list-banpick"
+                            listData={lineupFullBlue}
+                            disabled={disabledInput2(game,'2')}
+                            value={setValueInput('game2PlayerPick-right')}
+
+                        />
+                    </div>
+                    <h1 className="box-title">BANPICK GAME 3</h1>
+                    <div className="frag-ctn">
+                        <InputRender
+                            name="left"
+                            placeholder="player"
+                            inputID="game3PlayerPick-left"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="id-data-list-banpick"
+                            listData={lineupFullBlue}
+                            disabled={disabledInput2(game,'3')}
+                            value={setValueInput('game3PlayerPick-left')}
+                        />
+                        <InputRender
+                            name="right"
+                            placeholder="player"
+                            inputID="game3PlayerPick-right"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="id-data-list-banpick"
+                            listData={lineupFullBlue}
+                            disabled={disabledInput2(game,'3')}
+                            value={setValueInput('game3PlayerPick-right')}
+
+                        />
+                    </div>
+                    <h1 className="box-title">BANPICK GAME 4</h1>
+                    <div className="frag-ctn">
+                        <InputRender
+                            name="left"
+                            placeholder="player"
+                            inputID="game4PlayerPick-left"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="id-data-list-banpick"
+                            listData={lineupFullBlue}
+                            disabled={disabledInput2(game,'4')}
+                            value={setValueInput('game4PlayerPick-left')}
+                        />
+                        <InputRender
+                            name="right"
+                            placeholder="player"
+                            inputID="game4PlayerPick-right"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="id-data-list-banpick"
+                            listData={lineupFullBlue}
+                            disabled={disabledInput2(game,'4')}
+                            value={setValueInput('game4PlayerPick-right')}
+
+                        />
+                    </div>
+                    <h1 className="box-title">BANPICK GAME 5</h1>
+                    <div className="frag-ctn">
+                        <InputRender
+                            name="left"
+                            placeholder="player"
+                            inputID="game5PlayerPick-left"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="id-data-list-banpick"
+                            listData={lineupFullBlue}
+                            disabled={disabledInput2(game,'5')}
+                            value={setValueInput('game5PlayerPick-left')}
+
+                        />
+                        <InputRender
+                            name="right"
+                            placeholder="player"
+                            inputID="game5PlayerPick-right"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="id-data-list-banpick"
+                            listData={lineupFullBlue}
+                            disabled={disabledInput2(game,'5')}
+                            value={setValueInput('game5PlayerPick-right')}
+
                         />
                     </div>
                 </div>
@@ -621,7 +628,6 @@ function Backend() {
             <div className="body-ctn row-ctn">
                 <div className="colum-ctn">
                     <MatchCreate/>
-                    <StreamInfor/>
                 </div>
                 <div className="box-ctn">
                     <MatchConfig/>
