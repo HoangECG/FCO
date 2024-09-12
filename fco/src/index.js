@@ -21,10 +21,6 @@ const router = createBrowserRouter([
     element: <Banpick/>
   },
   {
-    path: "/control",
-    element: <Control/>
-  },
-  {
     path: "/testlayout",
     element: <TestLayout/>
   },

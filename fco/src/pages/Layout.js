@@ -8,12 +8,6 @@ import Tab from './Layout/Tabs'
 function Layout() {
   return (
     <div id="layout">
-      <div id='lineupBlue'>
-        <LineupBlue/>
-      </div>
-      <div id='lineupRed'>
-        <LineupRed/>
-      </div>
       <div id='lineupNew'>
         <LineupNew/>
       </div>

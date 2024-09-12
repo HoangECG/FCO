@@ -27,6 +27,26 @@ function Backend() {
     const [player8, setPlayer8] = useState('player8')
     const [lineupFullBlue,setLineupFullBlue] = useState(['1','2','3','4'])
     const [lineupFullRed,setLineupFullRed] = useState(['1','2','3','4'])
+    const [scL1, setscL1] = useState('0')
+    const [scL2, setscL2] = useState('0')
+    const [scL3, setscL3] = useState('0')
+    const [scL4, setscL4] = useState('0')
+    const [scL5, setscL5] = useState('0')
+    const [scR1, setscR1] = useState('0')
+    const [scR2, setscR2] = useState('0')
+    const [scR3, setscR3] = useState('0')
+    const [scR4, setscR4] = useState('0')
+    const [scR5, setscR5] = useState('0')
+    const [pkL1, setpkL1] = useState('0')
+    const [pkL2, setpkL2] = useState('0')
+    const [pkL3, setpkL3] = useState('0')
+    const [pkL4, setpkL4] = useState('0')
+    const [pkL5, setpkL5] = useState('0')
+    const [pkR1, setpkR1] = useState('0')
+    const [pkR2, setpkR2] = useState('0')
+    const [pkR3, setpkR3] = useState('0')
+    const [pkR4, setpkR4] = useState('0')
+    const [pkR5, setpkR5] = useState('0')
 
     // banpick const
     const [listChamp, setListChamp] = useState([])
@@ -85,6 +105,26 @@ function Backend() {
             window.localStorage.setItem('game3PlayerPick-right',await response['pickright3'])
             window.localStorage.setItem('game4PlayerPick-right',await response['pickright4'])
             window.localStorage.setItem('game5PlayerPick-right',await response['pickright5'])
+            window.localStorage.setItem('scL1',await response['scL1'])
+            window.localStorage.setItem('scL2',await response['scL2'])
+            window.localStorage.setItem('scL3',await response['scL3'])
+            window.localStorage.setItem('scL4',await response['scL4'])
+            window.localStorage.setItem('scL5',await response['scL5'])
+            window.localStorage.setItem('pkL1',await response['pkL1'])
+            window.localStorage.setItem('pkL2',await response['pkL2'])
+            window.localStorage.setItem('pkL3',await response['pkL3'])
+            window.localStorage.setItem('pkL4',await response['pkL4'])
+            window.localStorage.setItem('pkL5',await response['pkL5'])
+            window.localStorage.setItem('scR1',await response['scR1'])
+            window.localStorage.setItem('scR2',await response['scR2'])
+            window.localStorage.setItem('scR3',await response['scR3'])
+            window.localStorage.setItem('scR4',await response['scR4'])
+            window.localStorage.setItem('scR5',await response['scR5'])
+            window.localStorage.setItem('pkR1',await response['pkR1'])
+            window.localStorage.setItem('pkR2',await response['pkR2'])
+            window.localStorage.setItem('pkR3',await response['pkR3'])
+            window.localStorage.setItem('pkR4',await response['pkR4'])
+            window.localStorage.setItem('pkR5',await response['pkR5'])
 
             // set variable
             setLineupFullBlue(await responseLineupFullBlue)
@@ -118,6 +158,26 @@ function Backend() {
             setGame3PlayerPickRight(await response['pickright3'])
             setGame4PlayerPickRight(await response['pickright4'])
             setGame5PlayerPickRight(await response['pickright5'])
+            setscL1(await response['scL1'])
+            setscL2(await response['scL2'])
+            setscL3(await response['scL3'])
+            setscL4(await response['scL4'])
+            setscL5(await response['scL5'])
+            setscR1(await response['scR1'])
+            setscR2(await response['scR2'])
+            setscR3(await response['scR3'])
+            setscR4(await response['scR4'])
+            setscR5(await response['scR5'])
+            setpkL1(await response['pkL1'])
+            setpkL2(await response['pkL2'])
+            setpkL3(await response['pkL3'])
+            setpkL4(await response['pkL4'])
+            setpkL5(await response['pkL5'])
+            setpkR1(await response['pkR1'])
+            setpkR2(await response['pkR2'])
+            setpkR3(await response['pkR3'])
+            setpkR4(await response['pkR4'])
+            setpkR5(await response['pkR5'])
         }
         fetchMyAPI()
         }, [0])
@@ -129,11 +189,19 @@ function Backend() {
             window.localStorage.setItem(props.inputID,document.getElementById(props.inputID).value)
             if (props.inputID === 'team-1'){
                 if ((await beAPI.GetLineupFull(document.getElementById(props.inputID).value)) != null) {
-                    setLineupFullBlue(await beAPI.GetLineupFull(document.getElementById(props.inputID).value))
+                    try {
+                        setLineupFullBlue(await beAPI.GetLineupFull(document.getElementById(props.inputID).value))
+                    } catch (error) {
+                        console.log(1)
+                    }
                 }
             }else if(props.inputID === 'team-2') {
                 if ((await beAPI.GetLineupFull(document.getElementById(props.inputID).value)) != null) {
-                    setLineupFullBlue(await beAPI.GetLineupFull(document.getElementById(props.inputID).value))
+                    try {
+                        setLineupFullBlue(await beAPI.GetLineupFull(document.getElementById(props.inputID).value))
+                    } catch (error) {
+                        
+                    }
                 }
             }
         }
@@ -142,13 +210,20 @@ function Backend() {
                 <option key={index} value={props} />
             )
         }
+        function Maplist(opt){
+            try {
+                return props.listData.map(opt)
+            } catch (error) {
+                console.log(1)
+            }
+        }
         return (
             <div className="input-div">
                 <label htmlFor={props.inputID} className={props.labelClassName}>{props.name}</label>
                 <input id={props.inputID} className={props.inputClassName} list={props.idDatalist}
                     type="text" placeholder={props.placeholder} name={props.name} defaultValue={props.value} onChange={onchangeInput} disabled={props.disabled}></input>
                 <datalist id={props.idDatalist}>
-                    {props.listData.map(RenderOpt)}
+                    {Maplist(RenderOpt)}
                 </datalist>
             </div>
         )
@@ -160,6 +235,20 @@ function Backend() {
                 <button type="button" id={props.idBtn} className={props.classBtn} style={props.inlineCss} onClick={props.btnClick}>{props.btnName}</button>
             </div>
         )
+    }
+    function setValueInput(props){
+        try{
+            return window.localStorage.getItem(props)
+        }catch(err){
+            console.log('err') 
+        };
+    }
+    function disabledInput2(props,inputbox){
+        if (props === inputbox){
+            return false
+        }else{
+            return true
+        }
     }
     function BackendBody() {
         
@@ -203,7 +292,27 @@ function Backend() {
                             "pickright2": window.localStorage.getItem('game2PlayerPick-right'),
                             "pickright3": window.localStorage.getItem('game3PlayerPick-right'),
                             "pickright4": window.localStorage.getItem('game4PlayerPick-right'),
-                            "pickright5": window.localStorage.getItem('game5PlayerPick-right')
+                            "pickright5": window.localStorage.getItem('game5PlayerPick-right'),
+                            "scL1": window.localStorage.getItem('scL1'),
+                            "scL2": window.localStorage.getItem('scL2'),
+                            "scL3": window.localStorage.getItem('scL3'),
+                            "scL4": window.localStorage.getItem('scL4'),
+                            "scL5": window.localStorage.getItem('scL5'),
+                            "scR1": window.localStorage.getItem('scR1'),
+                            "scR2": window.localStorage.getItem('scR2'),
+                            "scR3": window.localStorage.getItem('scR3'),
+                            "scR4": window.localStorage.getItem('scR4'),
+                            "scR5": window.localStorage.getItem('scR5'),
+                            "pkL1": window.localStorage.getItem('pkL1'),
+                            "pkL2": window.localStorage.getItem('pkL2'),
+                            "pkL3": window.localStorage.getItem('pkL3'),
+                            "pkL4": window.localStorage.getItem('pkL4'),
+                            "pkL5": window.localStorage.getItem('pkL5'),
+                            "pkR1": window.localStorage.getItem('pkR1'),
+                            "pkR2": window.localStorage.getItem('pkR2'),
+                            "pkR3": window.localStorage.getItem('pkR3'),
+                            "pkR4": window.localStorage.getItem('pkR4'),
+                            "pkR5": window.localStorage.getItem('pkR5')
                         })
                     })
                     setTimeout(function() {
@@ -249,7 +358,27 @@ function Backend() {
                         "pickright2": window.localStorage.getItem('game2PlayerPick-left'),
                         "pickright3": window.localStorage.getItem('game3PlayerPick-left'),
                         "pickright4": window.localStorage.getItem('game4PlayerPick-left'),
-                        "pickright5": window.localStorage.getItem('game5PlayerPick-left')
+                        "pickright5": window.localStorage.getItem('game5PlayerPick-left'),
+                        "scL1": window.localStorage.getItem('scR1'),
+                        "scL2": window.localStorage.getItem('scR2'),
+                        "scL3": window.localStorage.getItem('scR3'),
+                        "scL4": window.localStorage.getItem('scR4'),
+                        "scL5": window.localStorage.getItem('scR5'),
+                        "scR1": window.localStorage.getItem('scL1'),
+                        "scR2": window.localStorage.getItem('scL2'),
+                        "scR3": window.localStorage.getItem('scL3'),
+                        "scR4": window.localStorage.getItem('scL4'),
+                        "scR5": window.localStorage.getItem('scL5'),
+                        "pkL1": window.localStorage.getItem('pkR1'),
+                        "pkL2": window.localStorage.getItem('pkR2'),
+                        "pkL3": window.localStorage.getItem('pkR3'),
+                        "pkL4": window.localStorage.getItem('pkR4'),
+                        "pkL5": window.localStorage.getItem('pkR5'),
+                        "pkR1": window.localStorage.getItem('pkL1'),
+                        "pkR2": window.localStorage.getItem('pkL2'),
+                        "pkR3": window.localStorage.getItem('pkL3'),
+                        "pkR4": window.localStorage.getItem('pkL4'),
+                        "pkR5": window.localStorage.getItem('pkL5')
                     })
                 })
                 setTimeout(function() {
@@ -335,53 +464,247 @@ function Backend() {
         function MatchConfig() {
             return (
                 <div id="match-info-result">
-                    <h1 className="box-title">MATCH ID | #0 </h1>
-                    <div className="frag-ctn">
-                        <InputRender
-                            name="ROUND"
-                            placeholder="NAME"
-                            inputID="round"
-                            labelClassName="label-style"
-                            inputClassName="input-style"
-                            idDatalist="id-data-list"
-                            listData={[]}
-                            value={round}
-                        />
-                        <InputRender
-                            name="DATE"
-                            placeholder="DATE"
-                            inputID="date"
-                            labelClassName="label-style"
-                            inputClassName="input-style"
-                            idDatalist="id-data-list"
-                            listData={[]}
-                            value={date}
-                        />
-                    </div>
-                    <h1 className="box-title">GAME {game} INFO</h1>
+                    <h1 className="box-title">GAME 1 INFO</h1>
                     <div className="frag-ctn">
                         <InputRender
                             name={teamBlue}
-                            placeholder={scBlue}
-                            inputID="sc-blue"
+                            placeholder='score'
+                            inputID="scL1"
                             labelClassName="label-style"
                             inputClassName="input-style"
                             idDatalist="sc-blue-id-data-list"
-                            listData={['0','1','2','3','4']}
-                            value={'0'}
+                            listData={['0','1','2','3','4','5','6']}
+                            disabled={disabledInput2(game,'1')}
+                            value={setValueInput('scL1')}
                         />
                         <InputRender
                             name={teamRed}
-                            placeholder={scRed}
-                            inputID="sc-Red"
+                            placeholder='score'
+                            inputID="scR1"
                             labelClassName="label-style"
                             inputClassName="input-style"
                             idDatalist="sc-Red-id-data-list"
-                            listData={['0','1','2','3','4']}
-                            value={'0'}
+                            listData={['0','1','2','3','4','5','6']}
+                            disabled={disabledInput2(game,'1')}
+                            value={setValueInput('scR1')}
+                        />
+                        <InputRender
+                            name='PK'
+                            placeholder='PK Left'
+                            inputID="pkL1"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="sc-blue-id-data-list"
+                            listData={['0','1','2','3','4','5','6']}
+                            disabled={disabledInput2(game,'1')}
+                            value={setValueInput('pkL1')}
+                        />
+                        <InputRender
+                            name='PK'
+                            placeholder='PK Right'
+                            inputID="pkR1"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="sc-Red-id-data-list"
+                            listData={['0','1','2','3','4','5','6']}
+                            disabled={disabledInput2(game,'1')}
+                            value={setValueInput('pkR1')}
                         />
                     </div>
-                    <h1 className="box-title">GAME {game} LINEUP</h1>
+                    
+                    <h1 className="box-title">GAME 2 INFO</h1>
+                    <div className="frag-ctn">
+                        <InputRender
+                            name={teamBlue}
+                            placeholder='score'
+                            inputID="scL2"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="sc-blue-id-data-list"
+                            listData={['0','1','2','3','4','5','6']}
+                            disabled={disabledInput2(game,'2')}
+                            value={setValueInput('scL2')}
+                        />
+                        <InputRender
+                            name={teamRed}
+                            placeholder='score'
+                            inputID="scR2"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="sc-Red-id-data-list"
+                            listData={['0','1','2','3','4','5','6']}
+                            disabled={disabledInput2(game,'2')}
+                            value={setValueInput('scR2')}
+                        />
+                        <InputRender
+                            name='PK'
+                            placeholder='PK Left'
+                            inputID="pkL2"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="sc-blue-id-data-list"
+                            listData={['0','1','2','3','4','5','6']}
+                            disabled={disabledInput2(game,'2')}
+                            value={setValueInput('pkL2')}
+                        />
+                        <InputRender
+                            name='PK'
+                            placeholder='PK Right'
+                            inputID="pkR2"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="sc-Red-id-data-list"
+                            listData={['0','1','2','3','4','5','6']}
+                            disabled={disabledInput2(game,'2')}
+                            value={setValueInput('pkR2')}
+                        />
+                    </div>
+
+                    <h1 className="box-title">GAME 3 INFO</h1>
+                    <div className="frag-ctn">
+                        <InputRender
+                            name={teamBlue}
+                            placeholder='score'
+                            inputID="scL3"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="sc-blue-id-data-list"
+                            listData={['0','1','2','3','4','5','6']}
+                            disabled={disabledInput2(game,'3')}
+                            value={setValueInput('scL3')}
+                        />
+                        <InputRender
+                            name={teamRed}
+                            placeholder='score'
+                            inputID="scR3"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="sc-Red-id-data-list"
+                            listData={['0','1','2','3','4','5','6']}
+                            disabled={disabledInput2(game,'3')}
+                            value={setValueInput('scR3')}
+                        />
+                        <InputRender
+                            name='PK'
+                            placeholder='PK Left'
+                            inputID="pkL3"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="sc-blue-id-data-list"
+                            listData={['0','1','2','3','4','5','6']}
+                            disabled={disabledInput2(game,'3')}
+                            value={setValueInput('pkL3')}
+                        />
+                        <InputRender
+                            name='PK'
+                            placeholder='PK Right'
+                            inputID="pkR3"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="sc-Red-id-data-list"
+                            listData={['0','1','2','3','4','5','6']}
+                            disabled={disabledInput2(game,'3')}
+                            value={setValueInput('pkR3')}
+                        />
+                    </div>
+
+                    <h1 className="box-title">GAME 4 INFO</h1>
+                    <div className="frag-ctn">
+                        <InputRender
+                            name={teamBlue}
+                            placeholder='score'
+                            inputID="scL4"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="sc-blue-id-data-list"
+                            listData={['0','1','2','3','4','5','6']}
+                            disabled={disabledInput2(game,'4')}
+                            value={setValueInput('scL4')}
+                        />
+                        <InputRender
+                            name={teamRed}
+                            placeholder='score'
+                            inputID="scR4"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="sc-Red-id-data-list"
+                            listData={['0','1','2','3','4','5','6']}
+                            disabled={disabledInput2(game,'4')}
+                            value={setValueInput('scR4')}
+                        />
+                        <InputRender
+                            name='PK'
+                            placeholder='PK Left'
+                            inputID="pkL4"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="sc-blue-id-data-list"
+                            listData={['0','1','2','3','4','5','6']}
+                            disabled={disabledInput2(game,'4')}
+                            value={setValueInput('pkL4')}
+                        />
+                        <InputRender
+                            name='PK'
+                            placeholder='PK Right'
+                            inputID="pkR4"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="sc-Red-id-data-list"
+                            listData={['0','1','2','3','4','5','6']}
+                            disabled={disabledInput2(game,'4')}
+                            value={setValueInput('pkR4')}
+                        />
+                    </div>
+
+                    <h1 className="box-title">GAME 5 INFO</h1>
+                    <div className="frag-ctn">
+                        <InputRender
+                            name={teamBlue}
+                            placeholder='score'
+                            inputID="scL5"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="sc-blue-id-data-list"
+                            listData={['0','1','2','3','4','5','6']}
+                            disabled={disabledInput2(game,'5')}
+                            value={setValueInput('scL5')}
+                        />
+                        <InputRender
+                            name={teamRed}
+                            placeholder='score'
+                            inputID="scR5"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="sc-Red-id-data-list"
+                            listData={['0','1','2','3','4','5','6']}
+                            disabled={disabledInput2(game,'5')}
+                            value={setValueInput('scR5')}
+                        />
+                        <InputRender
+                            name='PK'
+                            placeholder='PK Left'
+                            inputID="pkL5"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="sc-blue-id-data-list"
+                            listData={['0','1','2','3','4','5','6']}
+                            disabled={disabledInput2(game,'5')}
+                            value={setValueInput('pkL5')}
+                        />
+                        <InputRender
+                            name='PK'
+                            placeholder='PK Right'
+                            inputID="pkR5"
+                            labelClassName="label-style"
+                            inputClassName="input-style"
+                            idDatalist="sc-Red-id-data-list"
+                            listData={['0','1','2','3','4','5','6']}
+                            disabled={disabledInput2(game,'5')}
+                            value={setValueInput('pkR5')}
+                        />
+                    </div>
+
+                    <h1 className="box-title">GAME LINEUP</h1>
                     <div className="frag-ctn">
                         <ul id='box-lineup-blue' className="box-lineup" >
                             <InputRender
@@ -474,20 +797,7 @@ function Backend() {
         // Return backend component
         // banpick container
         function BanpickContainer(){
-            function setValueInput(props){
-                try{
-                    return window.localStorage.getItem(props)
-                }catch(err){
-                    console.log('err') 
-                };
-            }
-            function disabledInput2(props,inputbox){
-                if (props === inputbox){
-                    return false
-                }else{
-                    return true
-                }
-            }
+            
             return (
                 <div id="banpickContainer" className="box-ctn">
                     <h1 className="box-title">BANPICK GAME 1</h1>

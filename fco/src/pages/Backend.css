@@ -29,7 +29,7 @@ button {
 
 .input-style {
     width: 132px;
-    height: 40px;
+    height: 30px;
     font-size: 20px;
     text-align: center;
     text-transform: uppercase;
@@ -40,19 +40,19 @@ button {
 .label-style {
     padding: 0px 5px;
     min-width: 80px;
-    height: 40px;
+    height: 30px;
     background: rgb(87, 87, 87);
     color: rgb(228, 228, 228);
     z-index: 2;
     font-size: 20px;
     text-transform: uppercase;
-    line-height: 40px;
+    line-height: 30px;
     text-align: center;
 }
 
 .input-div {
     position: relative;
-    height: 40px;
+    height: 30px;
     width: 212px;
     border-radius: 5px;
     overflow: hidden;
@@ -64,7 +64,7 @@ button {
 }
 
 .btn {
-    height: 40px;
+    height: 30px;
     width: 100%;
     cursor: pointer;
     color: red;
@@ -124,10 +124,10 @@ button {
     border-radius: 5px;
     background-color: rgba(0, 0, 0, 0.5);
     color: rgb(240, 240, 240);
-    height: 35px;
+    height: 25px;
     z-index: 3;
-    font-size: 20px;
-    line-height: 35px;
+    font-size: 15px;
+    line-height: 25px;
     text-align: center;
 }
 
@@ -144,7 +144,7 @@ button {
 
 .title-text-box {
     width: 100px;
-    height: 40px;
+    height: 30px;
     border-radius: 5px 0px 0px 5px;
     font-size: 20px;
     line-height: 40px;

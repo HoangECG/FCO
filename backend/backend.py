@@ -175,6 +175,7 @@ async def reciveItem(rcv: Request,item: str):
             json.dump(await rcv.json(),filew)
             return {"status":"DONE"}
     if item == 'crm':
+        print(await rcv.json())
         if type(await rcv.json()) is dict:
             with open(f'./database/match/crrmatch.json', 'w') as filew:
                 json.dump(await rcv.json(),filew)
@@ -212,14 +213,13 @@ async def websocket_endpoint(websocket: WebSocket, client_id: int):
         while True:
             data = await websocket.receive_text()
             await manager.broadcast(f"{data}")
-            # print(data)
-            response_json = json.dumps({'IDList': getID()})
-            if data == 'MatchID-check':
-                await manager.send_personal_message(response_json,websocket)
+            # # print(data)
+            # response_json = json.dumps({'IDList': getID()})
+            # if data == 'MatchID-check':
+            #     await manager.send_personal_message(response_json,websocket)
 
     except WebSocketDisconnect:
-        manager.disconnect(websocket)
-        await manager.broadcast(f"Client #{client_id} disconnected")
+        pass
     
 
 if __name__ == "__main__":
