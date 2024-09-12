@@ -9,9 +9,11 @@
     --logo-master-top: 10%;
     --logo-master-right: 90px;
     --bottom-ptt: 0px;
-    --logo-team-height: 500px;
+    --logo-team-height: 400px;
     --logo-team-top: 50%;
     --logo-team-left: 50%;
+    --team-text-height: 50px;
+    --team-text-opacity: 100%;
 }
 #lineup-master{
     width: 100vw;
@@ -121,4 +123,12 @@
     height: calc(var(--logo-team-height) + 5px);
     position: absolute;
     background-color: red;
+}
+.team-name-text {
+    position: absolute;
+    width: 350px;
+    height: var(--team-text-height);
+    text-align: center;
+    line-height: var(--team-text-height);
+    opacity: var(--team-text-opacity);
 }

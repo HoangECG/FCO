@@ -235,6 +235,7 @@ export default function Lineup() {
                 <div id='logo-team-left-ctn' className='logo-team-ctn'>
                     <img id='logo-left' className='logo-team' src={importLogo(logoLeft)} alt='img'/>
                 </div>
+                <div id='team-name-text-left' className='team-name-text'>{teamLeft}</div>
                 <div className='black-bg'/>
             </div>
             <div id='ctn-right' className='side-ctn'>
@@ -242,6 +243,7 @@ export default function Lineup() {
                 <div id='logo-team-right-ctn' className='logo-team-ctn'>
                     <img id='logo-right' className='logo-team' src={importLogo(logoRight)} alt='img'/>
                 </div>
+                <div id='team-name-text-right' className='team-name-text'>{teamRight}</div>
                 <div className='black-bg'/>
             </div>
             <div id='bottom-ptt'/>
