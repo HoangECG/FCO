@@ -191,6 +191,7 @@ function Backend() {
                 if ((await beAPI.GetLineupFull(document.getElementById(props.inputID).value)) != null) {
                     try {
                         setLineupFullBlue(await beAPI.GetLineupFull(document.getElementById(props.inputID).value))
+                        setTeamNameBlue(await beAPI.GetListTeam()[document.getElementById(props.inputID).value])
                     } catch (error) {
                         console.log(1)
                     }
@@ -199,6 +200,7 @@ function Backend() {
                 if ((await beAPI.GetLineupFull(document.getElementById(props.inputID).value)) != null) {
                     try {
                         setLineupFullBlue(await beAPI.GetLineupFull(document.getElementById(props.inputID).value))
+                        setTeamNameRed(await beAPI.GetListTeam()[document.getElementById(props.inputID).value])
                     } catch (error) {
                         
                     }

@@ -131,4 +131,6 @@
     text-align: center;
     line-height: var(--team-text-height);
     opacity: var(--team-text-opacity);
+    color: white;
+    z-index: 999;
 }
