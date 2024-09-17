@@ -50,16 +50,16 @@ function Backend() {
 
     // banpick const
     const [listChamp, setListChamp] = useState([])
-    const [game1PlayerPickLeft, setGame1PlayerPickLeft] = useState('player1')
-    const [game2PlayerPickLeft, setGame2PlayerPickLeft] = useState('player2')
-    const [game3PlayerPickLeft, setGame3PlayerPickLeft] = useState('player3')
-    const [game4PlayerPickLeft, setGame4PlayerPickLeft] = useState('player4')
-    const [game5PlayerPickLeft, setGame5PlayerPickLeft] = useState('player5')
-    const [game1PlayerPickRight, setGame1PlayerPickRight] = useState('player1')
-    const [game2PlayerPickRight, setGame2PlayerPickRight] = useState('player2')
-    const [game3PlayerPickRight, setGame3PlayerPickRight] = useState('player3')
-    const [game4PlayerPickRight, setGame4PlayerPickRight] = useState('player4')
-    const [game5PlayerPickRight, setGame5PlayerPickRight] = useState('player5')
+    const [game1PlayerPickLeft, setGame1PlayerPickLeft] = useState('df')
+    const [game2PlayerPickLeft, setGame2PlayerPickLeft] = useState('df')
+    const [game3PlayerPickLeft, setGame3PlayerPickLeft] = useState('df')
+    const [game4PlayerPickLeft, setGame4PlayerPickLeft] = useState('df')
+    const [game5PlayerPickLeft, setGame5PlayerPickLeft] = useState('df')
+    const [game1PlayerPickRight, setGame1PlayerPickRight] = useState('df')
+    const [game2PlayerPickRight, setGame2PlayerPickRight] = useState('df')
+    const [game3PlayerPickRight, setGame3PlayerPickRight] = useState('df')
+    const [game4PlayerPickRight, setGame4PlayerPickRight] = useState('df')
+    const [game5PlayerPickRight, setGame5PlayerPickRight] = useState('df')
 
 
     useEffect(() => {
@@ -205,6 +205,8 @@ function Backend() {
                         
                     }
                 }
+            }else if(props.inputID.search('PlayerPick') === 5){
+                
             }
         }
         function RenderOpt(props, index) {

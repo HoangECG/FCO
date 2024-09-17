@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import './LineupNew.css';
 import * as beAPI from '../../../api/FetchApi'
 
@@ -228,22 +228,153 @@ export default function Lineup() {
             </div>
         )
     }
+    function RenderGameRight(){
+        if (bo === '3') {
+            return (
+                <Fragment>
+                    <div id='game-box-1' className='game-box'>
+                        <div className='game-box-playername'>{game1PlayerPickRight}</div>
+                        <div className='game-box-game'>Game 1</div>
+                        <img className='image-player' src={importplayer(game1PlayerPickRight)} alt='img'></img>
+                    </div>
+                    <div id='game-box-2' className='game-box'>
+                        <div className='game-box-playername'>{game2PlayerPickRight}</div>
+                        <div className='game-box-game'>Game 2</div>
+                        <img className='image-player' src={importplayer(game2PlayerPickRight)} alt='img'></img>
+                    </div>
+                    <div id='game-box-3' className='game-box'>
+                        <div className='game-box-playername'>{game3PlayerPickRight}</div>
+                        <div className='game-box-game'>Game 3</div>
+                        <img className='image-player' src={importplayer(game3PlayerPickRight)} alt='img'></img>
+                    </div>
+                </Fragment>
+            )
+        }else if(bo === '5'){
+            return (
+                <Fragment>
+                    <div id='game-box-1' className='game-box'>
+                        <div className='game-box-playername'>{game1PlayerPickRight}</div>
+                        <div className='game-box-game'>Game 1</div>
+                        <img className='image-player' src={importplayer(game1PlayerPickRight)} alt='img'></img>
+                    </div>
+                    <div id='game-box-2' className='game-box'>
+                        <div className='game-box-playername'>{game2PlayerPickRight}</div>
+                        <div className='game-box-game'>Game 2</div>
+                        <img className='image-player' src={importplayer(game2PlayerPickRight)} alt='img'></img>
+                    </div>
+                    <div id='game-box-3' className='game-box'>
+                        <div className='game-box-playername'>{game3PlayerPickRight}</div>
+                        <div className='game-box-game'>Game 3</div>
+                        <img className='image-player' src={importplayer(game3PlayerPickRight)} alt='img'></img>
+                    </div>
+                    <div id='game-box-4' className='game-box'>
+                        <div className='game-box-playername'>{game4PlayerPickRight}</div>
+                        <div className='game-box-game'>Game 4</div>
+                        <img className='image-player' src={importplayer(game4PlayerPickRight)} alt='img'></img>
+                    </div>
+                    <div id='game-box-5' className='game-box'>
+                        <div className='game-box-playername'>{game5PlayerPickRight}</div>
+                        <div className='game-box-game'>Game 5</div>
+                        <img className='image-player' src={importplayer(game5PlayerPickRight)} alt='img'></img>
+                    </div>
+                </Fragment>
+            )
+        }
+    }
+
+    function RenderGameLeft(){
+        if (bo === '3') {
+            return (
+                <Fragment>
+                    <div id='game-box-3' className='game-box'>
+                        <div className='game-box-playername'>{game3PlayerPickLeft}</div>
+                        <div className='game-box-game'>Game 3</div>
+                        <img className='image-player' src={importplayer(game3PlayerPickLeft)} alt='img'></img>
+                    </div>
+                    <div id='game-box-2' className='game-box'>
+                        <div className='game-box-playername'>{game2PlayerPickLeft}</div>
+                        <div className='game-box-game'>Game 2</div>
+                        <img className='image-player' src={importplayer(game2PlayerPickLeft)} alt='img'></img>
+                    </div>
+                    <div id='game-box-1' className='game-box'>
+                        <div className='game-box-playername'>{game1PlayerPickLeft}</div>
+                        <div className='game-box-game'>Game 1</div>
+                        <img className='image-player' src={importplayer(game1PlayerPickLeft)} alt='img'></img>
+                    </div>
+                </Fragment>
+            )
+        }else if(bo === '5'){
+            return (
+                <Fragment>
+                    <div id='game-box-5' className='game-box'>
+                        <div className='game-box-playername'>{game5PlayerPickLeft}</div>
+                        <div className='game-box-game'>Game 5</div>
+                        <img className='image-player' src={importplayer(game5PlayerPickLeft)} alt='img'></img>
+                    </div>
+                    <div id='game-box-4' className='game-box'>
+                        <div className='game-box-playername'>{game4PlayerPickLeft}</div>
+                        <div className='game-box-game'>Game 4</div>
+                        <img className='image-player' src={importplayer(game4PlayerPickLeft)} alt='img'></img>
+                    </div>
+                    <div id='game-box-3' className='game-box'>
+                        <div className='game-box-playername'>{game3PlayerPickLeft}</div>
+                        <div className='game-box-game'>Game 3</div>
+                        <img className='image-player' src={importplayer(game3PlayerPickLeft)} alt='img'></img>
+                    </div>
+                    <div id='game-box-2' className='game-box'>
+                        <div className='game-box-playername'>{game2PlayerPickLeft}</div>
+                        <div className='game-box-game'>Game 2</div>
+                        <img className='image-player' src={importplayer(game2PlayerPickLeft)} alt='img'></img>
+                    </div>
+                    <div id='game-box-1' className='game-box'>
+                        <div className='game-box-playername'>{game1PlayerPickLeft}</div>
+                        <div className='game-box-game'>Game 1</div>
+                        <img className='image-player' src={importplayer(game1PlayerPickLeft)} alt='img'></img>
+                    </div>
+                </Fragment>
+            )
+        }
+    }
     return (
         <div id="lineup-master">
             <div id='ctn-left' className='side-ctn'>
+                <div id='game-left-ctn' className='game-ctn'>
+                    {RenderGameLeft()}
+                </div>
                 <div id='logo-fco' className='logo-tour'/>
                 <div id='logo-team-left-ctn' className='logo-team-ctn'>
                     <img id='logo-left' className='logo-team' src={importLogo(logoLeft)} alt='img'/>
                 </div>
-                <div id='team-name-text-left' className='team-name-text'>{teamLeft}</div>
+                <div className='team-name-text-ctn' id='team-name-text-left-ctn'>
+                    <div id='shot-name-left' className='short-name-text'>{logoLeft}</div>
+                    <div id='team-name-text-left' className='team-name-text'>{teamLeft}</div>
+                    <ul id='team-left-lineup' className='team-lineup'>
+                        <li className='player-lineup'>{playerName1}</li>
+                        <li className='player-lineup'>{playerName2}</li>
+                        <li className='player-lineup'>{playerName3}</li>
+                        <li className='player-lineup'>{playerName4}</li>
+                    </ul>
+                </div>
                 <div className='black-bg'/>
             </div>
             <div id='ctn-right' className='side-ctn'>
+                <div id='game-right-ctn' className='game-ctn'>
+                    {RenderGameRight()}
+                </div>
                 <div id='logo-league' className='logo-tour'/>
                 <div id='logo-team-right-ctn' className='logo-team-ctn'>
                     <img id='logo-right' className='logo-team' src={importLogo(logoRight)} alt='img'/>
                 </div>
-                <div id='team-name-text-right' className='team-name-text'>{teamRight}</div>
+                <div className='team-name-text-ctn' id='team-name-text-right-ctn'>
+                    <div className='short-name-text' id='shot-name-right'> {logoRight}</div>
+                    <div id='team-name-text-right' className='team-name-text'>{teamRight}</div>
+                    <ul id='team-right-lineup' className='team-lineup'>
+                        <li className='player-lineup'>{playerName5}</li>
+                        <li className='player-lineup'>{playerName6}</li>
+                        <li className='player-lineup'>{playerName7}</li>
+                        <li className='player-lineup'>{playerName8}</li>
+                    </ul>
+                </div>
                 <div className='black-bg'/>
             </div>
             <div id='bottom-ptt'/>
