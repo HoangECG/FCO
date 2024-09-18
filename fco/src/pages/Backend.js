@@ -4,6 +4,9 @@ import NavBar from "./NavBar/NavBar"
 import * as beAPI from '../api/FetchApi'
 
 
+// websocket
+var ws = new WebSocket(`ws://${beAPI.hostIP}:14596/ws/0`)
+
 function Backend() {
     const [game, setGame] = useState('1')
     const [match, setMatch] = useState('Match 1')
@@ -218,14 +221,13 @@ function Backend() {
             try {
                 return props.listData.map(opt)
             } catch (error) {
-                console.log(1)
             }
         }
         return (
             <div className="input-div">
                 <label htmlFor={props.inputID} className={props.labelClassName}>{props.name}</label>
-                <input id={props.inputID} className={props.inputClassName} list={props.idDatalist}
-                    type="text" placeholder={props.placeholder} name={props.name} defaultValue={props.value} onChange={onchangeInput} disabled={props.disabled}></input>
+                <input id={props.inputID} className={props.inputClassName} list={props.idDatalist} type={props.type}
+                     placeholder={props.placeholder} name={props.name} defaultValue={props.value} onChange={onchangeInput} disabled={props.disabled}></input>
                 <datalist id={props.idDatalist}>
                     {Maplist(RenderOpt)}
                 </datalist>
@@ -252,6 +254,37 @@ function Backend() {
             return false
         }else{
             return true
+        }
+    }
+    function HandleStartLayout(){
+        ws.send('lineup-start')
+    }
+    function HandleResetLayout(){
+        ws.send('lineup-reset')
+    }
+    function HandleSyncStatslayout(){
+        ws.send('lineup-sync')
+    }
+    function StartCountdown(){
+        try {
+            if(document.getElementById('start-time').value.split(':').length > 1 ){
+                ws.send(`startcountdown-${document.getElementById('start-time').value.split(':')[0]}-${document.getElementById('start-time').value.split(':')[1]}-${document.getElementById('giftcode').value}`)
+            } 
+        } catch (error) {
+            console.log('err')
+        }
+    }
+    function StopCountdown(){
+        ws.send('stopcountdown')
+    }
+    function MinusCountdown(){
+        try {
+            if(document.getElementById('minus-time').value.split(':').length > 1 ){
+                ws.send(`minus-${document.getElementById('minus-time').value.split(':')[0]}-${document.getElementById('minus-time').value.split(':')[1]}`)
+                
+            } 
+        } catch (error) {
+            console.log('err')
         }
     }
     function BackendBody() {
@@ -932,9 +965,77 @@ function Backend() {
                             listData={lineupFullBlue}
                             disabled={disabledInput2(game,'5')}
                             value={setValueInput('game5PlayerPick-right')}
-
+                        />
+                        <BtnRender
+                            btnName="Start Lineup"
+                            idBtn="syncBtn"
+                            classBtn="btn"
+                            btnClick={HandleStartLayout}
+                        />
+                        <BtnRender
+                            btnName="Reset Lineup"
+                            idBtn="swapBtn"
+                            classBtn="btn"
+                            btnClick={HandleResetLayout}
+                        />
+                        <BtnRender
+                            btnName="Sync Lineup"
+                            idBtn="swapBtn"
+                            classBtn="btn"
+                            btnClick={HandleSyncStatslayout}
                         />
                     </div>
+                </div>
+            )
+        }
+        function StreamInfor() {
+            // Return component stream info
+            
+            return (
+                <div id="streamInfo" className="box-ctn">
+                    <h1 className="box-title">Countdown Code</h1>
+                    <InputRender
+                        name="Total Time"
+                        placeholder="time"
+                        inputID="start-time"
+                        labelClassName="label-style"
+                        inputClassName="input-style"
+                        idDatalist="id-data-list"
+                    />
+                    <InputRender
+                        name="Code"
+                        placeholder="giftcode"
+                        inputID="giftcode"
+                        labelClassName="label-style"
+                        inputClassName="input-style"
+                        idDatalist="id-data-list"
+                    />
+                    <BtnRender
+                        btnName="Start Countdown"
+                        idBtn="start-countdown"
+                        classBtn="btn"
+                        btnClick={StartCountdown}
+                    />
+                    <BtnRender
+                        btnName="Stop Countdown"
+                        idBtn="stop-countdown"
+                        classBtn="btn"
+                        btnClick={StopCountdown}
+                    />
+                    <InputRender
+                        name="Minus"
+                        placeholder="Time"
+                        inputID="minus-time"
+                        labelClassName="label-style"
+                        inputClassName="input-style"
+                        idDatalist="id-data-list"
+                    />
+                    <BtnRender
+                        btnName="Minus time"
+                        idBtn="minus-time-btn"
+                        classBtn="btn"
+                        btnClick={MinusCountdown}
+                    />
                 </div>
             )
         }
@@ -942,6 +1043,7 @@ function Backend() {
             <div className="body-ctn row-ctn">
                 <div className="colum-ctn">
                     <MatchCreate/>
+                    <StreamInfor/>
                 </div>
                 <div className="box-ctn">
                     <MatchConfig/>

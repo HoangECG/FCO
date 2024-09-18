@@ -1,27 +1,29 @@
 :root
 {
     --opacity: 100%;
-    --pos-l-ctn: 0px;
-    --pos-r-ctn: 0px;
+    --pos-l-ctn: -1000px;
+    --pos-r-ctn: -1000px;
+    /* 0 -1000 */
     --trans: 0.5s ease-in-out;
-    --logo-master-main: 150px;
-    /* 150px */
-    --logo-master-top: 10%;
-    /* 10% */
-    --logo-master-right: 90px;
-    /* 90px */
+    --logo-master-main: 500px;
+    /* 150px 500px*/
+    --logo-master-top: 50%;
+    /* 10% 50%*/
+    --logo-master-right: 50%;
+    /* 90px 50%*/
     --bottom-ptt: -200px;
     /* 0px -200px*/
     --logo-team-height: 200px;
-    /* 400px */
-    --logo-team-top: 75%; 
-    /* 50%  */
-    --logo-team-left: 15%;
-    /* 50% */
+    /* 400px 200px */
+    --logo-team-top: 50%; 
+    /* 50%  75%*/
+    --logo-team-left: 50%;
+    /* 50% 15%*/
+    --logo-team-opacity: 0;
     --team-text-height: 200px;
-    /* 50px */
+    /* 50px 200px*/
     --team-text-width: 500px;
-    /*  */
+    /* 500px */
     --team-text-opacity: 100%;
     /* 100% */
     --text-team-top: 75%; 
@@ -29,24 +31,27 @@
     --text-team-left: 2%;
     /* 50% */
     --height-tab-game: 60px;
-    --game-1-L-Flex: 1;
-    --game-2-L-Flex: 1;
-    --game-3-L-Flex: 1;
-    --game-4-L-Flex: 1;
-    --game-5-L-Flex: 1;
-    --game-1-R-Flex: 1;
-    --game-2-R-Flex: 1;
-    --game-3-R-Flex: 1;
-    --game-4-R-Flex: 1;
-    --game-5-R-Flex: 1;
+    --game-1-l-Flex: 1;
+    --game-2-l-Flex: 1;
+    --game-3-l-Flex: 1;
+    --game-4-l-Flex: 1;
+    --game-5-l-Flex: 1;
+    --game-1-r-Flex: 1;
+    --game-2-r-Flex: 1;
+    --game-3-r-Flex: 1;
+    --game-4-r-Flex: 1;
+    --game-5-r-Flex: 1;
     --main-scroll: -880px;
     --side-scroll: -710px;
     /* bo3 1/1 -880 -710 */
     /* bo3 2/1 -1330 -1060 */
     /* bo5 2/1 -860 -705 */
     --game-ctn-pos: -40%;
-    /* 45% -40% */
+    /* 41% -40% */
     --match-info-ctn-opacity: 0;
+    --team-name-text-ctn-opacity: 0;
+    --bg-opacity: 0.5;
+    --main-logo-opacity: 1;
 }
 #lineup-master{
     width: 100vw;
@@ -72,13 +77,13 @@
     z-index: 0;
 } */
 #ctn-right {
-    top: var(--pos-r-ctn);
+    right: var(--pos-r-ctn);
     background: url('./bg.png') right/ cover no-repeat;
     transition: var(--trans);
     z-index: -999;
 }
 #ctn-left {
-    bottom: var(--pos-l-ctn);
+    left: var(--pos-l-ctn);
     background: url('./bg.png') left/ cover no-repeat;
     transition: var(--trans);
     z-index: -999;
@@ -95,6 +100,7 @@
     right: var(--logo-master-right);
     transform: translate(50%, -50%);
     transition: var(--trans);
+    opacity: var(--main-logo-opacity);
 }
 #logo-league {
     width: var(--logo-master-main);
@@ -106,12 +112,14 @@
     left: var(--logo-master-right);
     transform: translate(-50%, -50%);
     transition: var(--trans);
+    opacity: var(--main-logo-opacity);
+
 }
 .black-bg{
     width: 100%;
     height: 100%;
     background-color: black;
-    opacity: 50%;
+    opacity: var(--bg-opacity);
     position: absolute;
     z-index: 1;
 }
@@ -129,9 +137,10 @@
     height: var(--logo-team-height);
     background-color: rgba(255, 255, 255,0.8);
     transition: var(--trans);
-    border: 1px solid;
+    border: 3px solid;
     border-image-slice: 1;
     border-image-source: linear-gradient(to right bottom, #6a5af9, #f62682);
+    opacity: var(--logo-team-opacity);
 }
 #logo-team-right-ctn {
     top: var(--logo-team-top);
@@ -154,9 +163,6 @@
     align-items: center;
     z-index: 999;
     transition: var(--trans);
-    border: 1px solid;
-    border-image-slice: 1;
-    border-image-source: linear-gradient(to right bottom, #6a5af9, #f62682);
 }
 /* .logo-team-ctn::after{
     content: "";
@@ -217,6 +223,7 @@
     right: var(--text-team-left);
     transition: var(--trans);
     display: flex;
+    opacity: var(--team-name-text-ctn-opacity);
 }
 .short-name-text {
     position: relative;
@@ -384,34 +391,34 @@
     transition: var(--trans);
 }
 #game-box-l-1{
-    flex: var(--game-1-L-Flex);
+    flex: var(--game-1-l-Flex);
 }
 #game-box-l-2{
-    flex: var(--game-2-L-Flex);
+    flex: var(--game-2-l-Flex);
 }
 #game-box-l-3{
-    flex: var(--game-3-L-Flex);
+    flex: var(--game-3-l-Flex);
 }
 #game-box-l-4{
-    flex: var(--game-4-L-Flex);
+    flex: var(--game-4-l-Flex);
 }
 #game-box-l-5{
-    flex: var(--game-5-L-Flex);
+    flex: var(--game-5-l-Flex);
 }
 #game-box-r-1{
-    flex: var(--game-1-R-Flex);
+    flex: var(--game-1-r-Flex);
 }
 #game-box-r-2{
-    flex: var(--game-2-R-Flex);
+    flex: var(--game-2-r-Flex);
 }
 #game-box-r-3{
-    flex: var(--game-3-R-Flex);
+    flex: var(--game-3-r-Flex);
 }
 #game-box-r-4{
-    flex: var(--game-4-R-Flex);
+    flex: var(--game-4-r-Flex);
 }
 #game-box-r-5{
-    flex: var(--game-5-R-Flex);
+    flex: var(--game-5-r-Flex);
 }
 .scroll-main-text-loops{
     white-space: nowrap;

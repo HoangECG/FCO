@@ -175,7 +175,6 @@ async def reciveItem(rcv: Request,item: str):
             json.dump(await rcv.json(),filew)
             return {"status":"DONE"}
     if item == 'crm':
-        print(await rcv.json())
         if type(await rcv.json()) is dict:
             with open(f'./database/match/crrmatch.json', 'w') as filew:
                 json.dump(await rcv.json(),filew)
@@ -191,7 +190,7 @@ class ConnectionManager:
         await websocket.accept()
         self.active_connections.append(websocket)
 
-    def disconnect(self, websocket: WebSocket):
+    async def disconnect(self, websocket: WebSocket):
         self.active_connections.remove(websocket)
 
     async def send_personal_message(self, message: str, websocket: WebSocket):
@@ -199,7 +198,10 @@ class ConnectionManager:
 
     async def broadcast(self, message: str):
         for connection in self.active_connections:
-            await connection.send_text(message)
+            try:
+                await connection.send_text(message)
+            except:
+                pass
 
 
 manager = ConnectionManager()
@@ -213,13 +215,9 @@ async def websocket_endpoint(websocket: WebSocket, client_id: int):
         while True:
             data = await websocket.receive_text()
             await manager.broadcast(f"{data}")
-            # # print(data)
-            # response_json = json.dumps({'IDList': getID()})
-            # if data == 'MatchID-check':
-            #     await manager.send_personal_message(response_json,websocket)
 
     except WebSocketDisconnect:
-        pass
+        manager.disconnect(websocket)
     
 
 if __name__ == "__main__":

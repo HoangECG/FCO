@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState , useEffect} from 'react';
 import './Tabs.css';
 import * as beAPI from '../../api/FetchApi'
 import * as Handleimport from "./LayoutHandle/HandleImport"
@@ -8,49 +8,77 @@ import * as Handleimport from "./LayoutHandle/HandleImport"
 var ws = new WebSocket(`ws://${beAPI.hostIP}:14596/ws/0`)
 
 
-// function TabPredict() {
-//     return (
-//         <div id='tab-predic'>
-//             <img id='predict-logo-left' src={Handleimport.importLogo('HN')} alt='img' />
-//             <img id='predict-logo-right' src={Handleimport.importLogo('BD')} alt='img' />
-//         </div>
-//     )
-// }
-
 
 export default function Tab() {
-
+    const [code, setCode] = useState('asdhjsahdkjas')
+    const [minutes, setMinutes] = useState(0); // Input state for minutes
+    const [seconds, setSeconds] = useState(0); // Input state for seconds
+    const [timeLeft, setTimeLeft] = useState(0); // Total time in seconds
+    const [isActive, setIsActive] = useState(false);
     // show function
-    function ShowTab(idTabs) {
-        let tabWin = document.getElementById(idTabs)
-        console.log(tabWin)
-        const p = Promise.resolve(123)
-        p.then(() => {
-            tabWin.style.bottom = '15px'
-            return new Promise(resolve => setTimeout(resolve, 15500))
-        })
-            .then(() => {
-                tabWin.style.bottom = '-999px'
-            })
-    }
+    
 
     // def tab
-    function TabsWin(props) {
+    // function TabsWin(props) {
+    //     return (
+    //         <img id='tabsWin' src={Handleimport.importIMG('CPN1')} alt='img' />
+    //     )
+    // }
+    const handleStart = () => {
+        const totalSeconds = parseInt(minutes) * 60 + parseInt(seconds);
+        setTimeLeft(totalSeconds);
+        setIsActive(true); // Start the countdown
+        };
+    
+    useEffect(() => {
+        let interval = null;
+    
+        if (isActive && timeLeft > 0) {
+            interval = setInterval(() => {
+            setTimeLeft((prevTime) => prevTime - 1);
+            }, 1000);
+        } else if (timeLeft === 0) {
+            clearInterval(interval);
+            setIsActive(false); // Stop when the countdown is over
+        }
+    
+        return () => clearInterval(interval);
+        }, [isActive, timeLeft]);
+    
+        // Format minutes and seconds display
+        const formatTime = (time) => {
+        const mins = Math.floor(time / 60);
+        const secs = time % 60;
+        return `${mins < 10 ? '0' + mins : mins}:${secs < 10 ? '0' + secs : secs}`;
+        };
+
+
+
+
+    // function show time
+    function ShowCountdown(){
         return (
-            <img id='tabsWin' src={Handleimport.importIMG('CPN1')} alt='img' />
+            <div id='time-cd-id'>
+                <div id='giftcode-name'>GIFTCODE COUNTDOWN</div>
+                <div id='cd-num'>{formatTime(timeLeft)}</div>
+                <div id='giftcode-show'>{code}</div>
+            </div>
         )
     }
     // follow ws
     ws.onmessage = function (event) {
-        if (event.data === 'show-tabswin') {
-            ShowTab('tabsWin')
+        if ((event.data.split(':').length === 4)&&(event.data.split(':')[0] === 'startcountdown')){
+            setSeconds(event.data.split(':')[1])
+            setMinutes(event.data.split(':')[2])
+            setCode(event.data.split(':')[3])
         }
     }
 
     return (
         <div id="tabs">
-            <TabsWin />
+            {/* <TabsWin /> */}
             {/* <TabPredict /> */}
+            <ShowCountdown/>
         </div>
     )
 }
