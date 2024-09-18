@@ -249,19 +249,19 @@ export default function Lineup() {
         if (bo === '3') {
             return (
                 <Fragment>
-                    <div id='game-box-1' className='game-box'>
+                    <div id='game-box-r-1' className='game-box'>
                         <div className='game-box-playername'>{game1PlayerPickRight}</div>
                         <div className='game-box-game'>Game 1</div>
                         <img className='image-player' src={importplayer(game1PlayerPickRight)} alt='img'></img>
                         <div className='text-ctn'>{ScrollText(game1PlayerPickRight)}</div>
                     </div>
-                    <div id='game-box-2' className='game-box'>
+                    <div id='game-box-r-2' className='game-box'>
                         <div className='game-box-playername'>{game2PlayerPickRight}</div>
                         <div className='game-box-game'>Game 2</div>
                         <img className='image-player' src={importplayer(game2PlayerPickRight)} alt='img'></img>
                         <div className='text-ctn'>{ScrollText(game2PlayerPickRight)}</div>
                     </div>
-                    <div id='game-box-3' className='game-box'>
+                    <div id='game-box-r-3' className='game-box'>
                         <div className='game-box-playername'>{game3PlayerPickRight}</div>
                         <div className='game-box-game'>Game 3</div>
                         <img className='image-player' src={importplayer(game3PlayerPickRight)} alt='img'></img>
@@ -272,31 +272,31 @@ export default function Lineup() {
         }else if(bo === '5'){
             return (
                 <Fragment>
-                    <div id='game-box-1' className='game-box'>
+                    <div id='game-box-r-1' className='game-box'>
                         <div className='game-box-playername'>{game1PlayerPickRight}</div>
                         <div className='game-box-game'>Game 1</div>
                         <img className='image-player' src={importplayer(game1PlayerPickRight)} alt='img'></img>
                         <div className='text-ctn'>{ScrollText(game1PlayerPickRight)}</div>
                     </div>
-                    <div id='game-box-2' className='game-box'>
+                    <div id='game-box-r-2' className='game-box'>
                         <div className='game-box-playername'>{game2PlayerPickRight}</div>
                         <div className='game-box-game'>Game 2</div>
                         <img className='image-player' src={importplayer(game2PlayerPickRight)} alt='img'></img>
                         <div className='text-ctn'>{ScrollText(game2PlayerPickRight)}</div>
                     </div>
-                    <div id='game-box-3' className='game-box'>
+                    <div id='game-box-r-3' className='game-box'>
                         <div className='game-box-playername'>{game3PlayerPickRight}</div>
                         <div className='game-box-game'>Game 3</div>
                         <img className='image-player' src={importplayer(game3PlayerPickRight)} alt='img'></img>
                         <div className='text-ctn'>{ScrollText(game3PlayerPickRight)}</div>
                     </div>
-                    <div id='game-box-4' className='game-box'>
+                    <div id='game-box-r-4' className='game-box'>
                         <div className='game-box-playername'>{game4PlayerPickRight}</div>
                         <div className='game-box-game'>Game 4</div>
                         <img className='image-player' src={importplayer(game4PlayerPickRight)} alt='img'></img>
                         <div className='text-ctn'>{ScrollText(game4PlayerPickRight)}</div>
                     </div>
-                    <div id='game-box-5' className='game-box'>
+                    <div id='game-box-r-5' className='game-box'>
                         <div className='game-box-playername'>{game5PlayerPickRight}</div>
                         <div className='game-box-game'>Game 5</div>
                         <img className='image-player' src={importplayer(game5PlayerPickRight)} alt='img'></img>
@@ -311,19 +311,19 @@ export default function Lineup() {
         if (bo === '3') {
             return (
                 <Fragment>
-                    <div id='game-box-3' className='game-box'>
+                    <div id='game-box-l-3' className='game-box'>
                         <div className='game-box-playername'>{game3PlayerPickLeft}</div>
                         <div className='game-box-game'>Game 3</div>
                         <img className='image-player' src={importplayer(game3PlayerPickLeft)} alt='img'></img>
                         <div className='text-ctn'>{ScrollText(game3PlayerPickLeft)}</div>
                     </div>
-                    <div id='game-box-2' className='game-box'>
+                    <div id='game-box-l-2' className='game-box'>
                         <div className='game-box-playername'>{game2PlayerPickLeft}</div>
                         <div className='game-box-game'>Game 2</div>
                         <img className='image-player' src={importplayer(game2PlayerPickLeft)} alt='img'></img>
                         <div className='text-ctn'>{ScrollText(game2PlayerPickLeft)}</div>
                     </div>
-                    <div id='game-box-1' className='game-box'>
+                    <div id='game-box-l-1' className='game-box'>
                         <div className='game-box-playername'>{game1PlayerPickLeft}</div>
                         <div className='game-box-game'>Game 1</div>
                         <img className='image-player' src={importplayer(game1PlayerPickLeft)} alt='img'></img>
@@ -334,35 +334,128 @@ export default function Lineup() {
         }else if(bo === '5'){
             return (
                 <Fragment>
-                    <div id='game-box-5' className='game-box'>
+                    <div id='game-box-l-5' className='game-box'>
                         <div className='game-box-playername'>{game5PlayerPickLeft}</div>
                         <div className='game-box-game'>Game 5</div>
                         <img className='image-player' src={importplayer(game5PlayerPickLeft)} alt='img'></img>
                         <div className='text-ctn'>{ScrollText(game5PlayerPickLeft)}</div>
                     </div>
-                    <div id='game-box-4' className='game-box'>
+                    <div id='game-box-l-4' className='game-box'>
                         <div className='game-box-playername'>{game4PlayerPickLeft}</div>
                         <div className='game-box-game'>Game 4</div>
                         <img className='image-player' src={importplayer(game4PlayerPickLeft)} alt='img'></img>
                         <div className='text-ctn'>{ScrollText(game4PlayerPickLeft)}</div>
                     </div>
-                    <div id='game-box-3' className='game-box'>
+                    <div id='game-box-l-3' className='game-box'>
                         <div className='game-box-playername'>{game3PlayerPickLeft}</div>
                         <div className='game-box-game'>Game 3</div>
                         <img className='image-player' src={importplayer(game3PlayerPickLeft)} alt='img'></img>
                         <div className='text-ctn'>{ScrollText(game3PlayerPickLeft)}</div>
                     </div>
-                    <div id='game-box-2' className='game-box'>
+                    <div id='game-box-l-2' className='game-box'>
                         <div className='game-box-playername'>{game2PlayerPickLeft}</div>
                         <div className='game-box-game'>Game 2</div>
                         <img className='image-player' src={importplayer(game2PlayerPickLeft)} alt='img'></img>
                         <div className='text-ctn'>{ScrollText(game2PlayerPickLeft)}</div>
                     </div>
-                    <div id='game-box-1' className='game-box'>
+                    <div id='game-box-l-1' className='game-box'>
                         <div className='game-box-playername'>{game1PlayerPickLeft}</div>
                         <div className='game-box-game'>Game 1</div>
                         <img className='image-player' src={importplayer(game1PlayerPickLeft)} alt='img'></img>
                         <div className='text-ctn'>{ScrollText(game1PlayerPickLeft)}</div>
+                    </div>
+                </Fragment>
+            )
+        }
+    }
+    function GameMainCreate(){
+        if(bo === '3'){
+            return(
+                <Fragment>
+                    <div id='game-text-1' className='game-text-css'>
+                        <div className='player-game-left'>{game1PlayerPickLeft}</div>
+                        <div className='scoreL'>{scL1}</div>
+                        <div className='mid-game'>
+                            <div>GAME 1</div>
+                            <div>{pkL1 + ' -PK- ' + pkR1}</div>
+                        </div>
+                        <div className='scoreR'>{scL1}</div>
+                        <div className='player-game-right'>{game1PlayerPickLeft}</div>
+                    </div>
+                    <div id='game-text-2' className='game-text-css'>
+                        <div className='player-game-left'>{game2PlayerPickLeft}</div>
+                        <div className='scoreL'>{scL2}</div>
+                        <div className='mid-game'>
+                            <div>GAME 2</div>
+                            <div>{pkL2 + ' -PK- ' + pkR2}</div>
+                        </div>
+                        <div className='scoreR'>{scL2}</div>
+                        <div className='player-game-right'>{game2PlayerPickLeft}</div>
+                    </div>
+                    <div id='game-text-3' className='game-text-css'>
+                        <div className='player-game-left'>{game3PlayerPickLeft}</div>
+                        <div className='scoreL'>{scL3}</div>
+                        <div className='mid-game'>
+                            <div>GAME 3</div>
+                            <div>{pkL3 + ' -PK- ' + pkR3}</div>
+                        </div>
+                        <div className='scoreR'>{scL3}</div>
+                        <div className='player-game-right'>{game3PlayerPickLeft}</div>
+                    </div>
+                </Fragment>
+            )
+        }else{
+            return(
+                <Fragment>
+                    <div id='game-text-1' className='game-text-css'>
+                        <div className='player-game-left'>{game1PlayerPickLeft}</div>
+                        <div className='scoreL'>{scL1}</div>
+                        <div className='mid-game'>
+                            <div>GAME 1</div>
+                            <div>{pkL1 + ' -PK- ' + pkR1}</div>
+                        </div>
+                        <div className='scoreR'>{scL1}</div>
+                        <div className='player-game-right'>{game1PlayerPickLeft}</div>
+                    </div>
+                    <div id='game-text-2' className='game-text-css'>
+                        <div className='player-game-left'>{game2PlayerPickLeft}</div>
+                        <div className='scoreL'>{scL2}</div>
+                        <div className='mid-game'>
+                            <div>GAME 2</div>
+                            <div>{pkL2 + ' -PK- ' + pkR2}</div>
+                        </div>
+                        <div className='scoreR'>{scL2}</div>
+                        <div className='player-game-right'>{game2PlayerPickLeft}</div>
+                    </div>
+                    <div id='game-text-3' className='game-text-css'>
+                        <div className='player-game-left'>{game3PlayerPickLeft}</div>
+                        <div className='scoreL'>{scL3}</div>
+                        <div className='mid-game'>
+                            <div>GAME 3</div>
+                            <div>{pkL3 + ' -PK- ' + pkR3}</div>
+                        </div>
+                        <div className='scoreR'>{scL3}</div>
+                        <div className='player-game-right'>{game3PlayerPickLeft}</div>
+                    </div>
+                    <div id='game-text-4' className='game-text-css'>
+                        <div className='player-game-left'>{game4PlayerPickLeft}</div>
+                        <div className='scoreL'>{scL4}</div>
+                        <div className='mid-game'>
+                            <div>GAME 4</div>
+                            <div>{pkL4 + ' -PK- ' + pkR4}</div>
+                        </div>
+                        <div className='scoreR'>{scL4}</div>
+                        <div className='player-game-right'>{game4PlayerPickLeft}</div>
+                    </div>
+                    <div id='game-text-5' className='game-text-css'>
+                        <div className='player-game-left'>{game5PlayerPickLeft}</div>
+                        <div className='scoreL'>{scL5}</div>
+                        <div className='mid-game'>
+                            <div>GAME 5</div>
+                            <div>{pkL5 + ' -PK- ' + pkR5}</div>
+                        </div>
+                        <div className='scoreR'>{scL5}</div>
+                        <div className='player-game-right'>{game5PlayerPickLeft}</div>
                     </div>
                 </Fragment>
             )
@@ -376,7 +469,7 @@ export default function Lineup() {
                     <h1 id='headline-match'>{'MATCH ' + match}</h1>
                     <div id='arrow-right' className='arrow'></div>
                 </div>
-                <div id='game-text-ctn'></div>
+                <div id='game-text-ctn'>{GameMainCreate()}</div>
             </div>
             <div id='ctn-left' className='side-ctn'>
                 <div id='game-left-ctn' className='game-ctn'>
