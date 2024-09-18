@@ -277,6 +277,9 @@ function Backend() {
     function StopCountdown(){
         ws.send('stopcountdown')
     }
+    function showCountdown(){
+        ws.send('showcountdown')
+    }
     function MinusCountdown(){
         try {
             if(document.getElementById('minus-time').value.split(':').length > 1 ){
@@ -1009,6 +1012,12 @@ function Backend() {
                         labelClassName="label-style"
                         inputClassName="input-style"
                         idDatalist="id-data-list"
+                    />
+                    <BtnRender
+                        btnName="Show"
+                        idBtn="show-countdown"
+                        classBtn="btn"
+                        btnClick={showCountdown}
                     />
                     <BtnRender
                         btnName="Start Countdown"
