@@ -1,5 +1,5 @@
 :root{
-    --trans: 0.5s ease-in-out;
+    --trans: 0.3s ease-in-out;
     --main-tab-pos: -325px;
     --name-tab-pos: -325px;
     /* 25px -325px*/
@@ -10,6 +10,8 @@
     --top-minus: 90px;
     /* 90px 55px*/
     --opacity-minus: 0;
+    --cd-num-opacity: 1;
+    --opacity-giftcode: 0;
 }
 #tabs
 {
@@ -19,14 +21,6 @@
     height: 100vh;
     background: transparent;
     overflow: hidden;
-}
-#tabsWin {
-    width: fit-content;
-    height: fit-content;
-    position: absolute;
-    bottom: -999px;
-    left: 15px;
-    transition: 1s ease-in-out;
 }
 #time-cd-id{
     width: 250px;
@@ -51,6 +45,7 @@
     position: absolute;
     transition: var(--trans);
     top: 28px;
+    opacity: var(--cd-num-opacity);
 }
 #giftcode-show{
     color: white;
@@ -61,7 +56,7 @@
     text-align: center;
     position: absolute;
     top: 35px;
-    opacity: 0;
+    opacity: var(--opacity-giftcode);
     transition: var(--trans);
 }
 #giftcode-name{

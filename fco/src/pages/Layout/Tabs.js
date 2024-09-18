@@ -1,7 +1,6 @@
 import React, { useState , useEffect, Fragment} from 'react';
 import './Tabs.css';
 import * as beAPI from '../../api/FetchApi'
-import * as Handleimport from "./LayoutHandle/HandleImport"
 
 
 
@@ -36,29 +35,9 @@ export default function Tab() {
         setTimeLeft((prevTime) => Math.max(0, prevTime - subtractSeconds)); // Ensure time doesn't go negative
         };
     
-    useEffect(() => {
-        let interval = null;
-    
-        if (isActive && timeLeft > 0) {
-            interval = setInterval(() => {
-            setTimeLeft((prevTime) => prevTime - 1);
-            }, 1000);
-        } else if (timeLeft === 0) {
-            clearInterval(interval);
-            setIsActive(false); // Stop when the countdown is over
-        }
-    
-        return () => clearInterval(interval);
-        }, [isActive, timeLeft]);
-    
-        // Format minutes and seconds display
-        const formatTime = (time) => {
-        const mins = Math.floor(time / 60);
-        const secs = time % 60;
-        return `${mins < 10 ? '0' + mins : mins}:${secs < 10 ? '0' + secs : secs}`;
-        };
 
     function StartCountdownLayout(){
+        console.log(1)
         // end fetch api
         const rootStyle = document.documentElement.style;
         function setRoot(a,b){
@@ -68,6 +47,8 @@ export default function Tab() {
         const p = Promise.resolve('pass')
             p.then(function(){
                 setRoot('--opacity-minus','0')
+                setRoot('--cd-num-opacity','1')
+                setRoot('--opacity-giftcode','0')
                 setRoot('--top-minus','55px')
                 setRoot('--top-name','15px')
                 setRoot('--box-height','25px')
@@ -114,7 +95,7 @@ export default function Tab() {
                 setRoot('--box-height','25px')
                 setRoot('--main-tab-pos','25px')
                 return new Promise( function(resolve){
-                    setTimeout(resolve, 800)
+                    setTimeout(resolve, 600)
                 })
             })
             .then(function(){
@@ -124,6 +105,14 @@ export default function Tab() {
                 setRoot('--box-height','25px')
                 setRoot('--main-tab-pos','-325px')
                 setRoot('--name-tab-pos','-325px')
+                setRoot('--cd-num-opacity','1')
+                setRoot('--opacity-giftcode','0')
+                return new Promise( function(resolve){
+                    setTimeout(resolve, 500)
+                })
+            })
+            .then(function(){
+                subtractTime(0,0)
                 return new Promise( function(resolve){
                     setTimeout(resolve, 500)
                 })
@@ -153,7 +142,7 @@ export default function Tab() {
             .then(function(){
                 setRoot('--opacity-minus','0')
                 return new Promise( function(resolve){
-                    setTimeout(resolve, 800)
+                    setTimeout(resolve, 4000)
                 })
             })
             .then(function(){
@@ -163,8 +152,52 @@ export default function Tab() {
                 })
             })
     }
+    function ShowCodeText(){
+        // end fetch api
+        const rootStyle = document.documentElement.style;
+        function setRoot(a,b){
+            return( rootStyle.setProperty(a,b)) 
+        }
+        rootStyle.setProperty('--opacity','100%')
+        const p = Promise.resolve('pass')
+            p.then(function(){
+                setRoot('--cd-num-opacity','0')
+                return new Promise( function(resolve){
+                    setTimeout(resolve, 200)
+                })
+            })
+            .then(function(){
+                setRoot('--opacity-giftcode','1')
+                return new Promise( function(resolve){
+                    setTimeout(resolve, 200)
+                })
+            })
+    }
     // function show time
+    useEffect(() => {
+        let interval = null;
+    
+        if (isActive && timeLeft > 0) {
+            interval = setInterval(() => {
+            setTimeLeft((prevTime) => prevTime - 1);
+            }, 1000);
+        } else if (timeLeft === 0) {
+            ShowCodeText()
+            clearInterval(interval);
+            setIsActive(false); // Stop when the countdown is over
+        }
+    
+        return () => clearInterval(interval);
+        }, [isActive, timeLeft]);
+    
+        // Format minutes and seconds display
+        const formatTime = (time) => {
+        const mins = Math.floor(time / 60);
+        const secs = time % 60;
+        return `${mins < 10 ? '0' + mins : mins}:${secs < 10 ? '0' + secs : secs}`;
+        };
     function ShowCountdown(){
+        
         return (
             <Fragment>
                 <div id='giftcode-name'>GIFTCODE COUNTDOWN</div>
@@ -182,7 +215,9 @@ export default function Tab() {
             setSeconds(parseInt(event.data.split('-')[2]))
             setMinutes(parseInt(event.data.split('-')[1]))
             setCode(event.data.split(':')[3])
-            handleStart()
+            setTimeout(() => {
+                handleStart()
+            }, 100);
         }else if ((event.data.split('-').length === 3)&&(event.data.split('-')[0] === 'minus')){
             subtractTime(parseInt(event.data.split('-')[1]),parseInt(event.data.split('-')[2]))
             setMiunstime(`${parseInt(event.data.split('-')[1])}:${parseInt(event.data.split('-')[2])}`)
