@@ -269,6 +269,7 @@ function Backend() {
         try {
             if(document.getElementById('start-time').value.split(':').length > 1 ){
                 ws.send(`startcountdown-${document.getElementById('start-time').value.split(':')[0]}-${document.getElementById('start-time').value.split(':')[1]}-${document.getElementById('giftcode').value}`)
+                console.log(`startcountdown-${document.getElementById('start-time').value.split(':')[0]}-${document.getElementById('start-time').value.split(':')[1]}-${document.getElementById('giftcode').value}`)
             } 
         } catch (error) {
             console.log('err')
@@ -284,7 +285,6 @@ function Backend() {
         try {
             if(document.getElementById('minus-time').value.split(':').length > 1 ){
                 ws.send(`minus-${document.getElementById('minus-time').value.split(':')[0]}-${document.getElementById('minus-time').value.split(':')[1]}`)
-                
             } 
         } catch (error) {
             console.log('err')

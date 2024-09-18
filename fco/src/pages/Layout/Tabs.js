@@ -1,241 +1,120 @@
-import React, { useState , useEffect, Fragment} from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import './Tabs.css';
-import * as beAPI from '../../api/FetchApi'
+import * as beAPI from '../../api/FetchApi';
 
-
-
-var ws = new WebSocket(`ws://${beAPI.hostIP}:14596/ws/0`)
-
-
+// WebSocket initialization
+var ws = new WebSocket(`ws://${beAPI.hostIP}:14596/ws/0`);
 
 export default function Tab() {
-    const [code, setCode] = useState('asdhjsahdkjas')
-    const [minusTime, setMiunstime] = useState('00:00')
-    const [minutes, setMinutes] = useState(0); // Input state for minutes
-    const [seconds, setSeconds] = useState(0); // Input state for seconds
-    const [timeLeft, setTimeLeft] = useState(0); // Total time in seconds
-    const [isActive, setIsActive] = useState(false);
-    // show function
-    
+  const [code, setCode] = useState('asdhjsahdkjas');
+  const [minusTime, setMinusTime] = useState('00:00');
+  const [minutes, setMinutes] = useState(0); 
+  const [seconds, setSeconds] = useState(0); 
+  const [timeLeft, setTimeLeft] = useState(0); 
+  const [isActive, setIsActive] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
 
-    // def tab
-    // function TabsWin(props) {
-    //     return (
-    //         <img id='tabsWin' src={Handleimport.importIMG('CPN1')} alt='img' />
-    //     )
-    // }
-    const handleStart = () => {
-        const totalSeconds = parseInt(minutes) * 60 + parseInt(seconds);
-        setTimeLeft(totalSeconds);
-        setIsActive(true); // Start the countdown
-        };
-    // minus time
-    const subtractTime = (min = 0, sec = 0) => {
-        const subtractSeconds = min * 60 + sec;
-        setTimeLeft((prevTime) => Math.max(0, prevTime - subtractSeconds)); // Ensure time doesn't go negative
-        };
-    
+  // Start the countdown
+  const handleStart = () => {
+    const totalSeconds = parseInt(minutes) * 60 + parseInt(seconds);
+    setTimeLeft(totalSeconds);
+    setIsActive(true);
+    setIsComplete(false);
+  };
 
-    function StartCountdownLayout(){
-        console.log(1)
-        // end fetch api
-        const rootStyle = document.documentElement.style;
-        function setRoot(a,b){
-            return( rootStyle.setProperty(a,b)) 
-        }
-        rootStyle.setProperty('--opacity','100%')
-        const p = Promise.resolve('pass')
-            p.then(function(){
-                setRoot('--opacity-minus','0')
-                setRoot('--cd-num-opacity','1')
-                setRoot('--opacity-giftcode','0')
-                setRoot('--top-minus','55px')
-                setRoot('--top-name','15px')
-                setRoot('--box-height','25px')
-                setRoot('--main-tab-pos','25px')
-                setRoot('--name-tab-pos','15px')
-                return new Promise( function(resolve){
-                    setTimeout(resolve, 700)
-                })
-            })
-            .then(function(){
-                setRoot('--opacity-minus','0')
-                setRoot('--top-minus','55px')
-                setRoot('--top-name','20px')
-                setRoot('--box-height','75px')
-                setRoot('--main-tab-pos','25px')
-                return new Promise( function(resolve){
-                    setTimeout(resolve, 700)
-                })
-            })
-    }
-    function StopCountdownLayout(){
-        // end fetch api
-        const rootStyle = document.documentElement.style;
-        function setRoot(a,b){
-            return( rootStyle.setProperty(a,b)) 
-        }
-        rootStyle.setProperty('--opacity','0%')
-        const p = Promise.resolve('pass')
-            p.then(function(){
-                setRoot('--opacity-minus','0')
-                setRoot('--top-minus','55px')
-                setRoot('--top-name','15px')
-                setRoot('--box-height','25px')
-                setRoot('--main-tab-pos','25px')
-                setRoot('--name-tab-pos','15px')
-                return new Promise( function(resolve){
-                    setTimeout(resolve, 800)
-                })
-            })
-            .then(function(){
-                setRoot('--opacity-minus','0')
-                setRoot('--top-minus','55px')
-                setRoot('--top-name','15px')
-                setRoot('--box-height','25px')
-                setRoot('--main-tab-pos','25px')
-                return new Promise( function(resolve){
-                    setTimeout(resolve, 600)
-                })
-            })
-            .then(function(){
-                setRoot('--opacity-minus','0')
-                setRoot('--top-minus','55px')
-                setRoot('--top-name','15px')
-                setRoot('--box-height','25px')
-                setRoot('--main-tab-pos','-325px')
-                setRoot('--name-tab-pos','-325px')
-                setRoot('--cd-num-opacity','1')
-                setRoot('--opacity-giftcode','0')
-                return new Promise( function(resolve){
-                    setTimeout(resolve, 500)
-                })
-            })
-            .then(function(){
-                subtractTime(0,0)
-                return new Promise( function(resolve){
-                    setTimeout(resolve, 500)
-                })
-            })
-    }
+  // Subtract time dynamically
+  const subtractTime = (min = 0, sec = 0) => {
+    const subtractSeconds = min * 60 + sec;
+    setTimeLeft((prevTime) => Math.max(0, prevTime - subtractSeconds));
+  };
 
-    function ShowMinus(){
-        // end fetch api
-        const rootStyle = document.documentElement.style;
-        function setRoot(a,b){
-            return( rootStyle.setProperty(a,b)) 
-        }
-        rootStyle.setProperty('--opacity','100%')
-        const p = Promise.resolve('pass')
-            p.then(function(){
-                setRoot('--opacity-minus','1')
-                return new Promise( function(resolve){
-                    setTimeout(resolve, 200)
-                })
-            })
-            .then(function(){
-                setRoot('--top-minus','90px')
-                return new Promise( function(resolve){
-                    setTimeout(resolve, 3500)
-                })
-            })
-            .then(function(){
-                setRoot('--opacity-minus','0')
-                return new Promise( function(resolve){
-                    setTimeout(resolve, 4000)
-                })
-            })
-            .then(function(){
-                setRoot('--top-minus','55px')
-                return new Promise( function(resolve){
-                    setTimeout(resolve, 800)
-                })
-            })
+  // Countdown logic
+  useEffect(() => {
+    let interval = null;
+    if (isActive && timeLeft > 0) {
+      interval = setInterval(() => {
+        setTimeLeft((prevTime) => prevTime - 1);
+      }, 1000);
+    } else if (timeLeft === 0) {
+      setIsComplete(true);
+      clearInterval(interval);
+      setIsActive(false);
     }
-    function ShowCodeText(){
-        // end fetch api
-        const rootStyle = document.documentElement.style;
-        function setRoot(a,b){
-            return( rootStyle.setProperty(a,b)) 
-        }
-        rootStyle.setProperty('--opacity','100%')
-        const p = Promise.resolve('pass')
-            p.then(function(){
-                setRoot('--cd-num-opacity','0')
-                return new Promise( function(resolve){
-                    setTimeout(resolve, 200)
-                })
-            })
-            .then(function(){
-                setRoot('--opacity-giftcode','1')
-                return new Promise( function(resolve){
-                    setTimeout(resolve, 200)
-                })
-            })
-    }
-    // function show time
-    useEffect(() => {
-        let interval = null;
-    
-        if (isActive && timeLeft > 0) {
-            interval = setInterval(() => {
-            setTimeLeft((prevTime) => prevTime - 1);
-            }, 1000);
-        } else if (timeLeft === 0) {
-            ShowCodeText()
-            clearInterval(interval);
-            setIsActive(false); // Stop when the countdown is over
-        }
-    
-        return () => clearInterval(interval);
-        }, [isActive, timeLeft]);
-    
-        // Format minutes and seconds display
-        const formatTime = (time) => {
-        const mins = Math.floor(time / 60);
-        const secs = time % 60;
-        return `${mins < 10 ? '0' + mins : mins}:${secs < 10 ? '0' + secs : secs}`;
-        };
-    function ShowCountdown(){
-        
-        return (
-            <Fragment>
-                <div id='giftcode-name'>GIFTCODE COUNTDOWN</div>
-                <div id='time-cd-id'>
-                    <div id='cd-num'>{formatTime(timeLeft)}</div>
-                    <div id='giftcode-show'>{code}</div>
-                </div>
-                <div id='popup-minus'>GOAL!!! Minus {minusTime}</div>
-            </Fragment>
-        )
-    }
-    // follow ws
-    ws.onmessage = function (event) {
-        if ((event.data.split('-').length === 4)&&(event.data.split('-')[0] === 'startcountdown')){
-            setSeconds(parseInt(event.data.split('-')[2]))
-            setMinutes(parseInt(event.data.split('-')[1]))
-            setCode(event.data.split(':')[3])
-            setTimeout(() => {
-                handleStart()
-            }, 100);
-        }else if ((event.data.split('-').length === 3)&&(event.data.split('-')[0] === 'minus')){
-            subtractTime(parseInt(event.data.split('-')[1]),parseInt(event.data.split('-')[2]))
-            setMiunstime(`${parseInt(event.data.split('-')[1])}:${parseInt(event.data.split('-')[2])}`)
-            setTimeout(() => {
-                ShowMinus()
-            }, 200);
-        }else if((event.data === 'showcountdown')){
-            StartCountdownLayout()
-        }else if((event.data === 'stopcountdown')){
-            StopCountdownLayout()
-        }
-    }
+    return () => clearInterval(interval);
+  }, [isActive, timeLeft]);
 
+  // Format time for display
+  const formatTime = (time) => {
+    const mins = Math.floor(time / 60);
+    const secs = time % 60;
+    return `${mins < 10 ? '0' + mins : mins}:${secs < 10 ? '0' + secs : secs}`;
+  };
+
+  // Countdown display component
+  function ShowCountdown() {
     return (
-        <div id="tabs">
-            {/* <TabsWin /> */}
-            {/* <TabPredict /> */}
-            <ShowCountdown/>
+      <Fragment>
+        <div id='giftcode-name'>GIFTCODE COUNTDOWN</div>
+        <div id='time-cd-id'>
+          <div id='cd-num'>{isComplete ? code : formatTime(timeLeft)}</div>
+          <div id='giftcode-show'>{code}</div>
         </div>
-    )
+        <div id='popup-minus'>GOAL!!! Minus {minusTime}</div>
+      </Fragment>
+    );
+  }
+
+  // Layout control functions
+  function StartCountdownLayout() {
+    const rootStyle = document.documentElement.style;
+    rootStyle.setProperty('--main-tab-pos', '25px'); 
+    rootStyle.setProperty('--name-tab-pos', '15px'); 
+    rootStyle.setProperty('--top-name', '20px');     
+    rootStyle.setProperty('--box-height', '75px');   
+    rootStyle.setProperty('--cd-num-opacity', '1');  
+    rootStyle.setProperty('--opacity-giftcode', '0');
+  }
+
+  function ShowMinus() {
+    const rootStyle = document.documentElement.style;
+    rootStyle.setProperty('--opacity-minus', '1');   
+    rootStyle.setProperty('--top-minus', '90px');    
+    setTimeout(() => {
+      rootStyle.setProperty('--opacity-minus', '0');
+    }, 3500);
+  }
+
+  function StopCountdownLayout() {
+    setIsComplete(true);
+    const rootStyle = document.documentElement.style;
+    rootStyle.setProperty('--main-tab-pos', '-325px'); 
+    rootStyle.setProperty('--name-tab-pos', '-325px'); 
+    rootStyle.setProperty('--cd-num-opacity', '0');   
+    rootStyle.setProperty('--opacity-giftcode', '0'); 
+  }
+
+  // Handle WebSocket messages
+  ws.onmessage = function (event) {
+    const data = event.data.split('-');
+    if (data[0] === 'startcountdown' && data.length === 4) {
+      setMinutes(parseInt(data[1]));
+      setSeconds(parseInt(data[2]));
+      setCode(data[3]);
+      setTimeout(() => handleStart(), 100);
+    } else if (data[0] === 'minus' && data.length === 3) {
+      subtractTime(parseInt(data[1]), parseInt(data[2]));
+      setMinusTime(`${data[1]}:${data[2]}`);
+      setTimeout(() => ShowMinus(), 200);
+    } else if (event.data === 'showcountdown') {
+      StartCountdownLayout();
+    } else if (event.data === 'stopcountdown') {
+      StopCountdownLayout();
+    }
+  };
+
+  return (
+    <div id="tabs">
+      <ShowCountdown />
+    </div>
+  );
 }
