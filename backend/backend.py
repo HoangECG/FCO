@@ -41,7 +41,6 @@ banpick = {'Phase': '1', 'Ban1': 'none', 'Ban2': 'none', 'Ban3': 'none', 'Ban4':
 chat_count = False
 @app.get("/api/{item}")
 async def response(item: str):
-    print(item)
     global chat_count
     if item == "listmatchID":
         try:
@@ -158,24 +157,12 @@ async def response(item: str):
             with open('./database/teams.json', 'r') as file:
                 data = json.load(file)
                 try:
-                    namefull = list(data[rqRCV[1]]['fullName'])
+                    namefull = data[rqRCV[1]]['fullName']
                     return namefull
                 except:
                     return False
         else:
             pass
-        rqRCV = item.split("-")
-        lineupFull = []
-        if len(item.split("-")) > 1:
-            with open('./database/teams.json', 'r') as file:
-                data = json.load(file)
-                try:
-                    lineupFull = list(data[rqRCV[1]]['players'])
-                    return lineupFull
-                except:
-                    return False
-        else:
-            pass   
     else:
         return {"status":"nodata"}
 

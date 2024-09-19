@@ -46,7 +46,6 @@ export default function Lineup() {
     const [pkR5, setpkR5] = useState('0')
 
     // banpick const
-    const [listChamp, setListChamp] = useState([])
     const [game1PlayerPickLeft, setGame1PlayerPickLeft] = useState('player1')
     const [game2PlayerPickLeft, setGame2PlayerPickLeft] = useState('player2')
     const [game3PlayerPickLeft, setGame3PlayerPickLeft] = useState('player3')
