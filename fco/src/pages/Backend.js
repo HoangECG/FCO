@@ -204,7 +204,7 @@ function Backend() {
             }else if(props.inputID === 'team-2') {
                 if ((await beAPI.GetLineupFull(document.getElementById(props.inputID).value)) != null) {
                     try {
-                        setLineupFullBlue(await beAPI.GetLineupFull(document.getElementById(props.inputID).value))
+                        setLineupFullRed(await beAPI.GetLineupFull(document.getElementById(props.inputID).value))
                         setTeamNameRed(await beAPI.GetNameFull()[document.getElementById(props.inputID).value])
                     } catch (error) {
                         
@@ -902,7 +902,7 @@ function Backend() {
                             labelClassName="label-style"
                             inputClassName="input-style"
                             idDatalist="id-data-list-banpick"
-                            listData={lineupFullBlue}
+                            listData={lineupFullRed}
                             disabled={disabledInput2(game,'1')}
                             value={setValueInput('game1PlayerPick-right')}
                         />
@@ -928,7 +928,7 @@ function Backend() {
                             labelClassName="label-style"
                             inputClassName="input-style"
                             idDatalist="id-data-list-banpick"
-                            listData={lineupFullBlue}
+                            listData={lineupFullRed}
                             disabled={disabledInput2(game,'2')}
                             value={setValueInput('game2PlayerPick-right')}
 
@@ -954,7 +954,7 @@ function Backend() {
                             labelClassName="label-style"
                             inputClassName="input-style"
                             idDatalist="id-data-list-banpick"
-                            listData={lineupFullBlue}
+                            listData={lineupFullRed}
                             disabled={disabledInput2(game,'3')}
                             value={setValueInput('game3PlayerPick-right')}
 
@@ -980,7 +980,7 @@ function Backend() {
                             labelClassName="label-style"
                             inputClassName="input-style"
                             idDatalist="id-data-list-banpick"
-                            listData={lineupFullBlue}
+                            listData={lineupFullRed}
                             disabled={disabledInput2(game,'4')}
                             value={setValueInput('game4PlayerPick-right')}
 
@@ -1007,7 +1007,7 @@ function Backend() {
                             labelClassName="label-style"
                             inputClassName="input-style"
                             idDatalist="id-data-list-banpick"
-                            listData={lineupFullBlue}
+                            listData={lineupFullRed}
                             disabled={disabledInput2(game,'5')}
                             value={setValueInput('game5PlayerPick-right')}
                         />
