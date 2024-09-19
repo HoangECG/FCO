@@ -151,7 +151,19 @@ async def response(item: str):
         return list_of_files
     elif item =="listteam":
         return getTeams()
-    elif item.split("-")[0] == "lineupfull":
+    elif item.split("-")[0] == "namefull":
+        rqRCV = item.split("-")
+        lineupFull = []
+        if len(item.split("-")) > 1:
+            with open('./database/teams.json', 'r') as file:
+                data = json.load(file)
+                try:
+                    namefull = list(data[rqRCV[1]]['fullName'])
+                    return namefull
+                except:
+                    return False
+        else:
+            pass
         rqRCV = item.split("-")
         lineupFull = []
         if len(item.split("-")) > 1:
@@ -163,8 +175,7 @@ async def response(item: str):
                 except:
                     return False
         else:
-            pass
-        
+            pass   
     else:
         return {"status":"nodata"}
 

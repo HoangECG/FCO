@@ -72,6 +72,8 @@ function Backend() {
             let responseListTeam = await beAPI.GetListTeam()
             let responseLineupFullBlue = await beAPI.GetLineupFull(await response['team-1'])
             let responseLineupFullRed = await beAPI.GetLineupFull(await response['team-2'])
+            let responseNameFullBlue = await beAPI.GetNameFull(await response['team-1'])
+            let responseNameFullRed = await beAPI.GetNameFull(await response['team-2'])
             // get list champs name 
             setListChamp(await responseListChamps)
             setListTeam(await responseListTeam)
@@ -85,9 +87,9 @@ function Backend() {
             window.localStorage.setItem('bo',await response['bo'])
             window.localStorage.setItem('date',await response['date'])
             window.localStorage.setItem('team-1',await response['team-1'])
-            window.localStorage.setItem('fullNameTeam-1',await response['fullNameTeam-1'])
+            window.localStorage.setItem('fullNameTeam-1',await responseNameFullBlue)
             window.localStorage.setItem('team-2',await response['team-2'])
-            window.localStorage.setItem('fullNameTeam-2',await response['fullNameTeam-2'])
+            window.localStorage.setItem('fullNameTeam-2',await responseNameFullRed)
             window.localStorage.setItem('player1',await response['player1'])
             window.localStorage.setItem('player2',await response['player2'])
             window.localStorage.setItem('player3',await response['player3'])
@@ -194,7 +196,7 @@ function Backend() {
                 if ((await beAPI.GetLineupFull(document.getElementById(props.inputID).value)) != null) {
                     try {
                         setLineupFullBlue(await beAPI.GetLineupFull(document.getElementById(props.inputID).value))
-                        setTeamNameBlue(await beAPI.GetListTeam()[document.getElementById(props.inputID).value])
+                        setTeamNameBlue(await beAPI.GetNameFull()[document.getElementById(props.inputID).value])
                     } catch (error) {
                         console.log(1)
                     }
@@ -203,7 +205,7 @@ function Backend() {
                 if ((await beAPI.GetLineupFull(document.getElementById(props.inputID).value)) != null) {
                     try {
                         setLineupFullBlue(await beAPI.GetLineupFull(document.getElementById(props.inputID).value))
-                        setTeamNameRed(await beAPI.GetListTeam()[document.getElementById(props.inputID).value])
+                        setTeamNameRed(await beAPI.GetNameFull()[document.getElementById(props.inputID).value])
                     } catch (error) {
                         
                     }
@@ -259,8 +261,8 @@ function Backend() {
     function HandleStartLayout(){
         ws.send('lineup-start')
     }
-    function HandleResetLayout(){
-        ws.send('lineup-reset')
+    function HandleOffLayout(){
+        ws.send('lineup-off')
     }
     function HandleSyncStatslayout(){
         ws.send('lineup-sync')
@@ -289,6 +291,46 @@ function Backend() {
         } catch (error) {
             console.log('err')
         }
+    }
+    function HandleResetStatslayout(){
+        function Wsetvalue(id){
+            document.getElementById(id).value = 'df'
+            window.localStorage.setItem(id,'df')
+        }
+        function resetSCR(id){
+            document.getElementById(id).value = '0'
+            window.localStorage.setItem(id,'0')
+        }
+        Wsetvalue('game1PlayerPick-left')
+        Wsetvalue('game2PlayerPick-left')
+        Wsetvalue('game3PlayerPick-left')
+        Wsetvalue('game4PlayerPick-left')
+        Wsetvalue('game5PlayerPick-left')
+        Wsetvalue('game1PlayerPick-right')
+        Wsetvalue('game2PlayerPick-right')
+        Wsetvalue('game3PlayerPick-right')
+        Wsetvalue('game4PlayerPick-right')
+        Wsetvalue('game5PlayerPick-right')
+        resetSCR('scR1')
+        resetSCR('scR2')
+        resetSCR('scR3')
+        resetSCR('scR4')
+        resetSCR('scR5')
+        resetSCR('scL1')
+        resetSCR('scL2')
+        resetSCR('scL3')
+        resetSCR('scL4')
+        resetSCR('scL5')
+        resetSCR('pkR1')
+        resetSCR('pkR2')
+        resetSCR('pkR3')
+        resetSCR('pkR4')
+        resetSCR('pkR5')
+        resetSCR('pkL1')
+        resetSCR('pkL2')
+        resetSCR('pkL3')
+        resetSCR('pkL4')
+        resetSCR('pkL5')
     }
     function BackendBody() {
         
@@ -976,16 +1018,22 @@ function Backend() {
                             btnClick={HandleStartLayout}
                         />
                         <BtnRender
-                            btnName="Reset Lineup"
+                            btnName="Off Lineup"
                             idBtn="swapBtn"
                             classBtn="btn"
-                            btnClick={HandleResetLayout}
+                            btnClick={HandleOffLayout}
                         />
                         <BtnRender
                             btnName="Sync Lineup"
                             idBtn="swapBtn"
                             classBtn="btn"
                             btnClick={HandleSyncStatslayout}
+                        />
+                        <BtnRender
+                            btnName="Reset"
+                            idBtn="swapBtn"
+                            classBtn="btn"
+                            btnClick={HandleResetStatslayout}
                         />
                     </div>
                 </div>
