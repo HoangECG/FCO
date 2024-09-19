@@ -901,7 +901,7 @@ function Backend() {
                             inputID="game1PlayerPick-right"
                             labelClassName="label-style"
                             inputClassName="input-style"
-                            idDatalist="id-data-list-banpick"
+                            idDatalist="id-data-list-banpick2"
                             listData={lineupFullRed}
                             disabled={disabledInput2(game,'1')}
                             value={setValueInput('game1PlayerPick-right')}
@@ -927,7 +927,7 @@ function Backend() {
                             inputID="game2PlayerPick-right"
                             labelClassName="label-style"
                             inputClassName="input-style"
-                            idDatalist="id-data-list-banpick"
+                            idDatalist="id-data-list-banpick2"
                             listData={lineupFullRed}
                             disabled={disabledInput2(game,'2')}
                             value={setValueInput('game2PlayerPick-right')}
@@ -953,7 +953,7 @@ function Backend() {
                             inputID="game3PlayerPick-right"
                             labelClassName="label-style"
                             inputClassName="input-style"
-                            idDatalist="id-data-list-banpick"
+                            idDatalist="id-data-list-banpick2"
                             listData={lineupFullRed}
                             disabled={disabledInput2(game,'3')}
                             value={setValueInput('game3PlayerPick-right')}
@@ -979,7 +979,7 @@ function Backend() {
                             inputID="game4PlayerPick-right"
                             labelClassName="label-style"
                             inputClassName="input-style"
-                            idDatalist="id-data-list-banpick"
+                            idDatalist="id-data-list-banpick2"
                             listData={lineupFullRed}
                             disabled={disabledInput2(game,'4')}
                             value={setValueInput('game4PlayerPick-right')}
@@ -1006,7 +1006,7 @@ function Backend() {
                             inputID="game5PlayerPick-right"
                             labelClassName="label-style"
                             inputClassName="input-style"
-                            idDatalist="id-data-list-banpick"
+                            idDatalist="id-data-list-banpick2"
                             listData={lineupFullRed}
                             disabled={disabledInput2(game,'5')}
                             value={setValueInput('game5PlayerPick-right')}
