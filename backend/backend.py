@@ -184,7 +184,7 @@ async def reciveItem(rcv: Request,item: str):
                 return {"status":"DONE"}
         return True
 
-# websocket def
+# websocket def as
 class ConnectionManager:
     def __init__(self):
         self.active_connections: list[WebSocket] = []

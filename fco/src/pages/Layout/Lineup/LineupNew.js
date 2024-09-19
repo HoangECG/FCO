@@ -507,7 +507,7 @@ export default function Lineup() {
             })
             
     }
-    // websocket listen 1
+    // websocket listen 1as
     ws.onmessage = function(event){
         console.log(event.data)
         if (event.data === 'lineup-start'){
