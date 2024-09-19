@@ -698,7 +698,7 @@ export default function Lineup() {
                             <div>GAME 1</div>
                             <div>{pkL1 + ' -PK- ' + pkR1}</div>
                         </div>
-                        <div className='scoreR'>{scL1}</div>
+                        <div className='scoreR'>{scR1}</div>
                         <div className='player-game-right'>{game1PlayerPickLeft}</div>
                     </div>
                     <div id='game-text-2' className='game-text-css'>
@@ -708,7 +708,7 @@ export default function Lineup() {
                             <div>GAME 2</div>
                             <div>{pkL2 + ' -PK- ' + pkR2}</div>
                         </div>
-                        <div className='scoreR'>{scL2}</div>
+                        <div className='scoreR'>{scR2}</div>
                         <div className='player-game-right'>{game2PlayerPickLeft}</div>
                     </div>
                     <div id='game-text-3' className='game-text-css'>
@@ -718,7 +718,7 @@ export default function Lineup() {
                             <div>GAME 3</div>
                             <div>{pkL3 + ' -PK- ' + pkR3}</div>
                         </div>
-                        <div className='scoreR'>{scL3}</div>
+                        <div className='scoreR'>{scR3}</div>
                         <div className='player-game-right'>{game3PlayerPickLeft}</div>
                     </div>
                 </Fragment>
@@ -733,7 +733,7 @@ export default function Lineup() {
                             <div>GAME 1</div>
                             <div>{pkL1 + ' -PK- ' + pkR1}</div>
                         </div>
-                        <div className='scoreR'>{scL1}</div>
+                        <div className='scoreR'>{scR1}</div>
                         <div className='player-game-right'>{game1PlayerPickLeft}</div>
                     </div>
                     <div id='game-text-2' className='game-text-css'>
@@ -743,7 +743,7 @@ export default function Lineup() {
                             <div>GAME 2</div>
                             <div>{pkL2 + ' -PK- ' + pkR2}</div>
                         </div>
-                        <div className='scoreR'>{scL2}</div>
+                        <div className='scoreR'>{scR2}</div>
                         <div className='player-game-right'>{game2PlayerPickLeft}</div>
                     </div>
                     <div id='game-text-3' className='game-text-css'>
@@ -753,7 +753,7 @@ export default function Lineup() {
                             <div>GAME 3</div>
                             <div>{pkL3 + ' -PK- ' + pkR3}</div>
                         </div>
-                        <div className='scoreR'>{scL3}</div>
+                        <div className='scoreR'>{scR3}</div>
                         <div className='player-game-right'>{game3PlayerPickLeft}</div>
                     </div>
                     <div id='game-text-4' className='game-text-css'>
@@ -763,7 +763,7 @@ export default function Lineup() {
                             <div>GAME 4</div>
                             <div>{pkL4 + ' -PK- ' + pkR4}</div>
                         </div>
-                        <div className='scoreR'>{scL4}</div>
+                        <div className='scoreR'>{scR4}</div>
                         <div className='player-game-right'>{game4PlayerPickLeft}</div>
                     </div>
                     <div id='game-text-5' className='game-text-css'>
@@ -773,7 +773,7 @@ export default function Lineup() {
                             <div>GAME 5</div>
                             <div>{pkL5 + ' -PK- ' + pkR5}</div>
                         </div>
-                        <div className='scoreR'>{scL5}</div>
+                        <div className='scoreR'>{scR5}</div>
                         <div className='player-game-right'>{game5PlayerPickLeft}</div>
                     </div>
                 </Fragment>
