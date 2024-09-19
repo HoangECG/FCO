@@ -514,7 +514,7 @@ export default function Lineup() {
             startLayout()
         }else if(event.data === 'lineup-sync'){
             reloadStats()
-        }else if(event.data === 'lineup-reset'){
+        }else if(event.data === 'lineup-off'){
             resetLayout()
         }
     }
