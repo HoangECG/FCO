@@ -72,6 +72,8 @@ function Backend() {
             let responseListTeam = await beAPI.GetListTeam()
             let responseLineupFullBlue = await beAPI.GetLineupFull(await response['team-1'])
             let responseLineupFullRed = await beAPI.GetLineupFull(await response['team-2'])
+            let responseNameFullBlue = await beAPI.GetNameFull(await response['team-1'])
+            let responseNameFullRed = await beAPI.GetNameFull(await response['team-2'])
             // get list champs name 
             setListChamp(await responseListChamps)
             setListTeam(await responseListTeam)
@@ -85,9 +87,9 @@ function Backend() {
             window.localStorage.setItem('bo',await response['bo'])
             window.localStorage.setItem('date',await response['date'])
             window.localStorage.setItem('team-1',await response['team-1'])
-            window.localStorage.setItem('fullNameTeam-1',await response['fullNameTeam-1'])
+            window.localStorage.setItem('fullNameTeam-1',await responseNameFullBlue)
             window.localStorage.setItem('team-2',await response['team-2'])
-            window.localStorage.setItem('fullNameTeam-2',await response['fullNameTeam-2'])
+            window.localStorage.setItem('fullNameTeam-2',await responseNameFullRed)
             window.localStorage.setItem('player1',await response['player1'])
             window.localStorage.setItem('player2',await response['player2'])
             window.localStorage.setItem('player3',await response['player3'])
@@ -194,7 +196,7 @@ function Backend() {
                 if ((await beAPI.GetLineupFull(document.getElementById(props.inputID).value)) != null) {
                     try {
                         setLineupFullBlue(await beAPI.GetLineupFull(document.getElementById(props.inputID).value))
-                        setTeamNameBlue(await beAPI.GetListTeam()[document.getElementById(props.inputID).value])
+                        setTeamNameBlue(await beAPI.GetNameFull()[document.getElementById(props.inputID).value])
                     } catch (error) {
                         console.log(1)
                     }
@@ -203,7 +205,7 @@ function Backend() {
                 if ((await beAPI.GetLineupFull(document.getElementById(props.inputID).value)) != null) {
                     try {
                         setLineupFullBlue(await beAPI.GetLineupFull(document.getElementById(props.inputID).value))
-                        setTeamNameRed(await beAPI.GetListTeam()[document.getElementById(props.inputID).value])
+                        setTeamNameRed(await beAPI.GetNameFull()[document.getElementById(props.inputID).value])
                     } catch (error) {
                         
                     }
@@ -259,8 +261,8 @@ function Backend() {
     function HandleStartLayout(){
         ws.send('lineup-start')
     }
-    function HandleResetLayout(){
-        ws.send('lineup-reset')
+    function HandleOffLayout(){
+        ws.send('lineup-off')
     }
     function HandleSyncStatslayout(){
         ws.send('lineup-sync')
@@ -288,6 +290,16 @@ function Backend() {
             } 
         } catch (error) {
             console.log('err')
+        }
+    }
+    function HandleResetStatslayout(){
+        function Wsetvalue(id){
+            window.getElementById(id).setValueInput('df')
+            window.localStorage.setItem(id,'df')
+        }
+        function resetSCR(id){
+            window.getElementById(id).setValueInput('0')
+            window.localStorage.setItem(id,'0')
         }
     }
     function BackendBody() {
@@ -976,16 +988,22 @@ function Backend() {
                             btnClick={HandleStartLayout}
                         />
                         <BtnRender
-                            btnName="Reset Lineup"
+                            btnName="Off Lineup"
                             idBtn="swapBtn"
                             classBtn="btn"
-                            btnClick={HandleResetLayout}
+                            btnClick={HandleOffLayout}
                         />
                         <BtnRender
                             btnName="Sync Lineup"
                             idBtn="swapBtn"
                             classBtn="btn"
                             btnClick={HandleSyncStatslayout}
+                        />
+                        <BtnRender
+                            btnName="Reset"
+                            idBtn="swapBtn"
+                            classBtn="btn"
+                            btnClick={HandleResetStatslayout}
                         />
                     </div>
                 </div>

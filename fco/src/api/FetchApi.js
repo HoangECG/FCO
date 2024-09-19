@@ -17,6 +17,7 @@ async function GetMatchInfo(id) {
         .then(data => res = data)
     return res
 }
+
 async function Getcrrmatch() {
     var res = []
     await fetch(`http://${hostIP}:10045/api/crrmatch`)
@@ -52,8 +53,15 @@ async function GetLineupFull(site) {
         .then(data => res = data)
     return res
 }
+async function GetNameFull(site) {
+    var res = []
+    await fetch(`http://${hostIP}:10045/api/namefull-${site}`)
+        .then(response => response.json())
+        .then(data => res = data)
+    return res
+}
 
-export {GetLineupFull, GetMatchId, GetMatchInfo, Getcrrmatch,GetLineUpInfo,GetChampsName,GetListTeam, hostIP }
+export {GetLineupFull,GetNameFull, GetMatchId, GetMatchInfo, Getcrrmatch,GetLineUpInfo,GetChampsName,GetListTeam, hostIP }
 
 
 
