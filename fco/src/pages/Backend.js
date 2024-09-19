@@ -294,13 +294,43 @@ function Backend() {
     }
     function HandleResetStatslayout(){
         function Wsetvalue(id){
-            window.getElementById(id).setValueInput('df')
+            document.getElementById(id).value = 'df'
             window.localStorage.setItem(id,'df')
         }
         function resetSCR(id){
-            window.getElementById(id).setValueInput('0')
+            document.getElementById(id).value = '0'
             window.localStorage.setItem(id,'0')
         }
+        Wsetvalue('game1PlayerPick-left')
+        Wsetvalue('game2PlayerPick-left')
+        Wsetvalue('game3PlayerPick-left')
+        Wsetvalue('game4PlayerPick-left')
+        Wsetvalue('game5PlayerPick-left')
+        Wsetvalue('game1PlayerPick-right')
+        Wsetvalue('game2PlayerPick-right')
+        Wsetvalue('game3PlayerPick-right')
+        Wsetvalue('game4PlayerPick-right')
+        Wsetvalue('game5PlayerPick-right')
+        resetSCR('scR1')
+        resetSCR('scR2')
+        resetSCR('scR3')
+        resetSCR('scR4')
+        resetSCR('scR5')
+        resetSCR('scL1')
+        resetSCR('scL2')
+        resetSCR('scL3')
+        resetSCR('scL4')
+        resetSCR('scL5')
+        resetSCR('pkR1')
+        resetSCR('pkR2')
+        resetSCR('pkR3')
+        resetSCR('pkR4')
+        resetSCR('pkR5')
+        resetSCR('pkL1')
+        resetSCR('pkL2')
+        resetSCR('pkL3')
+        resetSCR('pkL4')
+        resetSCR('pkL5')
     }
     function BackendBody() {
         
