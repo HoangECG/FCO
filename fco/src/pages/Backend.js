@@ -13,9 +13,9 @@ function Backend() {
     const [round, setRound] = useState('swiss stage')
     const [bo, setBo] = useState('3')
     const [date, setDate] = useState('20/10/2024')
-    const [teamBlue, setTeamBlue] = useState('SGP')
+    const [teamBlue, setTeamBlue] = useState('STV')
     const [teamNameBlue, setTeamNameBlue] = useState('Hà Nội')
-    const [teamRed, setTeamRed] = useState('SGP')
+    const [teamRed, setTeamRed] = useState('STV')
     const [teamNameRed, setTeamNameRed] = useState('Hà Nội')
     const [scBlue, setscrBlue] = useState('0')
     const [scRed, setscrRed] = useState('0')
@@ -70,14 +70,13 @@ function Backend() {
             let response = await beAPI.Getcrrmatch()
             let responseListChamps = await beAPI.GetChampsName()
             let responseListTeam = await beAPI.GetListTeam()
-            let responseLineupFullBlue = await beAPI.GetLineupFull(teamBlue)
-            let responseLineupFullRed = await beAPI.GetLineupFull(teamRed)
+            let responseLineupFullBlue = await beAPI.GetLineupFull(await response['team-1'])
+            let responseLineupFullRed = await beAPI.GetLineupFull(await response['team-2'])
             // get list champs name 
             setListChamp(await responseListChamps)
             setListTeam(await responseListTeam)
             window.localStorage.setItem('listteam', listTeam)
             window.localStorage.setItem('champs',listChamp)
-            console.log(response)
 
             // localstorage save
             window.localStorage.setItem('game',await response['game'])
@@ -97,8 +96,8 @@ function Backend() {
             window.localStorage.setItem('player6',await response['player6'])
             window.localStorage.setItem('player7',await response['player7'])
             window.localStorage.setItem('player8',await response['player8'])
-            window.localStorage.setItem('linupFull-1',JSON.stringify(await responseLineupFullBlue))
-            window.localStorage.setItem('linupFull-2',JSON.stringify(await responseLineupFullRed))
+            window.localStorage.setItem('linupFull-1',(await responseLineupFullBlue))
+            window.localStorage.setItem('linupFull-2',(await responseLineupFullRed))
             window.localStorage.setItem('game1PlayerPick-left',await response['pickleft1'])
             window.localStorage.setItem('game2PlayerPick-left',await response['pickleft2'])
             window.localStorage.setItem('game3PlayerPick-left',await response['pickleft3'])
@@ -131,8 +130,6 @@ function Backend() {
             window.localStorage.setItem('pkR5',await response['pkR5'])
 
             // set variable
-            setLineupFullBlue(await responseLineupFullBlue)
-            setLineupFullRed(await responseLineupFullRed)
             setGame(await response['game'])
             setMatch(await response['matchName'])
             setRound(await response['round'])
@@ -182,6 +179,8 @@ function Backend() {
             setpkR3(await response['pkR3'])
             setpkR4(await response['pkR4'])
             setpkR5(await response['pkR5'])
+            setLineupFullBlue(responseLineupFullBlue)
+            setLineupFullRed(responseLineupFullRed)
         }
         fetchMyAPI()
         }, [0])
