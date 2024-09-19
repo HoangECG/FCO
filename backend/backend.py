@@ -41,6 +41,7 @@ banpick = {'Phase': '1', 'Ban1': 'none', 'Ban2': 'none', 'Ban3': 'none', 'Ban4':
 chat_count = False
 @app.get("/api/{item}")
 async def response(item: str):
+    print(item)
     global chat_count
     if item == "listmatchID":
         try:
@@ -153,14 +154,16 @@ async def response(item: str):
     elif item.split("-")[0] == "lineupfull":
         rqRCV = item.split("-")
         lineupFull = []
-        with open('./database/teams.json', 'r') as file:
-            data = json.load(file)
-            try:
-                lineupFull = list(data[rqRCV[1]]['players'])
-                return lineupFull
-            except:
-                return False
-            
+        if len(item.split("-")) > 1:
+            with open('./database/teams.json', 'r') as file:
+                data = json.load(file)
+                try:
+                    lineupFull = list(data[rqRCV[1]]['players'])
+                    return lineupFull
+                except:
+                    return False
+        else:
+            pass
         
     else:
         return {"status":"nodata"}
@@ -221,4 +224,4 @@ async def websocket_endpoint(websocket: WebSocket, client_id: int):
     
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=14596)
+    uvicorn.run(app, host="0.0.0.0", port=10045)

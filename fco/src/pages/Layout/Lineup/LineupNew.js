@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import './LineupNew.css';
 import * as beAPI from '../../../api/FetchApi'
 
-var ws = new WebSocket(`ws://${beAPI.hostIP}:14596/ws/0`)
+var ws = new WebSocket(`ws://${beAPI.hostIP}:10045/ws/0`)
 
 
 

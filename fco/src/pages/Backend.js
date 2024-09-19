@@ -5,7 +5,7 @@ import * as beAPI from '../api/FetchApi'
 
 
 // websocket
-var ws = new WebSocket(`ws://${beAPI.hostIP}:14596/ws/0`)
+var ws = new WebSocket(`ws://${beAPI.hostIP}:10045/ws/0`)
 
 function Backend() {
     const [game, setGame] = useState('1')
@@ -77,6 +77,7 @@ function Backend() {
             setListTeam(await responseListTeam)
             window.localStorage.setItem('listteam', listTeam)
             window.localStorage.setItem('champs',listChamp)
+            console.log(response)
 
             // localstorage save
             window.localStorage.setItem('game',await response['game'])
@@ -296,7 +297,7 @@ function Backend() {
         function MatchCreate() {
             // Handle button click
             async function HandleSyncButtonClick() {
-                    fetch(`http://${beAPI.hostIP}:14596/api/post/crm`, {
+                    fetch(`http://${beAPI.hostIP}:10045/api/post/crm`, {
                         method: 'POST',
                         headers: {
                             'Accept': 'application/json',
@@ -362,7 +363,7 @@ function Backend() {
                 }
                 // await return true then set reload
             async function HandleSwapButtonClick() {
-                fetch(`http://${beAPI.hostIP}:14596/api/post/crm`, {
+                fetch(`http://${beAPI.hostIP}:10045/api/post/crm`, {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',

@@ -3,7 +3,7 @@ import './Tabs.css';
 import * as beAPI from '../../api/FetchApi';
 
 // WebSocket initialization
-var ws = new WebSocket(`ws://${beAPI.hostIP}:14596/ws/0`);
+var ws = new WebSocket(`ws://${beAPI.hostIP}:10045/ws/0`);
 
 export default function Tab() {
   const [code, setCode] = useState('asdhjsahdkjas');
