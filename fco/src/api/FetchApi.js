@@ -60,12 +60,8 @@ async function GetNameFull(site) {
         .then(data => res = data)
     return res
 }
-async function GetPull(site) {
-    var res = []
-    await fetch(`http://${hostIP}:${portApi}/api/pulldatasheet`)
-        .then(response => response.json())
-        .then(data => res = data)
-    return res
+function GetPull(site) {
+    fetch(`http://${hostIP}:${portApi}/api/pulldatasheet`)
 }
 
 

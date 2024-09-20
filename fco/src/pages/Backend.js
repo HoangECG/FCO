@@ -61,7 +61,6 @@ function Backend() {
 
     useEffect(() => {
         async function fetchMyAPI() {
-            console.log(1)
             let response = await beAPI.Getcrrmatch()
             setGame(await response['game'])
             setMatch(await response['matchName'])
@@ -111,8 +110,7 @@ function Backend() {
             setpkR4(await response['pkR4'])
             setpkR5(await response['pkR5'])
         }
-        fetchMyAPI()
-        }, [0])
+        fetchMyAPI()}, [0])
 
     // Input render
     function InputRender(props) {
@@ -134,9 +132,9 @@ function Backend() {
     }
     function TextBoxRender(props) {
         return (
-            <div className={"text-info-ctn"}>
-                <h1 className={"title-text-box"}>{props.title}</h1>
-                <div id={props.idTextBox} className={"text-info-box"}>{props.textContent}</div>
+            <div className="text-info-ctn">
+                <h1 className="title-text-box">{props.title}</h1>
+                <div id={props.idTextBox} className="text-info-box">{props.textinbox}</div>
             </div>
         )
     }
@@ -153,7 +151,7 @@ function Backend() {
         try {
             if(document.getElementById('start-time').value.split(':').length > 1 ){
                 ws.send(`startcountdown-${document.getElementById('start-time').value.split(':')[0]}-${document.getElementById('start-time').value.split(':')[1]}-${document.getElementById('giftcode').value}`)
-                console.log(`startcountdown-${document.getElementById('start-time').value.split(':')[0]}-${document.getElementById('start-time').value.split(':')[1]}-${document.getElementById('giftcode').value}`)
+                
             } 
         } catch (error) {
             console.log('err')
@@ -175,10 +173,6 @@ function Backend() {
         }
     }
     function HandleSyncClick(){
-        
-        // setTimeout(() => {
-        //     window.location.reload()
-        // }, 200);
 
     }
     function BackendBody() {
@@ -190,22 +184,22 @@ function Backend() {
                     <h1 className="box-title">MATCH</h1>
                     <TextBoxRender
                         idTextBox="match"
-                        textContent={match}
+                        textinbox={match}
                         title="match"
                     />
                     <TextBoxRender
                         idTextBox="bo"
-                        textContent={bo}
+                        textinbox={bo}
                         title="bo"
                     />
                     <TextBoxRender
                         idTextBox="team-1"
-                        textContent={teamBlue}
+                        textinbox={teamBlue}
                         title="team 1"
                     />
                     <TextBoxRender
                         idTextBox="team2"
-                        textContent={teamRed}
+                        textinbox={teamRed}
                         title="team 2"
                     />
                     <BtnRender
@@ -227,25 +221,25 @@ function Backend() {
                     <h1 className="box-title">GAME 1 INFO</h1>
                     <div className="frag-ctn">
                         <TextBoxRender
-                            textContent={scL1}
+                            textinbox={scL1}
                             title='score'
                             idTextBox="scL1"
                             classname="text-info-box-fix"
                         />
                         <TextBoxRender
-                            textContent={scR1}
+                            textinbox={scR1}
                             title='score'
                             classname="text-info-box-fix"
                             idTextBox="scR1"
                         />
                         <TextBoxRender
-                            textContent={pkL1}
+                            textinbox={pkL1}
                             title='PK Left'
                             classname="text-info-box-fix"
                             idTextBox="pkL1"
                         />
                         <TextBoxRender
-                            textContent={pkR1}
+                            textinbox={pkR1}
                             title='PK Right'
                             classname="text-info-box-fix"
                             idTextBox="pkR1"
@@ -254,25 +248,25 @@ function Backend() {
                     <h1 className="box-title">GAME 2 INFO</h1>
                     <div className="frag-ctn">
                         <TextBoxRender
-                            textContent={scL2}
+                            textinbox={scL2}
                             title='score'
                             classname="text-info-box-fix"
                             idTextBox="scL2"
                         />
                         <TextBoxRender
-                            textContent={scR2}
+                            textinbox={scR2}
                             title='score'
                             classname="text-info-box-fix"
                             idTextBox="scR2"
                         />
                         <TextBoxRender
-                            textContent={pkL2}
+                            textinbox={pkL2}
                             title='PK Left'
                             classname="text-info-box-fix"
                             idTextBox="pkL2"
                         />
                         <TextBoxRender
-                            textContent={pkR2}
+                            textinbox={pkR2}
                             title='PK Right'
                             classname="text-info-box-fix"
                             idTextBox="pkR2"
@@ -281,25 +275,25 @@ function Backend() {
                     <h1 className="box-title">GAME 3 INFO</h1>
                     <div className="frag-ctn">
                         <TextBoxRender
-                            textContent={scL3}
+                            textinbox={scL3}
                             title='score'
                             classname="text-info-box-fix"
                             idTextBox="scL3"
                         />
                         <TextBoxRender
-                            textContent={scR3}
+                            textinbox={scR3}
                             title='score'
                             classname="text-info-box-fix"
                             idTextBox="scR3"
                         />
                         <TextBoxRender
-                            textContent={pkL3}
+                            textinbox={pkL3}
                             classname="text-info-box-fix"
                             title='PK Left'
                             idTextBox="pkL3"
                         />
                         <TextBoxRender
-                            textContent={pkR3}
+                            textinbox={pkR3}
                             title='PK Right'
                             classname="text-info-box-fix"
                             idTextBox="pkR3"
@@ -308,25 +302,25 @@ function Backend() {
                     <h1 className="box-title">GAME 4 INFO</h1>
                     <div className="frag-ctn">
                         <TextBoxRender
-                            textContent={scL4}
+                            textinbox={scL4}
                             classname="text-info-box-fix"
                             title='score'
                             idTextBox="scL4"
                         />
                         <TextBoxRender
-                            textContent={scR4}
+                            textinbox={scR4}
                             classname="text-info-box-fix"
                             title='score'
                             idTextBox="scR4"
                         />
                         <TextBoxRender
-                            textContent={pkL4}
+                            textinbox={pkL4}
                             classname="text-info-box-fix"
                             title='PK Left'
                             idTextBox="pkL4"
                         />
                         <TextBoxRender
-                            textContent={pkR4}
+                            textinbox={pkR4}
                             title='PK Right'
                             classname="text-info-box-fix"
                             idTextBox="pkR4"
@@ -335,25 +329,25 @@ function Backend() {
                     <h1 className="box-title">GAME 5 INFO</h1>
                     <div className="frag-ctn">
                         <TextBoxRender
-                            textContent={scL5}
+                            textinbox={scL5}
                             classname="text-info-box-fix"
                             title='score'
                             idTextBox="scL5"
                         />
                         <TextBoxRender
-                            textContent={scR5}
+                            textinbox={scR5}
                             title='score'
                             idTextBox="scR5"
                             classname="text-info-box-fix"
                         />
                         <TextBoxRender
-                            textContent={pkL5}
+                            textinbox={pkL5}
                             title='PK Left'
                             classname="text-info-box-fix"
                             idTextBox="pkL5"
                         />
                         <TextBoxRender
-                            textContent={pkR5}
+                            textinbox={pkR5}
                             title='PK Right'
                             classname="text-info-box-fix"
                             idTextBox="pkR5"
@@ -365,44 +359,44 @@ function Backend() {
                             <TextBoxRender
                                 title="PL1"
                                 idTextBox="player1"
-                                textContentue={player1}
+                                textinboxue={player1}
                             />
                             <TextBoxRender
                                 title="PL2"
                                 idTextBox="player2"
-                                textContentue={player2}
+                                textinboxue={player2}
                             />
                             <TextBoxRender
                                 title="PL3"
                                 idTextBox="player3"
-                                textContentue={player3}
+                                textinboxue={player3}
                             />
                             <TextBoxRender
                                 title="PL4"
                                 idTextBox="player4"
-                                textContentue={player4}
+                                textinboxue={player4}
                             />
                         </ul>
                         <ul id='box-lineup-red' className="box-lineup" >
                         <TextBoxRender
                                 title="PL1"
                                 idTextBox="player5"
-                                textContent={player5}
+                                textinbox={player5}
                             />
                             <TextBoxRender
                                 title="PL2"
                                 idTextBox="player6"
-                                textContent={player6}
+                                textinbox={player6}
                             />
                             <TextBoxRender
                                 title="PL3"
                                 idTextBox="player7"
-                                textContent={player7}
+                                textinbox={player7}
                             />
                             <TextBoxRender
                                 title="PL4"
                                 idTextBox="player8"
-                                textContent={player8}
+                                textinbox={player8}
                             />
                         </ul>
                     </div>
@@ -420,12 +414,12 @@ function Backend() {
                         <TextBoxRender
                             title="player"
                             idTextBox="game1PlayerPick-left"
-                            textContent={game1PlayerPickLeft}
+                            textinbox={game1PlayerPickLeft}
                         />
                         <TextBoxRender
                             title="player"
                             idTextBox="game1PlayerPick-right"
-                            textContent={game1PlayerPickRight}
+                            textinbox={game1PlayerPickRight}
                         />
                     </div>
                     <h1 className="box-title">BANPICK GAME 2</h1>
@@ -433,13 +427,13 @@ function Backend() {
                         <TextBoxRender
                             title="player"
                             idTextBox="game2PlayerPick-left"
-                            textContent={game2PlayerPickLeft}
+                            textinbox={game2PlayerPickLeft}
 
                         />
                         <TextBoxRender
                             title="player"
                             idTextBox="game2PlayerPick-right"
-                            textContent={game2PlayerPickRight}
+                            textinbox={game2PlayerPickRight}
 
                         />
                     </div>
@@ -448,12 +442,12 @@ function Backend() {
                         <TextBoxRender
                             title="player"
                             idTextBox="game3PlayerPick-left"
-                            textContent={game3PlayerPickLeft}
+                            textinbox={game3PlayerPickLeft}
                         />
                         <TextBoxRender
                             title="player"
                             idTextBox="game3PlayerPick-right"
-                            textContent={game3PlayerPickRight}
+                            textinbox={game3PlayerPickRight}
 
                         />
                     </div>
@@ -462,12 +456,12 @@ function Backend() {
                         <TextBoxRender
                             title="player"
                             idTextBox="game4PlayerPick-left"
-                            textContent={game4PlayerPickLeft}
+                            textinbox={game4PlayerPickLeft}
                         />
                         <TextBoxRender
                             title="player"
                             idTextBox="game4PlayerPick-right"
-                            textContent={game4PlayerPickRight}
+                            textinbox={game4PlayerPickRight}
 
                         />
                     </div>
@@ -476,13 +470,13 @@ function Backend() {
                         <TextBoxRender
                             title="player"
                             idTextBox="game5PlayerPick-left"
-                            textContent={game5PlayerPickLeft}
+                            textinbox={game5PlayerPickLeft}
 
                         />
                         <TextBoxRender
                             title="player"
                             idTextBox="game5PlayerPick-right"
-                            textContent={game5PlayerPickRight}
+                            textinbox={game5PlayerPickRight}
                         />
                         <BtnRender
                             btnName="Start Lineup"

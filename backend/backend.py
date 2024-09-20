@@ -45,20 +45,19 @@ def getTeams():
         listTeam = list(data.keys())
     return listTeam
 
+datapull = {}
 # app
 @app.get("/api/{item}")
 async def response(item: str):
     if item == "pulldatasheet":
         url = f'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheet_id}/values/{sheet_name}!A1:B?alt=json&key={api_key}'
         response = requests.get(url)
-        sheet_data = data = response.json()
+        sheet_data = response.json()
         if sheet_data:
-            datapull = {}
             for i in sheet_data['values']:
                 datapull[i[0]] = i[1]
             with open(f'./database/crrmatch.json', 'w') as filew:
                 json.dump(datapull,filew)
-            return datapull
         else:
             print("Failed to fetch data from Google Sheets API.")
     
