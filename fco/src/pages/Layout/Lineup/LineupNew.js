@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import './LineupNew.css';
 import * as beAPI from '../../../api/FetchApi'
 
-var ws = new WebSocket(`ws://${beAPI.hostIP}:10045/ws/0`)
+var ws = new WebSocket(`ws://${beAPI.hostIP}:${beAPI.portApi}/ws/0`)
 
 
 
@@ -10,10 +10,8 @@ export default function Lineup() {
     const [game, setGame] = useState('1')
     const [logoLeft, setLogoLeft] = useState('SGP')
     const [teamLeft, setTeamLeft] = useState('Hà Nội')
-    const [lineupLeft, setLineupLeft] = useState(['1','2','3','4'])
     const [logoRight, setLogoRight] = useState('VGM')
     const [teamRight, setTeamRight] = useState('Hà Nội')
-    const [lineupRight, setLineupRight] = useState(['1','2','3','4'])
     const [bo, setBo] = useState('3')
     const [match,setMatch] = useState('match 1')
     const [playerName1, setPlayerName1] = useState('player 1')

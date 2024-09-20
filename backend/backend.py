@@ -9,8 +9,41 @@ import uvicorn
 import os
 import json
 from fastapi import WebSocket, WebSocketDisconnect
-import csv
+import os.path
+import requests
+from time import sleep
 
+
+# google sheet handle
+def get_google_sheet_data(spreadsheet_id,sheet_name, api_key):
+    # Construct the URL for the Google Sheets API
+    url = f'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheet_id}/values/{sheet_name}!A1:B?alt=json&key={api_key}'
+
+    try:
+        # Make a GET request to retrieve data from the Google Sheets API
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an exception for HTTP errors
+
+        # Parse the JSON response
+        data = response.json()
+        return data
+
+    except requests.exceptions.RequestException as e:
+        # Handle any errors that occur during the request
+        print(f"An error occurred: {e}")
+        return None
+
+
+# configurations
+spreadsheet_id = '1rdSU9mEy7yHltRfwvLFlllAbxhW_yvJyNcBFJxMv2gA'
+api_key = 'AIzaSyARx2UnEZ_gUra4BNBc6_xGYkTX-7TvWDY'
+sheet_name = "data"
+
+
+
+
+
+# app fastapi
 app = FastAPI()
 # Cors accept
 app.add_middleware(
@@ -34,120 +67,25 @@ def getTeams():
         listTeam = list(data.keys())
     return listTeam
 
-# banpick variable
-# range phase 1-16
-banpick = {'Phase': '1', 'Ban1': 'none', 'Ban2': 'none', 'Ban3': 'none', 'Ban4': 'none', 'Ban5': 'none', 'Ban6': 'none', 'Ban7': 'none', 'Ban8': 'none', 'pick1': 'none', 'pick2': 'none', 'pick3': 'none', 'pick4': 'none', 'pick5': 'none', 'pick6': 'none', 'pick7': 'none', 'pick8': 'none', 'pick9': 'none', 'pick10': 'none' }
-
-chat_count = False
+# app
 @app.get("/api/{item}")
 async def response(item: str):
-    global chat_count
-    if item == "listmatchID":
-        try:
-            getListID = getID()
-            return {"listmatchID":getListID, "listTeam": list(getTeams())}
-        except:
-            return {"listmatchID":[]}
-    elif item.isnumeric() == True:
-        try:
-            with open(f'./database/match/{item}.json','r') as file:
-                data = json.load(file)
-                return data
-        except:
-            return "notFound"
-    elif item.split("-")[0] == "crn":
-        spldata = item.split("-")
-        newID = int(max(getID())) + 1
-        newMatch = {}
-        dictTeam1 = {}
-        dictTeam2 = {}
-        with open('./database/teams.json', 'r') as file:
-            data = json.load(file)
-            dictTeam1 = data[spldata[1].upper()]
-            dictTeam2 = data[spldata[2].upper()]
-        newMatch["matchId"] = f"{newID}"
-        newMatch["matchName"] = "Match"
-        newMatch["round"] = "round"
-        newMatch["bo"] = spldata[3]
-        newMatch["team-1"] = dictTeam1["team"]
-        newMatch["fullNameTeam-1"] = dictTeam1["fullName"]
-        newMatch["team-2"] = dictTeam2["team"]
-        newMatch["fullNameTeam-2"] = dictTeam2["fullName"]
-        newMatch["lineUpFull-1"] = dictTeam1["players"]
-        newMatch["lineUpFull-2"] = dictTeam2["players"]
-        listGame = []
-        for i in range(int(spldata[3])):
-            status = "pending"
-            if i == 0:
-                status="start"
-            listGame.append({
-                "game": f"{i+1}",
-                "status":f"{status}",
-                "teamBlue": dictTeam1["team"],
-                "fullNameTeamBlue":dictTeam1["fullName"],
-                "teamRed":dictTeam2["team"],
-                "fullNameTeamRed":dictTeam2["fullName"],
-                "lineUpBlue": dictTeam1["players"][0:5],
-                "lineUpRed": dictTeam2["players"][0:5],
-                "pickBlue": ["pick1","pick2","pick3","pick4","pick5"],
-                "pickRed": ["pick1","pick2","pick3","pick4","pick5"],
-                "win":"pending"
-            })
-        newMatch["gameInfo"] = listGame
-        with open(f'./database/match/{newID}.json','w') as file2:
-            json.dump(newMatch,file2)
-        return newID
-    elif item == "bracket":
-        # waiting create match
-        with open(f'./database/bracket.json','r') as file:
-            data = json.load(file)
-            return data
-    elif item == "last":
-        lastID = max(getID())
-        with open(f'./database/match/{lastID}.json','r') as file:
-            data = json.load(file)
-            return data
-    elif item == "crrmatch":
-        lastID = max(getID())
-        with open(f'./database/match/crrmatch.json','r') as file:
-            data = json.load(file)
-            return data
-    elif item.split("-")[0] == "lineup":
-        rqRCV = item.split("-")
-        if rqRCV[1] == "blue":
-            with open('./dataLineup.csv', 'r',encoding='utf-8') as file:
-                csv_reader = csv.DictReader(file,delimiter=',')
-                list_cvt = list(csv_reader)
-                dictTeam = list_cvt[0]
-                # dictTeamRed = list_cvt[1]
-                list_player = []
-                list_player.append({'Team': f'{dictTeam['\ufeffT']}','fullname':f'{dictTeam['Fullname']}'})
-                for i in range(5):
-                    n = i+1
-                    dict = {'ID': n, 'player_name':f'{dictTeam[f'player {n}']}', 'KDA': f'{dictTeam[f'KDA {n}']}', 'rankKDA': f'{dictTeam[f'Rank KDA {n}']}','MVP':f'{dictTeam[f'MVP {n}']}','rankMVP': f'{dictTeam[f'Rank MVP {n}']}' }
-                    list_player.append(dict)
-                return list_player
+    if item == "pulldatasheet":
+        sheet_data = get_google_sheet_data(spreadsheet_id,sheet_name, api_key)
+        if sheet_data:
+            datapull = {}
+            for i in sheet_data['values']:
+                datapull[i[0]] = i[1]
+            with open(f'./database/crrmatch.json', 'w') as filew:
+                json.dump(datapull,filew)
+            return datapull
         else:
-            with open('./dataLineup.csv', 'r',encoding='utf-8') as file:
-                csv_reader = csv.DictReader(file,delimiter=',')
-                list_cvt = list(csv_reader)
-                dictTeam = list_cvt[1]
-                # dictTeamRed = list_cvt[1]
-                list_player = []
-                list_player.append({'Team': f'{dictTeam['\ufeffT']}','fullname':f'{dictTeam['Fullname']}'})
-                for i in range(5):
-                    n = i+1
-                    dict = {'ID': n, 'player_name':f'{dictTeam[f'player {n}']}', 'KDA': f'{dictTeam[f'KDA {n}']}', 'rankKDA': f'{dictTeam[f'Rank KDA {n}']}','MVP':f'{dictTeam[f'MVP {n}']}','rankMVP': f'{dictTeam[f'Rank MVP {n}']}' }
-                    list_player.append(dict)
-                return list_player
-    # banpick api
-    elif item == "champsname":
-        list_of_files = []
-        for (dirpath, dirnames, filenames) in os.walk('./database/champ'):
-            for filename in filenames:
-                if filename.endswith('.png'): 
-                    list_of_files.append(filename.replace('.png',""))
-        return list_of_files
+            print("Failed to fetch data from Google Sheets API.")
+    
+    elif item == "crrmatch":
+        with open(f'./database/crrmatch.json','r') as file:
+            data = json.load(file)
+            return data
     elif item =="listteam":
         return getTeams()
     elif item.split("-")[0] == "namefull":
@@ -184,6 +122,7 @@ class Rcv(BaseModel):
 
 @app.post("/api/post/{item}")
 async def reciveItem(rcv: Request,item: str):
+    pass
     if item.isnumeric() == True:
         with open(f'./database/match/{item}.json', 'w') as filew:
             json.dump(await rcv.json(),filew)
