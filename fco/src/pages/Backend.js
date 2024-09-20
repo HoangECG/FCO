@@ -62,9 +62,7 @@ function Backend() {
     useEffect(() => {
         async function fetchMyAPI() {
             let response = await beAPI.Getcrrmatch()
-            // get list champs name 
             // set variable
-            console.log(response['game'])
             setGame(await response['game'])
             setMatch(await response['matchName'])
             setRound(await response['round'])
@@ -177,7 +175,7 @@ function Backend() {
             console.log('err')
         }
     }
-    function HandleSyncButtonClick(){
+    function HandleSyncClick(){
         
         // setTimeout(() => {
         //     window.location.reload()
@@ -213,9 +211,9 @@ function Backend() {
                     />
                     <BtnRender
                         btnName="SYNC MATCH"
-                        idBtn="syncBtn"
+                        idBtn="syncbtnn"
                         classBtn="btn"
-                        btnClick={HandleSyncButtonClick}
+                        btnClick={HandleSyncClick}
                     />
                 </div>
             )
@@ -225,6 +223,7 @@ function Backend() {
     
         // Match incoming component
         function MatchConfig() {
+            console.log(2)
             return (
                 <div id="match-info-result">
                     <h1 className="box-title">GAME 1 INFO</h1>
@@ -511,7 +510,6 @@ function Backend() {
         }
         function StreamInfor() {
             // Return component stream info
-            
             return (
                 <div id="streamInfo" className="box-ctn">
                     <h1 className="box-title">Countdown Code</h1>
