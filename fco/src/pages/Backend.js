@@ -61,8 +61,8 @@ function Backend() {
 
     useEffect(() => {
         async function fetchMyAPI() {
+            console.log(1)
             let response = await beAPI.Getcrrmatch()
-            // set variable
             setGame(await response['game'])
             setMatch(await response['matchName'])
             setRound(await response['round'])
@@ -114,14 +114,13 @@ function Backend() {
         fetchMyAPI()
         }, [0])
 
-
     // Input render
     function InputRender(props) {
         return (
             <div className="input-div">
                 <label htmlFor={props.inputID} className={props.labelClassName}>{props.name}</label>
-                <input id={props.inputID} className={props.inputClassName} list={props.idDatalist} type={props.type}
-                     placeholder={props.placeholder} name={props.name} defaultValue={props.value} disabled={props.disabled}></input>
+                <input id={props.inputID} className={props.inputClassName} 
+                     placeholder={props.placeholder} name={props.name} defaultValue={props.value}></input>
             </div>
         )
     }
@@ -136,8 +135,8 @@ function Backend() {
     function TextBoxRender(props) {
         return (
             <div className={"text-info-ctn"}>
-                <h1 className={"title-text-box "}>{props.title}</h1>
-                <div id={props.idTextBox} className={"text-info-box " + props.classname}>{props.textContent}</div>
+                <h1 className={"title-text-box"}>{props.title}</h1>
+                <div id={props.idTextBox} className={"text-info-box"}>{props.textContent}</div>
             </div>
         )
     }
@@ -202,7 +201,7 @@ function Backend() {
                     <TextBoxRender
                         idTextBox="team-1"
                         textContent={teamBlue}
-                        title="team1"
+                        title="team 1"
                     />
                     <TextBoxRender
                         idTextBox="team2"
@@ -223,7 +222,6 @@ function Backend() {
     
         // Match incoming component
         function MatchConfig() {
-            console.log(2)
             return (
                 <div id="match-info-result">
                     <h1 className="box-title">GAME 1 INFO</h1>

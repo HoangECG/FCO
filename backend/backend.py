@@ -1,8 +1,5 @@
 from fastapi import FastAPI, Request, Body
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 from typing import Dict, Any
 import uvicorn
@@ -13,25 +10,6 @@ import os.path
 import requests
 from time import sleep
 
-
-# google sheet handle
-def get_google_sheet_data(spreadsheet_id,sheet_name, api_key):
-    # Construct the URL for the Google Sheets API
-    url = f'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheet_id}/values/{sheet_name}!A1:B?alt=json&key={api_key}'
-
-    try:
-        # Make a GET request to retrieve data from the Google Sheets API
-        response = requests.get(url)
-        response.raise_for_status()  # Raise an exception for HTTP errors
-
-        # Parse the JSON response
-        data = response.json()
-        return data
-
-    except requests.exceptions.RequestException as e:
-        # Handle any errors that occur during the request
-        print(f"An error occurred: {e}")
-        return None
 
 
 # configurations
@@ -71,7 +49,9 @@ def getTeams():
 @app.get("/api/{item}")
 async def response(item: str):
     if item == "pulldatasheet":
-        sheet_data = get_google_sheet_data(spreadsheet_id,sheet_name, api_key)
+        url = f'https://sheets.googleapis.com/v4/spreadsheets/{spreadsheet_id}/values/{sheet_name}!A1:B?alt=json&key={api_key}'
+        response = requests.get(url)
+        sheet_data = data = response.json()
         if sheet_data:
             datapull = {}
             for i in sheet_data['values']:
