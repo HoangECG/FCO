@@ -57,60 +57,63 @@ function Backend() {
     const [game3PlayerPickRight, setGame3PlayerPickRight] = useState('df')
     const [game4PlayerPickRight, setGame4PlayerPickRight] = useState('df')
     const [game5PlayerPickRight, setGame5PlayerPickRight] = useState('df')
+    const [isReload, setIsReload] = useState(false)
+    
 
 
     useEffect(() => {
         async function fetchMyAPI() {
             let response = await beAPI.Getcrrmatch()
-            setGame(await response['game'])
-            setMatch(await response['matchName'])
-            setRound(await response['round'])
-            setBo(await response['bo'])
-            setDate(await response['date'])
-            setTeamBlue(await response['team-1'])
-            setTeamNameBlue(await response['fullNameTeam-1'])
-            setTeamRed(await response['team-2'])
-            setTeamNameRed(await response['fullNameTeam-2'])
-            setPlayer1(await response['player1'])
-            setPlayer2(await response['player2'])
-            setPlayer3(await response['player3'])
-            setPlayer4(await response['player4'])
-            setPlayer5(await response['player5'])
-            setPlayer6(await response['player6'])
-            setPlayer7(await response['player7'])
-            setPlayer8(await response['player8'])
-            setGame1PlayerPickLeft(await response['pickleft1'])
-            setGame2PlayerPickLeft(await response['pickleft2'])
-            setGame3PlayerPickLeft(await response['pickleft3'])
-            setGame4PlayerPickLeft(await response['pickleft4'])
-            setGame5PlayerPickLeft(await response['pickleft5'])
-            setGame1PlayerPickRight(await response['pickright1'])
-            setGame2PlayerPickRight(await response['pickright2'])
-            setGame3PlayerPickRight(await response['pickright3'])
-            setGame4PlayerPickRight(await response['pickright4'])
-            setGame5PlayerPickRight(await response['pickright5'])
-            setscL1(await response['scL1'])
-            setscL2(await response['scL2'])
-            setscL3(await response['scL3'])
-            setscL4(await response['scL4'])
-            setscL5(await response['scL5'])
-            setscR1(await response['scR1'])
-            setscR2(await response['scR2'])
-            setscR3(await response['scR3'])
-            setscR4(await response['scR4'])
-            setscR5(await response['scR5'])
-            setpkL1(await response['pkL1'])
-            setpkL2(await response['pkL2'])
-            setpkL3(await response['pkL3'])
-            setpkL4(await response['pkL4'])
-            setpkL5(await response['pkL5'])
-            setpkR1(await response['pkR1'])
-            setpkR2(await response['pkR2'])
-            setpkR3(await response['pkR3'])
-            setpkR4(await response['pkR4'])
-            setpkR5(await response['pkR5'])
+            console.log(response['player1'])
+            setGame(response['game'])
+            setMatch(response['matchName'])
+            setRound(response['round'])
+            setBo(response['bo'])
+            setDate(response['date'])
+            setTeamBlue(response['team-1'])
+            setTeamNameBlue(response['fullNameTeam-1'])
+            setTeamRed(response['team-2'])
+            setTeamNameRed(response['fullNameTeam-2'])
+            setPlayer1(response['player1'])
+            setPlayer2(response['player2'])
+            setPlayer3(response['player3'])
+            setPlayer4(response['player4'])
+            setPlayer5(response['player5'])
+            setPlayer6(response['player6'])
+            setPlayer7(response['player7'])
+            setPlayer8(response['player8'])
+            setGame1PlayerPickLeft(response['pickleft1'])
+            setGame2PlayerPickLeft(response['pickleft2'])
+            setGame3PlayerPickLeft(response['pickleft3'])
+            setGame4PlayerPickLeft(response['pickleft4'])
+            setGame5PlayerPickLeft(response['pickleft5'])
+            setGame1PlayerPickRight(response['pickright1'])
+            setGame2PlayerPickRight(response['pickright2'])
+            setGame3PlayerPickRight(response['pickright3'])
+            setGame4PlayerPickRight(response['pickright4'])
+            setGame5PlayerPickRight(response['pickright5'])
+            setscL1(response['scL1'])
+            setscL2(response['scL2'])
+            setscL3(response['scL3'])
+            setscL4(response['scL4'])
+            setscL5(response['scL5'])
+            setscR1(response['scR1'])
+            setscR2(response['scR2'])
+            setscR3(response['scR3'])
+            setscR4(response['scR4'])
+            setscR5(response['scR5'])
+            setpkL1(response['pkL1'])
+            setpkL2(response['pkL2'])
+            setpkL3(response['pkL3'])
+            setpkL4(response['pkL4'])
+            setpkL5(response['pkL5'])
+            setpkR1(response['pkR1'])
+            setpkR2(response['pkR2'])
+            setpkR3(response['pkR3'])
+            setpkR4(response['pkR4'])
+            setpkR5(response['pkR5'])
         }
-        fetchMyAPI()}, [0])
+        fetchMyAPI()}, [isReload])
 
     // Input render
     function InputRender(props) {
@@ -131,10 +134,18 @@ function Backend() {
         )
     }
     function TextBoxRender(props) {
+        function rtFix(props){
+            if (props === '1'){
+                return "text-info-box text-info-box-fix"
+            }else{
+                return "text-info-box"
+            }
+
+        }
         return (
             <div className="text-info-ctn">
                 <h1 className="title-text-box">{props.title}</h1>
-                <div id={props.idTextBox} className="text-info-box">{props.textinbox}</div>
+                <div id={props.idTextBox} className={rtFix(props.fixed)}>{props.textinbox}</div>
             </div>
         )
     }
@@ -173,7 +184,8 @@ function Backend() {
         }
     }
     function HandleSyncClick(){
-
+        beAPI.GetPull()
+        setIsReload(!isReload)
     }
     function BackendBody() {
         // Component Match ID check
@@ -183,21 +195,25 @@ function Backend() {
                 <div id="match-create" className="box-ctn">
                     <h1 className="box-title">MATCH</h1>
                     <TextBoxRender
+                        fixed='0'
                         idTextBox="match"
                         textinbox={match}
                         title="match"
                     />
                     <TextBoxRender
+                        fixed='0'
                         idTextBox="bo"
                         textinbox={bo}
                         title="bo"
                     />
                     <TextBoxRender
+                        fixed='0'
                         idTextBox="team-1"
                         textinbox={teamBlue}
                         title="team 1"
                     />
                     <TextBoxRender
+                        fixed='0'
                         idTextBox="team2"
                         textinbox={teamRed}
                         title="team 2"
@@ -221,24 +237,28 @@ function Backend() {
                     <h1 className="box-title">GAME 1 INFO</h1>
                     <div className="frag-ctn">
                         <TextBoxRender
+                            fixed='1'
                             textinbox={scL1}
                             title='score'
                             idTextBox="scL1"
                             classname="text-info-box-fix"
                         />
                         <TextBoxRender
+                            fixed='1'
                             textinbox={scR1}
                             title='score'
                             classname="text-info-box-fix"
                             idTextBox="scR1"
                         />
                         <TextBoxRender
+                            fixed='1'
                             textinbox={pkL1}
                             title='PK Left'
                             classname="text-info-box-fix"
                             idTextBox="pkL1"
                         />
                         <TextBoxRender
+                            fixed='1'
                             textinbox={pkR1}
                             title='PK Right'
                             classname="text-info-box-fix"
@@ -248,24 +268,28 @@ function Backend() {
                     <h1 className="box-title">GAME 2 INFO</h1>
                     <div className="frag-ctn">
                         <TextBoxRender
+                            fixed='1'
                             textinbox={scL2}
                             title='score'
                             classname="text-info-box-fix"
                             idTextBox="scL2"
                         />
                         <TextBoxRender
+                            fixed='1'
                             textinbox={scR2}
                             title='score'
                             classname="text-info-box-fix"
                             idTextBox="scR2"
                         />
                         <TextBoxRender
+                            fixed='1'
                             textinbox={pkL2}
                             title='PK Left'
                             classname="text-info-box-fix"
                             idTextBox="pkL2"
                         />
                         <TextBoxRender
+                            fixed='1'
                             textinbox={pkR2}
                             title='PK Right'
                             classname="text-info-box-fix"
@@ -275,24 +299,28 @@ function Backend() {
                     <h1 className="box-title">GAME 3 INFO</h1>
                     <div className="frag-ctn">
                         <TextBoxRender
+                            fixed='1'
                             textinbox={scL3}
                             title='score'
                             classname="text-info-box-fix"
                             idTextBox="scL3"
                         />
                         <TextBoxRender
+                            fixed='1'
                             textinbox={scR3}
                             title='score'
                             classname="text-info-box-fix"
                             idTextBox="scR3"
                         />
                         <TextBoxRender
+                            fixed='1'
                             textinbox={pkL3}
                             classname="text-info-box-fix"
                             title='PK Left'
                             idTextBox="pkL3"
                         />
                         <TextBoxRender
+                            fixed='1'
                             textinbox={pkR3}
                             title='PK Right'
                             classname="text-info-box-fix"
@@ -302,24 +330,28 @@ function Backend() {
                     <h1 className="box-title">GAME 4 INFO</h1>
                     <div className="frag-ctn">
                         <TextBoxRender
+                            fixed='1'
                             textinbox={scL4}
                             classname="text-info-box-fix"
                             title='score'
                             idTextBox="scL4"
                         />
                         <TextBoxRender
+                            fixed='1'
                             textinbox={scR4}
                             classname="text-info-box-fix"
                             title='score'
                             idTextBox="scR4"
                         />
                         <TextBoxRender
+                            fixed='1'
                             textinbox={pkL4}
                             classname="text-info-box-fix"
                             title='PK Left'
                             idTextBox="pkL4"
                         />
                         <TextBoxRender
+                            fixed='1'
                             textinbox={pkR4}
                             title='PK Right'
                             classname="text-info-box-fix"
@@ -329,24 +361,28 @@ function Backend() {
                     <h1 className="box-title">GAME 5 INFO</h1>
                     <div className="frag-ctn">
                         <TextBoxRender
+                            fixed='1'
                             textinbox={scL5}
                             classname="text-info-box-fix"
                             title='score'
                             idTextBox="scL5"
                         />
                         <TextBoxRender
+                            fixed='1'
                             textinbox={scR5}
                             title='score'
                             idTextBox="scR5"
                             classname="text-info-box-fix"
                         />
                         <TextBoxRender
+                            fixed='1'
                             textinbox={pkL5}
                             title='PK Left'
                             classname="text-info-box-fix"
                             idTextBox="pkL5"
                         />
                         <TextBoxRender
+                            fixed='1'
                             textinbox={pkR5}
                             title='PK Right'
                             classname="text-info-box-fix"
@@ -357,44 +393,52 @@ function Backend() {
                     <div className="frag-ctn">
                         <ul id='box-lineup-blue' className="box-lineup" >
                             <TextBoxRender
+                                fixed='0'
                                 title="PL1"
                                 idTextBox="player1"
-                                textinboxue={player1}
+                                textinbox={player1}
                             />
                             <TextBoxRender
+                                fixed='0'
                                 title="PL2"
                                 idTextBox="player2"
-                                textinboxue={player2}
+                                textinbox={player2}
                             />
                             <TextBoxRender
+                                fixed='0'
                                 title="PL3"
                                 idTextBox="player3"
-                                textinboxue={player3}
+                                textinbox={player3}
                             />
                             <TextBoxRender
+                                fixed='0'
                                 title="PL4"
                                 idTextBox="player4"
-                                textinboxue={player4}
+                                textinbox={player4}
                             />
                         </ul>
                         <ul id='box-lineup-red' className="box-lineup" >
                         <TextBoxRender
-                                title="PL1"
+                            fixed='0'
+                                title="PL5"
                                 idTextBox="player5"
                                 textinbox={player5}
                             />
                             <TextBoxRender
-                                title="PL2"
+                                fixed='0'
+                                title="PL6"
                                 idTextBox="player6"
                                 textinbox={player6}
                             />
                             <TextBoxRender
-                                title="PL3"
+                                fixed='0'
+                                title="PL7"
                                 idTextBox="player7"
                                 textinbox={player7}
                             />
                             <TextBoxRender
-                                title="PL4"
+                                fixed='0'
+                                title="PL8"
                                 idTextBox="player8"
                                 textinbox={player8}
                             />
@@ -406,17 +450,18 @@ function Backend() {
         // Return backend component
         // banpick container
         function BanpickContainer(){
-            
             return (
                 <div id="banpickContainer" className="box-ctn">
                     <h1 className="box-title">BANPICK GAME 1</h1>
                     <div className="frag-ctn">
                         <TextBoxRender
+                            fixed='0'
                             title="player"
                             idTextBox="game1PlayerPick-left"
                             textinbox={game1PlayerPickLeft}
                         />
                         <TextBoxRender
+                            fixed='0'
                             title="player"
                             idTextBox="game1PlayerPick-right"
                             textinbox={game1PlayerPickRight}
@@ -425,12 +470,14 @@ function Backend() {
                     <h1 className="box-title">BANPICK GAME 2</h1>
                     <div className="frag-ctn">
                         <TextBoxRender
+                            fixed='0'
                             title="player"
                             idTextBox="game2PlayerPick-left"
                             textinbox={game2PlayerPickLeft}
 
                         />
                         <TextBoxRender
+                            fixed='0'
                             title="player"
                             idTextBox="game2PlayerPick-right"
                             textinbox={game2PlayerPickRight}
@@ -440,11 +487,13 @@ function Backend() {
                     <h1 className="box-title">BANPICK GAME 3</h1>
                     <div className="frag-ctn">
                         <TextBoxRender
+                            fixed='0'
                             title="player"
                             idTextBox="game3PlayerPick-left"
                             textinbox={game3PlayerPickLeft}
                         />
                         <TextBoxRender
+                            fixed='0'
                             title="player"
                             idTextBox="game3PlayerPick-right"
                             textinbox={game3PlayerPickRight}
@@ -454,11 +503,13 @@ function Backend() {
                     <h1 className="box-title">BANPICK GAME 4</h1>
                     <div className="frag-ctn">
                         <TextBoxRender
+                            fixed='0'
                             title="player"
                             idTextBox="game4PlayerPick-left"
                             textinbox={game4PlayerPickLeft}
                         />
                         <TextBoxRender
+                            fixed='0'
                             title="player"
                             idTextBox="game4PlayerPick-right"
                             textinbox={game4PlayerPickRight}
@@ -468,12 +519,14 @@ function Backend() {
                     <h1 className="box-title">BANPICK GAME 5</h1>
                     <div className="frag-ctn">
                         <TextBoxRender
+                            fixed='0'
                             title="player"
                             idTextBox="game5PlayerPick-left"
                             textinbox={game5PlayerPickLeft}
 
                         />
                         <TextBoxRender
+                            fixed='0'
                             title="player"
                             idTextBox="game5PlayerPick-right"
                             textinbox={game5PlayerPickRight}
