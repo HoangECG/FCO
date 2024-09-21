@@ -69,12 +69,14 @@ export default function Tab() {
     const rootStyle = document.documentElement.style;
     rootStyle.setProperty('--opacity-minus', '0');
     rootStyle.setProperty('--opacity-link', '0');
-    rootStyle.setProperty('--main-tab-pos', '25px'); 
-    rootStyle.setProperty('--name-tab-pos', '15px'); 
+    rootStyle.setProperty('--top-link', '65px');
+    rootStyle.setProperty('--top-minus', '65px');    
+    rootStyle.setProperty('--opacity-giftcode', '0');
     rootStyle.setProperty('--top-name', '20px');     
     rootStyle.setProperty('--box-height', '75px');   
     rootStyle.setProperty('--cd-num-opacity', '1');  
-    rootStyle.setProperty('--opacity-giftcode', '0');
+    rootStyle.setProperty('--main-tab-pos', '25px'); 
+    rootStyle.setProperty('--name-tab-pos', '15px'); 
 
   }
 
