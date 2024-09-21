@@ -13,8 +13,8 @@ from time import sleep
 
 
 # configurations
-spreadsheet_id = ''
-api_key = ''
+spreadsheet_id = '1rdSU9mEy7yHltRfwvLFlllAbxhW_yvJyNcBFJxMv2gA'
+api_key = 'AIzaSyARx2UnEZ_gUra4BNBc6_xGYkTX-7TvWDY'
 sheet_name = "data"
 
 
