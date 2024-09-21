@@ -56,10 +56,10 @@ export default function Tab() {
       <Fragment>
         <div id='giftcode-name'>GIFTCODE COUNTDOWN</div>
         <div id='time-cd-id'>
-          <div id='cd-num'>{isComplete ? code : formatTime(timeLeft)}</div>
-          <div id='giftcode-show'>{code}</div>
+          <div id='cd-num'>{isComplete ? ShowLink() : formatTime(timeLeft)}</div>
         </div>
         <div id='popup-minus'>GOAL!!! Minus {minusTime}</div>
+        <div id='popup-link'>Tại: FCOnline.garena.vn</div>
       </Fragment>
     );
   }
@@ -67,12 +67,15 @@ export default function Tab() {
   // Layout control functions
   function StartCountdownLayout() {
     const rootStyle = document.documentElement.style;
+    rootStyle.setProperty('--opacity-minus', '0');
+    rootStyle.setProperty('--opacity-link', '0');
     rootStyle.setProperty('--main-tab-pos', '25px'); 
     rootStyle.setProperty('--name-tab-pos', '15px'); 
     rootStyle.setProperty('--top-name', '20px');     
     rootStyle.setProperty('--box-height', '75px');   
     rootStyle.setProperty('--cd-num-opacity', '1');  
     rootStyle.setProperty('--opacity-giftcode', '0');
+
   }
 
   function ShowMinus() {
@@ -80,8 +83,15 @@ export default function Tab() {
     rootStyle.setProperty('--opacity-minus', '1');   
     rootStyle.setProperty('--top-minus', '90px');    
     setTimeout(() => {
-      rootStyle.setProperty('--opacity-minus', '0');
+    rootStyle.setProperty('--top-minus', '65px');    
+    rootStyle.setProperty('--opacity-minus', '0');
     }, 3500);
+  }
+  function ShowLink() {
+    const rootStyle = document.documentElement.style;
+    rootStyle.setProperty('--opacity-link', '1');   
+    rootStyle.setProperty('--top-link', '90px');
+    return code  
   }
 
   function StopCountdownLayout() {
@@ -90,7 +100,11 @@ export default function Tab() {
     rootStyle.setProperty('--main-tab-pos', '-325px'); 
     rootStyle.setProperty('--name-tab-pos', '-325px'); 
     rootStyle.setProperty('--cd-num-opacity', '0');   
-    rootStyle.setProperty('--opacity-giftcode', '0'); 
+    rootStyle.setProperty('--opacity-giftcode', '0');
+    rootStyle.setProperty('--opacity-minus', '0');
+    rootStyle.setProperty('--top-link', '65px');
+    rootStyle.setProperty('--top-minus', '65px');    
+    rootStyle.setProperty('--opacity-link', '0');
   }
 
   // Handle WebSocket messages

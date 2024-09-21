@@ -4,10 +4,12 @@
     --name-tab-pos: -325px;
     --top-name: 15px;
     --box-height: 25px;
-    --top-minus: 90px;
-    --opacity-minus: 0;
-    --cd-num-opacity: 1;
+    --top-minus: 65px;
     --opacity-giftcode: 0;
+
+    --main-tab-link-pos:-325px;
+    --top-link: 65px;
+    --opacity-link: 0;
   }
   
   #tabs {
@@ -30,6 +32,7 @@
     border-image-slice: 1;
     border-image-source: linear-gradient(to right bottom, #6a5af9, #f62682);
     transition: var(--trans);
+    z-index: 999;
   }
   
   #cd-num {
@@ -43,6 +46,7 @@
     text-align: center;
     transition: var(--trans);
     opacity: var(--cd-num-opacity);
+    z-index: 999;
   }
   
   #giftcode-show {
@@ -55,6 +59,7 @@
     top: 35px;
     opacity: var(--opacity-giftcode);
     transition: var(--trans);
+    z-index: 999;
   }
   
   #giftcode-name {
@@ -70,7 +75,7 @@
     top: var(--top-name);
     transition: var(--trans);
     border: 1px black solid;
-    z-index: 999;
+    z-index: 1000;
   }
   
   #popup-minus {
@@ -85,5 +90,19 @@
     top: var(--top-minus);
     opacity: var(--opacity-minus);
     transition: var(--trans);
+    z-index: 996;
   }
-  
+  #popup-link {
+    position: absolute;
+    background-color: yellow;
+    width: 250px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 18px;
+    text-align: center;
+    right: var(--main-tab-pos);
+    top: var(--top-link);
+    opacity: var(--opacity-link);
+    transition: var(--trans);
+    z-index: 997;
+  }
