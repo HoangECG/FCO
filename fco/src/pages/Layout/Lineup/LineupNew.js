@@ -146,7 +146,7 @@ export default function Lineup() {
                 setRoot('--match-info-ctn-opacity','0')
                 setRoot('--team-name-text-ctn-opacity','0')
                 return new Promise( function(resolve){
-                    setTimeout(resolve, 1000)
+                    setTimeout(resolve, 1500)
                 })
             })
             .then(function(){

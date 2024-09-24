@@ -1,5 +1,5 @@
 :root {
-    --trans: 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    --trans: 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     --main-tab-pos: -325px;
     --name-tab-pos: -325px;
     --top-name: 15px;
